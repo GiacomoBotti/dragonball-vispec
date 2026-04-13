@@ -27,6 +27,6 @@ Dragonball Documentation
 Dragonball Files
 ==========================================
 
-You find the repository `here <https://en.wikipedia.org/wiki/File:BulmaToriyama.png#/media/File:BulmaToriyama.png>`_
+You find the repository `here <https://github.com/giacomande95-oss/dragonball-vispec>`_
 
-You find the paper `here <https://en.wikipedia.org/wiki/File:BulmaToriyama.png#/media/File:BulmaToriyama.png>`_
+Paper is WIP

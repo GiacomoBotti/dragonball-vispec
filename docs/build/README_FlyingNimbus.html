@@ -251,10 +251,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Readme_BULMA.html">BULMA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">Gaussian tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma-gui-tutorial">Bulma GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta-gui-tutorial">Vegeta GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
@@ -307,91 +307,91 @@
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#what-flying-nimbus-does"><span class="xref myst">What Flying Nimbus does</span></a></p></li>
-<li><p><a class="reference internal" href="#core-workflow"><span class="xref myst">Core workflow</span></a></p></li>
-<li><p><a class="reference internal" href="#features-at-a-glance"><span class="xref myst">Features at a glance</span></a></p></li>
-<li><p><a class="reference internal" href="#requirements"><span class="xref myst">Requirements</span></a></p></li>
-<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
-<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
-<li><p><a class="reference internal" href="#general-command-syntax"><span class="xref myst">General command syntax</span></a></p></li>
-<li><p><a class="reference internal" href="#what-the-program-expects-as-input"><span class="xref myst">What the program expects as input</span></a></p>
+<li><p><a class="reference internal" href="#what-flying-nimbus-does">What Flying Nimbus does</a></p></li>
+<li><p><a class="reference internal" href="#core-workflow">Core workflow</a></p></li>
+<li><p><a class="reference internal" href="#features-at-a-glance">Features at a glance</a></p></li>
+<li><p><a class="reference internal" href="#requirements">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#installation">Installation</a></p></li>
+<li><p><a class="reference internal" href="#quick-start">Quick start</a></p></li>
+<li><p><a class="reference internal" href="#general-command-syntax">General command syntax</a></p></li>
+<li><p><a class="reference internal" href="#what-the-program-expects-as-input">What the program expects as input</a></p>
 <ul>
-<li><p><a class="reference internal" href="#equilibrium-geometry---xyz"><span class="xref myst">Equilibrium geometry (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</span></a></p></li>
-<li><p><a class="reference internal" href="#hessian---hess"><span class="xref myst">Hessian (<code class="docutils literal notranslate"><span class="pre">--hess</span></code>)</span></a></p></li>
-<li><p><a class="reference internal" href="#trajectory---traj"><span class="xref myst">Trajectory (<code class="docutils literal notranslate"><span class="pre">--traj</span></code>)</span></a></p></li>
-<li><p><a class="reference internal" href="#cnormdat-reuse---readcnorm-1"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> reuse (<code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#equilibrium-geometry-xyz">Equilibrium geometry (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#hessian-hess">Hessian (<code class="docutils literal notranslate"><span class="pre">--hess</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#trajectory-traj">Trajectory (<code class="docutils literal notranslate"><span class="pre">--traj</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#cnorm-dat-reuse-readcnorm-1"><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> reuse (<code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#how-flying-nimbus-works-internally"><span class="xref myst">How Flying Nimbus works internally</span></a></p>
+<li><p><a class="reference internal" href="#how-flying-nimbus-works-internally">How Flying Nimbus works internally</a></p>
 <ul>
-<li><p><a class="reference internal" href="#mass-assignment"><span class="xref myst">Mass assignment</span></a></p></li>
-<li><p><a class="reference internal" href="#building-or-loading-the-normal-mode-basis"><span class="xref myst">Building or loading the normal-mode basis</span></a></p></li>
-<li><p><a class="reference internal" href="#trajectory-reading-and-unit-handling"><span class="xref myst">Trajectory reading and unit handling</span></a></p></li>
-<li><p><a class="reference internal" href="#normal-mode-projection"><span class="xref myst">Normal-mode projection</span></a></p></li>
-<li><p><a class="reference internal" href="#correlation-vs-time-averaged-spectra"><span class="xref myst">Correlation vs time-averaged spectra</span></a></p></li>
-<li><p><a class="reference internal" href="#frequency-grid-construction"><span class="xref myst">Frequency grid construction</span></a></p></li>
+<li><p><a class="reference internal" href="#mass-assignment">Mass assignment</a></p></li>
+<li><p><a class="reference internal" href="#building-or-loading-the-normal-mode-basis">Building or loading the normal-mode basis</a></p></li>
+<li><p><a class="reference internal" href="#trajectory-reading-and-unit-handling">Trajectory reading and unit handling</a></p></li>
+<li><p><a class="reference internal" href="#normal-mode-projection">Normal-mode projection</a></p></li>
+<li><p><a class="reference internal" href="#correlation-vs-time-averaged-spectra">Correlation vs time-averaged spectra</a></p></li>
+<li><p><a class="reference internal" href="#frequency-grid-construction">Frequency grid construction</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#coordinate-systems"><span class="xref myst">Coordinate systems</span></a></p>
+<li><p><a class="reference internal" href="#coordinate-systems">Coordinate systems</a></p>
 <ul>
-<li><p><a class="reference internal" href="#normal-mode-mode---coord-nm"><span class="xref myst">Normal-mode mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>)</span></a></p></li>
-<li><p><a class="reference internal" href="#cartesian-mode---coord-cart"><span class="xref myst">Cartesian mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#normal-mode-mode-coord-nm">Normal-mode mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#cartesian-mode-coord-cart">Cartesian mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#detailed-cli-reference"><span class="xref myst">Detailed CLI reference</span></a></p>
+<li><p><a class="reference internal" href="#detailed-cli-reference">Detailed CLI reference</a></p>
 <ul>
-<li><p><a class="reference internal" href="#system-and-structure-options"><span class="xref myst">System and structure options</span></a></p></li>
-<li><p><a class="reference internal" href="#time-and-sampling-options"><span class="xref myst">Time and sampling options</span></a></p></li>
-<li><p><a class="reference internal" href="#spectral-grid-options"><span class="xref myst">Spectral-grid options</span></a></p></li>
-<li><p><a class="reference internal" href="#analysis-mode-options"><span class="xref myst">Analysis mode options</span></a></p></li>
-<li><p><a class="reference internal" href="#damping-options"><span class="xref myst">Damping options</span></a></p></li>
-<li><p><a class="reference internal" href="#selection-options"><span class="xref myst">Selection options</span></a></p></li>
-<li><p><a class="reference internal" href="#inputoutput-options"><span class="xref myst">Input/output options</span></a></p></li>
-<li><p><a class="reference internal" href="#plotting-and-spreadsheet-export"><span class="xref myst">Plotting and spreadsheet export</span></a></p></li>
+<li><p><a class="reference internal" href="#system-and-structure-options">System and structure options</a></p></li>
+<li><p><a class="reference internal" href="#time-and-sampling-options">Time and sampling options</a></p></li>
+<li><p><a class="reference internal" href="#spectral-grid-options">Spectral-grid options</a></p></li>
+<li><p><a class="reference internal" href="#analysis-mode-options">Analysis mode options</a></p></li>
+<li><p><a class="reference internal" href="#damping-options">Damping options</a></p></li>
+<li><p><a class="reference internal" href="#selection-options">Selection options</a></p></li>
+<li><p><a class="reference internal" href="#input-output-options">Input/output options</a></p></li>
+<li><p><a class="reference internal" href="#plotting-and-spreadsheet-export">Plotting and spreadsheet export</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#outputs"><span class="xref myst">Outputs</span></a></p>
+<li><p><a class="reference internal" href="#outputs">Outputs</a></p>
 <ul>
-<li><p><a class="reference internal" href="#normal-mode-outputs"><span class="xref myst">Normal-mode outputs</span></a></p></li>
-<li><p><a class="reference internal" href="#cartesian-outputs"><span class="xref myst">Cartesian outputs</span></a></p></li>
-<li><p><a class="reference internal" href="#what-is-inside-the-dat-files"><span class="xref myst">What is inside the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files</span></a></p></li>
-<li><p><a class="reference internal" href="#csv-outputs"><span class="xref myst">CSV outputs</span></a></p></li>
-<li><p><a class="reference internal" href="#png-outputs"><span class="xref myst">PNG outputs</span></a></p></li>
-<li><p><a class="reference internal" href="#atom-selection-filename-tags"><span class="xref myst">Atom-selection filename tags</span></a></p></li>
+<li><p><a class="reference internal" href="#normal-mode-outputs">Normal-mode outputs</a></p></li>
+<li><p><a class="reference internal" href="#cartesian-outputs">Cartesian outputs</a></p></li>
+<li><p><a class="reference internal" href="#what-is-inside-the-dat-files">What is inside the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files</a></p></li>
+<li><p><a class="reference internal" href="#csv-outputs">CSV outputs</a></p></li>
+<li><p><a class="reference internal" href="#png-outputs">PNG outputs</a></p></li>
+<li><p><a class="reference internal" href="#atom-selection-filename-tags">Atom-selection filename tags</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#examples"><span class="xref myst">Examples</span></a></p>
+<li><p><a class="reference internal" href="#examples">Examples</a></p>
 <ul>
-<li><p><a class="reference internal" href="#1-minimal-normal-mode-time-averaged-spectrum"><span class="xref myst">1. Minimal normal-mode time-averaged spectrum</span></a></p></li>
-<li><p><a class="reference internal" href="#2-correlation--ft-instead-of-ta"><span class="xref myst">2. Correlation + FT instead of TA</span></a></p></li>
-<li><p><a class="reference internal" href="#3-multiple-vibrational-modes-at-once"><span class="xref myst">3. Multiple vibrational modes at once</span></a></p></li>
-<li><p><a class="reference internal" href="#4-reuse-an-existing-cnormdat"><span class="xref myst">4. Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#5-cartesian-spectrum"><span class="xref myst">5. Cartesian VACF spectrum</span></a></p></li>
-<li><p><a class="reference internal" href="#6-analyze-only-selected-atoms"><span class="xref myst">6. Analyze only selected atoms</span></a></p></li>
-<li><p><a class="reference internal" href="#7-export-csv-files-for-excel-or-libreoffice"><span class="xref myst">7. Export CSV files for Excel or LibreOffice</span></a></p></li>
-<li><p><a class="reference internal" href="#8-merge-multiple-mode-spectra-into-one-csv"><span class="xref myst">8. Merge multiple mode spectra into one CSV</span></a></p></li>
-<li><p><a class="reference internal" href="#9-save-png-plots"><span class="xref myst">9. Save PNG plots</span></a></p></li>
-<li><p><a class="reference internal" href="#10-shift-the-printed-frequency-axis"><span class="xref myst">10. Shift the printed frequency axis</span></a></p></li>
-<li><p><a class="reference internal" href="#11-normalize-spectra-to-a-maximum-of-1"><span class="xref myst">11. Normalize spectra to a maximum of 1</span></a></p></li>
-<li><p><a class="reference internal" href="#12-overwrite-an-existing-cnormdat"><span class="xref myst">12. Overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#13-linear-molecule-handling"><span class="xref myst">13. Linear-molecule handling</span></a></p></li>
-<li><p><a class="reference internal" href="#14-start-from-a-later-md-step"><span class="xref myst">14. Start from a later MD step</span></a></p></li>
+<li><p><a class="reference internal" href="#minimal-normal-mode-time-averaged-spectrum">1. Minimal normal-mode time-averaged spectrum</a></p></li>
+<li><p><a class="reference internal" href="#correlation-ft-instead-of-ta">2. Correlation + FT instead of TA</a></p></li>
+<li><p><a class="reference internal" href="#multiple-vibrational-modes-at-once">3. Multiple vibrational modes at once</a></p></li>
+<li><p><a class="reference internal" href="#id2">4. Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></p></li>
+<li><p><a class="reference internal" href="#id3">5. Cartesian VACF spectrum</a></p></li>
+<li><p><a class="reference internal" href="#analyze-only-selected-atoms">6. Analyze only selected atoms</a></p></li>
+<li><p><a class="reference internal" href="#export-csv-files-for-excel-or-libreoffice">7. Export CSV files for Excel or LibreOffice</a></p></li>
+<li><p><a class="reference internal" href="#merge-multiple-mode-spectra-into-one-csv">8. Merge multiple mode spectra into one CSV</a></p></li>
+<li><p><a class="reference internal" href="#save-png-plots">9. Save PNG plots</a></p></li>
+<li><p><a class="reference internal" href="#shift-the-printed-frequency-axis">10. Shift the printed frequency axis</a></p></li>
+<li><p><a class="reference internal" href="#normalize-spectra-to-a-maximum-of-1">11. Normalize spectra to a maximum of 1</a></p></li>
+<li><p><a class="reference internal" href="#overwrite-an-existing-cnorm-dat">12. Overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></p></li>
+<li><p><a class="reference internal" href="#linear-molecule-handling">13. Linear-molecule handling</a></p></li>
+<li><p><a class="reference internal" href="#start-from-a-later-md-step">14. Start from a later MD step</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#typical-workflows"><span class="xref myst">Typical workflows</span></a></p>
+<li><p><a class="reference internal" href="#typical-workflows">Typical workflows</a></p>
 <ul>
-<li><p><a class="reference internal" href="#workflow-a-hessian--trajectory--mode-resolved-ta-spectra"><span class="xref myst">Workflow A: Hessian + trajectory → mode-resolved TA spectra</span></a></p></li>
-<li><p><a class="reference internal" href="#workflow-b-precomputed-cnormdat--fast-repeat-analyses"><span class="xref myst">Workflow B: Precomputed <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> → fast repeat analyses</span></a></p></li>
-<li><p><a class="reference internal" href="#workflow-c-whole-system-vs-atom-projected-comparison"><span class="xref myst">Workflow C: Whole-system vs atom-projected comparison</span></a></p></li>
+<li><p><a class="reference internal" href="#workflow-a-hessian-trajectory-mode-resolved-ta-spectra">Workflow A: Hessian + trajectory → mode-resolved TA spectra</a></p></li>
+<li><p><a class="reference internal" href="#workflow-b-precomputed-cnorm-dat-fast-repeat-analyses">Workflow B: Precomputed <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> → fast repeat analyses</a></p></li>
+<li><p><a class="reference internal" href="#workflow-c-whole-system-vs-atom-projected-comparison">Workflow C: Whole-system vs atom-projected comparison</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#units-and-conventions"><span class="xref myst">Units and conventions</span></a></p></li>
-<li><p><a class="reference internal" href="#supported-atomic-symbols-and-masses"><span class="xref myst">Supported atomic symbols and masses</span></a></p></li>
-<li><p><a class="reference internal" href="#important-implementation-notes"><span class="xref myst">Important implementation notes</span></a></p></li>
-<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
-<li><p><a class="reference internal" href="#limitations"><span class="xref myst">Limitations</span></a></p></li>
-<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
-<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+<li><p><a class="reference internal" href="#units-and-conventions">Units and conventions</a></p></li>
+<li><p><a class="reference internal" href="#supported-atomic-symbols-and-masses">Supported atomic symbols and masses</a></p></li>
+<li><p><a class="reference internal" href="#important-implementation-notes">Important implementation notes</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting">Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#limitations">Limitations</a></p></li>
+<li><p><a class="reference internal" href="#license">License</a></p></li>
+<li><p><a class="reference internal" href="#authors">Authors</a></p></li>
 </ul>
 </section>
 <hr class="docutils" />

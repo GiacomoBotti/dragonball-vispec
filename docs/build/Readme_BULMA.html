@@ -273,10 +273,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">Gaussian tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma-gui-tutorial">Bulma GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta-gui-tutorial">Vegeta GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
@@ -320,56 +320,56 @@
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#what-bulma-does"><span class="xref myst">What BULMA does</span></a></p></li>
-<li><p><a class="reference internal" href="#supported-workflows"><span class="xref myst">Supported workflows</span></a></p></li>
-<li><p><a class="reference internal" href="#project-structure"><span class="xref myst">Project structure</span></a></p></li>
-<li><p><a class="reference internal" href="#requirements"><span class="xref myst">Requirements</span></a></p></li>
-<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
-<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
-<li><p><a class="reference internal" href="#general-command-syntax"><span class="xref myst">General command syntax</span></a></p></li>
-<li><p><a class="reference internal" href="#hessian-extraction"><span class="xref myst">Hessian extraction</span></a></p>
+<li><p><a class="reference internal" href="#what-bulma-does">What BULMA does</a></p></li>
+<li><p><a class="reference internal" href="#supported-workflows">Supported workflows</a></p></li>
+<li><p><a class="reference internal" href="#project-structure">Project structure</a></p></li>
+<li><p><a class="reference internal" href="#requirements">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#installation">Installation</a></p></li>
+<li><p><a class="reference internal" href="#quick-start">Quick start</a></p></li>
+<li><p><a class="reference internal" href="#general-command-syntax">General command syntax</a></p></li>
+<li><p><a class="reference internal" href="#hessian-extraction">Hessian extraction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#gaussian-hessian-extraction"><span class="xref myst">Gaussian Hessian extraction</span></a></p></li>
-<li><p><a class="reference internal" href="#orca-hessian-extraction"><span class="xref myst">ORCA Hessian extraction</span></a></p></li>
-<li><p><a class="reference internal" href="#q-chem-hessian-extraction"><span class="xref myst">Q-Chem Hessian extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#gaussian-hessian-extraction">Gaussian Hessian extraction</a></p></li>
+<li><p><a class="reference internal" href="#orca-hessian-extraction">ORCA Hessian extraction</a></p></li>
+<li><p><a class="reference internal" href="#q-chem-hessian-extraction">Q-Chem Hessian extraction</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#geometry-extraction"><span class="xref myst">Geometry extraction</span></a></p>
+<li><p><a class="reference internal" href="#geometry-extraction">Geometry extraction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#gaussian-geometry-extraction"><span class="xref myst">Gaussian geometry extraction</span></a></p></li>
-<li><p><a class="reference internal" href="#orca-geometry-extraction"><span class="xref myst">ORCA geometry extraction</span></a></p></li>
-<li><p><a class="reference internal" href="#q-chem-geometry-extraction"><span class="xref myst">Q-Chem geometry extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#gaussian-geometry-extraction">Gaussian geometry extraction</a></p></li>
+<li><p><a class="reference internal" href="#orca-geometry-extraction">ORCA geometry extraction</a></p></li>
+<li><p><a class="reference internal" href="#q-chem-geometry-extraction">Q-Chem geometry extraction</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#input-generation"><span class="xref myst">Input generation</span></a></p>
+<li><p><a class="reference internal" href="#input-generation">Input generation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#gaussian-input-generation"><span class="xref myst">Gaussian input generation</span></a></p></li>
-<li><p><a class="reference internal" href="#orca-input-generation"><span class="xref myst">ORCA input generation</span></a></p></li>
-<li><p><a class="reference internal" href="#q-chem-input-generation"><span class="xref myst">Q-Chem input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#gaussian-input-generation">Gaussian input generation</a></p></li>
+<li><p><a class="reference internal" href="#orca-input-generation">ORCA input generation</a></p></li>
+<li><p><a class="reference internal" href="#q-chem-input-generation">Q-Chem input generation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#dynamics-and-md-workflows"><span class="xref myst">Dynamics and MD workflows</span></a></p>
+<li><p><a class="reference internal" href="#dynamics-and-md-workflows">Dynamics and MD workflows</a></p>
 <ul>
-<li><p><a class="reference internal" href="#gaussian-bomd-input-generation"><span class="xref myst">Gaussian BOMD input generation</span></a></p></li>
-<li><p><a class="reference internal" href="#orca-qmd-input-generation"><span class="xref myst">ORCA QMD input generation</span></a></p></li>
-<li><p><a class="reference internal" href="#q-chem-aimdqmd-input-generation"><span class="xref myst">Q-Chem AIMD input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#gaussian-bomd-input-generation">Gaussian BOMD input generation</a></p></li>
+<li><p><a class="reference internal" href="#orca-qmd-input-generation">ORCA QMD input generation</a></p></li>
+<li><p><a class="reference internal" href="#q-chem-aimd-qmd-input-generation">Q-Chem AIMD input generation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#trajectory-parsing"><span class="xref myst">Trajectory parsing</span></a></p>
+<li><p><a class="reference internal" href="#trajectory-parsing">Trajectory parsing</a></p>
 <ul>
-<li><p><a class="reference internal" href="#parsing-gaussian-bomd-output"><span class="xref myst">Parsing Gaussian BOMD output</span></a></p></li>
-<li><p><a class="reference internal" href="#parsing-orca-qmd-dumps"><span class="xref myst">Parsing ORCA QMD</span></a></p></li>
-<li><p><a class="reference internal" href="#parsing-q-chem-aimd-output"><span class="xref myst">Parsing Q-Chem AIMD output</span></a></p></li>
+<li><p><a class="reference internal" href="#parsing-gaussian-bomd-output">Parsing Gaussian BOMD output</a></p></li>
+<li><p><a class="reference internal" href="#parsing-orca-qmd-dumps">Parsing ORCA QMD</a></p></li>
+<li><p><a class="reference internal" href="#parsing-q-chem-aimd-output">Parsing Q-Chem AIMD output</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#complete-cli-reference"><span class="xref myst">Complete CLI reference</span></a></p></li>
-<li><p><a class="reference internal" href="#units-and-conventions"><span class="xref myst">Units and conventions</span></a></p></li>
-<li><p><a class="reference internal" href="#common-file-naming-conventions"><span class="xref myst">Common file naming conventions</span></a></p></li>
-<li><p><a class="reference internal" href="#typical-end-to-end-examples"><span class="xref myst">Typical end-to-end examples</span></a></p></li>
-<li><p><a class="reference internal" href="#limitations-and-important-notes"><span class="xref myst">Limitations and important notes</span></a></p></li>
-<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
-<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
-<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+<li><p><a class="reference internal" href="#complete-cli-reference">Complete CLI reference</a></p></li>
+<li><p><a class="reference internal" href="#units-and-conventions">Units and conventions</a></p></li>
+<li><p><a class="reference internal" href="#common-file-naming-conventions">Common file naming conventions</a></p></li>
+<li><p><a class="reference internal" href="#typical-end-to-end-examples">Typical end-to-end examples</a></p></li>
+<li><p><a class="reference internal" href="#limitations-and-important-notes">Limitations and important notes</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting">Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#license">License</a></p></li>
+<li><p><a class="reference internal" href="#authors">Authors</a></p></li>
 </ul>
 </section>
 <hr class="docutils" />

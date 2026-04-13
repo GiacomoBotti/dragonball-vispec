@@ -29,6 +29,8 @@ myst_enable_extensions = [
     "amsmath",
 ]
 
+myst_heading_anchors = 3
+
 templates_path = ['_templates']
 exclude_patterns = []
 
@@ -39,4 +41,4 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 #html_theme = 'alabaster'
-html_static_path = ['_static']
+#html_static_path = ['_static']

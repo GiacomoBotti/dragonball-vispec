@@ -29,7 +29,7 @@ The current implementation is contained in a single script, `vegeta.py`, and use
 - [Detailed CLI reference](#detailed-cli-reference)
 - [Input formats](#input-formats)
   - [Geometry file (`--xyz`)](#geometry-file---xyz)
-  - [Hessian file (`-H` / `--hessian`)](#hessian-file--h---hessian)
+  - [Hessian file (`-H` / `--hessian`)](#hessian-file)
 - [How VEGETA builds velocities](#how-vegeta-builds-velocities)
 - [Mode selection and indexing rules](#mode-selection-and-indexing-rules)
 - [Geometry-only and principal-axis output](#geometry-only-and-principal-axis-output)
@@ -503,6 +503,7 @@ Rules:
 
 ---
 
+(hessian-file)=
 ### Hessian file (`-H` / `--hessian`)
 
 VEGETA expects a lower-triangular Hessian file in a specific layout:
@@ -1031,9 +1032,9 @@ VEGETA uses several internal and output units.
 
 ---
 
-## Supported atomic symbols (MASS DATABASE)
+## Supported atomic symbols 
 
-VEGETA uses a built-in atomic-mass dictionary. At the time of this implementation, the accepted symbols are:
+VEGETA uses a built-in atomic-mass dictionary (MASS DATABASE). At the time of this implementation, the accepted symbols are:
 
 | Symbol | Supported |
 |---|---:|
@@ -1078,7 +1079,7 @@ Possible uses include:
 
 ---
 
-## Important notes
+## Important implementation notes
 
 ### 1. VEGETA assumes a specific Hessian layout
 It does not auto-detect alternative formats.

@@ -172,7 +172,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#mode-numbering">Mode numbering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#supported-atomic-symbols-mass-database">Supported atomic symbols (MASS DATABASE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-atomic-symbols">Supported atomic symbols</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#typical-workflow-with-external-tools">Typical workflow with external tools</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#step-1-obtain-a-geometry-bulma-code">Step 1 — Obtain a geometry (BULMA code)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-2-extract-or-reshape-the-hessian-bulma-code">Step 2 — Extract or reshape the Hessian (BULMA code)</a></li>
@@ -180,7 +180,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#step-4-feed-outputs-into-later-stages">Step 4 — Feed outputs into later stages</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#important-notes">Important notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#important-implementation-notes">Important implementation notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#vegeta-assumes-a-specific-hessian-layout">1. VEGETA assumes a specific Hessian layout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-on-interface-is-binary">2. The <code class="docutils literal notranslate"><span class="pre">--on</span></code> interface is binary</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#off-overrides-on">3. <code class="docutils literal notranslate"><span class="pre">--off</span></code> overrides <code class="docutils literal notranslate"><span class="pre">--on</span></code></a></li>
@@ -208,10 +208,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">Gaussian tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma-gui-tutorial">Bulma GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta-gui-tutorial">Vegeta GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
@@ -258,42 +258,42 @@
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#what-vegeta-does"><span class="xref myst">What VEGETA does</span></a></p></li>
-<li><p><a class="reference internal" href="#what-vegeta-expects-as-input"><span class="xref myst">What VEGETA expects as input</span></a></p></li>
-<li><p><a class="reference internal" href="#core-workflow"><span class="xref myst">Core workflow</span></a></p></li>
-<li><p><a class="reference internal" href="#features-at-a-glance"><span class="xref myst">Features at a glance</span></a></p></li>
-<li><p><a class="reference internal" href="#requirements"><span class="xref myst">Requirements</span></a></p></li>
-<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
-<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
-<li><p><a class="reference internal" href="#command-syntax"><span class="xref myst">Command syntax</span></a></p></li>
-<li><p><a class="reference internal" href="#detailed-cli-reference"><span class="xref myst">Detailed CLI reference</span></a></p></li>
-<li><p><a class="reference internal" href="#input-formats"><span class="xref myst">Input formats</span></a></p>
+<li><p><a class="reference internal" href="#what-vegeta-does">What VEGETA does</a></p></li>
+<li><p><a class="reference internal" href="#what-vegeta-expects-as-input">What VEGETA expects as input</a></p></li>
+<li><p><a class="reference internal" href="#core-workflow">Core workflow</a></p></li>
+<li><p><a class="reference internal" href="#features-at-a-glance">Features at a glance</a></p></li>
+<li><p><a class="reference internal" href="#requirements">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#installation">Installation</a></p></li>
+<li><p><a class="reference internal" href="#quick-start">Quick start</a></p></li>
+<li><p><a class="reference internal" href="#command-syntax">Command syntax</a></p></li>
+<li><p><a class="reference internal" href="#detailed-cli-reference">Detailed CLI reference</a></p></li>
+<li><p><a class="reference internal" href="#input-formats">Input formats</a></p>
 <ul>
-<li><p><a class="reference internal" href="#geometry-file---xyz"><span class="xref myst">Geometry file (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</span></a></p></li>
-<li><p><a class="reference internal" href="#hessian-file--h---hessian"><span class="xref myst">Hessian file (<code class="docutils literal notranslate"><span class="pre">-H</span></code> / <code class="docutils literal notranslate"><span class="pre">--hessian</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#geometry-file-xyz">Geometry file (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#hessian-file">Hessian file (<code class="docutils literal notranslate"><span class="pre">-H</span></code> / <code class="docutils literal notranslate"><span class="pre">--hessian</span></code>)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#how-vegeta-builds-velocities"><span class="xref myst">How VEGETA builds velocities</span></a></p></li>
-<li><p><a class="reference internal" href="#mode-selection-and-indexing-rules"><span class="xref myst">Mode selection and indexing rules</span></a></p></li>
-<li><p><a class="reference internal" href="#geometry-only-and-principal-axis-output"><span class="xref myst">Geometry-only and principal-axis output</span></a></p></li>
-<li><p><a class="reference internal" href="#outputs"><span class="xref myst">Outputs</span></a></p>
+<li><p><a class="reference internal" href="#how-vegeta-builds-velocities">How VEGETA builds velocities</a></p></li>
+<li><p><a class="reference internal" href="#mode-selection-and-indexing-rules">Mode selection and indexing rules</a></p></li>
+<li><p><a class="reference internal" href="#geometry-only-and-principal-axis-output">Geometry-only and principal-axis output</a></p></li>
+<li><p><a class="reference internal" href="#outputs">Outputs</a></p>
 <ul>
-<li><p><a class="reference internal" href="#velocity-file"><span class="xref myst">Velocity file</span></a></p></li>
-<li><p><a class="reference internal" href="#converted-gaussian-style-velocity-file"><span class="xref myst">Converted Gaussian-style velocity file</span></a></p></li>
-<li><p><a class="reference internal" href="#freqdat"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">freq.dat</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#normal-mode-xyz-movies"><span class="xref myst">Normal-mode XYZ movies</span></a></p></li>
-<li><p><a class="reference internal" href="#cnorm-export"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">cnorm</span></code> export</span></a></p></li>
+<li><p><a class="reference internal" href="#velocity-file">Velocity file</a></p></li>
+<li><p><a class="reference internal" href="#converted-gaussian-style-velocity-file">Converted Gaussian-style velocity file</a></p></li>
+<li><p><a class="reference internal" href="#freq-dat"><code class="docutils literal notranslate"><span class="pre">freq.dat</span></code></a></p></li>
+<li><p><a class="reference internal" href="#normal-mode-xyz-movies">Normal-mode XYZ movies</a></p></li>
+<li><p><a class="reference internal" href="#cnorm-export"><code class="docutils literal notranslate"><span class="pre">cnorm</span></code> export</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#examples"><span class="xref myst">Examples</span></a></p></li>
-<li><p><a class="reference internal" href="#units-and-conventions"><span class="xref myst">Units and conventions</span></a></p></li>
-<li><p><a class="reference internal" href="#supported-atomic-symbols"><span class="xref myst">Supported atomic symbols</span></a></p></li>
-<li><p><a class="reference internal" href="#typical-workflow-with-external-tools"><span class="xref myst">Typical workflow with external tools</span></a></p></li>
-<li><p><a class="reference internal" href="#important-implementation-notes"><span class="xref myst">Important implementation notes</span></a></p></li>
-<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
-<li><p><a class="reference internal" href="#limitations"><span class="xref myst">Limitations</span></a></p></li>
-<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
-<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+<li><p><a class="reference internal" href="#examples">Examples</a></p></li>
+<li><p><a class="reference internal" href="#units-and-conventions">Units and conventions</a></p></li>
+<li><p><a class="reference internal" href="#supported-atomic-symbols">Supported atomic symbols</a></p></li>
+<li><p><a class="reference internal" href="#typical-workflow-with-external-tools">Typical workflow with external tools</a></p></li>
+<li><p><a class="reference internal" href="#important-implementation-notes">Important implementation notes</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting">Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#limitations">Limitations</a></p></li>
+<li><p><a class="reference internal" href="#license">License</a></p></li>
+<li><p><a class="reference internal" href="#authors">Authors</a></p></li>
 </ul>
 </section>
 <hr class="docutils" />
@@ -739,10 +739,10 @@ H   0.000000  -0.757000   0.586000
 <li><p>lines 3 onward = atomic symbol + <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code></p></li>
 <li><p>coordinates must be in <strong>Ångström</strong></p></li>
 </ul>
-</section>
 <hr class="docutils" />
+</section>
 <section id="hessian-file-h-hessian">
-<h3>Hessian file (<code class="docutils literal notranslate"><span class="pre">-H</span></code> / <code class="docutils literal notranslate"><span class="pre">--hessian</span></code>)<a class="headerlink" href="#hessian-file-h-hessian" title="Permalink to this heading"></a></h3>
+<span id="hessian-file"></span><h3>Hessian file (<code class="docutils literal notranslate"><span class="pre">-H</span></code> / <code class="docutils literal notranslate"><span class="pre">--hessian</span></code>)<a class="headerlink" href="#hessian-file-h-hessian" title="Permalink to this heading"></a></h3>
 <p>VEGETA expects a lower-triangular Hessian file in a specific layout:</p>
 <ul class="simple">
 <li><p>the first <strong>two lines are skipped</strong></p></li>
@@ -1226,9 +1226,9 @@ H    3.3333333333333333e-04 -7.0000000000000000e-05 -3.0000000000000000e-05
 </section>
 </section>
 <hr class="docutils" />
-<section id="supported-atomic-symbols-mass-database">
-<h2>Supported atomic symbols (MASS DATABASE)<a class="headerlink" href="#supported-atomic-symbols-mass-database" title="Permalink to this heading"></a></h2>
-<p>VEGETA uses a built-in atomic-mass dictionary. At the time of this implementation, the accepted symbols are:</p>
+<section id="supported-atomic-symbols">
+<h2>Supported atomic symbols<a class="headerlink" href="#supported-atomic-symbols" title="Permalink to this heading"></a></h2>
+<p>VEGETA uses a built-in atomic-mass dictionary (MASS DATABASE). At the time of this implementation, the accepted symbols are:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1304,8 +1304,8 @@ H    3.3333333333333333e-04 -7.0000000000000000e-05 -3.0000000000000000e-05
 </section>
 </section>
 <hr class="docutils" />
-<section id="important-notes">
-<h2>Important notes<a class="headerlink" href="#important-notes" title="Permalink to this heading"></a></h2>
+<section id="important-implementation-notes">
+<h2>Important implementation notes<a class="headerlink" href="#important-implementation-notes" title="Permalink to this heading"></a></h2>
 <section id="vegeta-assumes-a-specific-hessian-layout">
 <h3>1. VEGETA assumes a specific Hessian layout<a class="headerlink" href="#vegeta-assumes-a-specific-hessian-layout" title="Permalink to this heading"></a></h3>
 <p>It does not auto-detect alternative formats.</p>
