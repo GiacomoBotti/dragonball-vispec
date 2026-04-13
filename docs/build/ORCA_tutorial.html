@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORCA Tutorial &mdash; Dragonball Suite 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=44496db0"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="QChem Tutorial" href="QChem_tutorial.html" />
+    <link rel="prev" title="GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma" href="Gau_tutorial/GAU_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_FlyingNimbus.html">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_BULMA.html">BULMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ORCA Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#optimization-and-frequency">Optimization and Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-velocities">Initial Velocities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classical-dynamics">Classical dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classical-spectra">Classical spectra</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ORCA Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ORCA_tutorial.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="orca-tutorial">
+<h1>ORCA Tutorial<a class="headerlink" href="#orca-tutorial" title="Permalink to this heading"></a></h1>
+<section id="optimization-and-frequency">
+<h2>Optimization and Frequency<a class="headerlink" href="#optimization-and-frequency" title="Permalink to this heading"></a></h2>
+<p>Let’s take a guess geometry for the water molecule and put it in <code class="docutils literal notranslate"><span class="pre">h2o.xyz</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+
+<span class="n">H</span>   <span class="mf">0.76144678642012</span>      <span class="mf">0.42041157793785</span>     <span class="o">-</span><span class="mf">0.21139612912752</span>
+<span class="n">O</span>   <span class="mf">0.00092389677508</span>     <span class="o">-</span><span class="mf">0.10975434825824</span>      <span class="mf">0.05112764711589</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">0.76825069319520</span>      <span class="mf">0.42203277032039</span>     <span class="o">-</span><span class="mf">0.18105150798837</span>
+</pre></div>
+</div>
+<p>For the sake of this tutorial, we will divide the optimization and frequency runs, even if ORCA allows to run both optimization and frequency jobs from a single input. We create the <code class="docutils literal notranslate"><span class="pre">opt</span></code> input with <code class="docutils literal notranslate"><span class="pre">bulma</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">h2o</span><span class="o">.</span><span class="n">xyz</span> <span class="o">--</span><span class="n">orca</span><span class="o">-</span><span class="n">opt</span>
+</pre></div>
+</div>
+<p>This will generate the file <code class="docutils literal notranslate"><span class="pre">orca_opt.inp</span></code>. We run the optimization. When it is done, we extract the final geometry with (the <code class="docutils literal notranslate"><span class="pre">.out</span></code> file should be in your output folder)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">orca_opt</span><span class="o">.</span><span class="n">out</span> <span class="o">--</span><span class="n">extract</span><span class="o">-</span><span class="n">geo</span> <span class="o">--</span><span class="n">geo</span><span class="o">-</span><span class="n">out</span> <span class="n">h2o_opt</span><span class="o">.</span><span class="n">xyz</span>
+</pre></div>
+</div>
+<p>We now generate the (optimization) and frequency input by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">geo</span><span class="o">.</span><span class="n">xyz</span> <span class="o">--</span><span class="n">orca</span><span class="o">-</span><span class="n">freq</span>
+</pre></div>
+</div>
+<p>and we run the frequency job. When the frequency job is terminated, we extract the hessian file (the <code class="docutils literal notranslate"><span class="pre">.hess</span></code> file should be in your output folder):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">geom_freq</span><span class="o">.</span><span class="n">hess</span> <span class="o">--</span><span class="n">orca</span><span class="o">-</span><span class="n">hess</span>
+</pre></div>
+</div>
+<p>We can now move to the harmonic analysis with <code class="docutils literal notranslate"><span class="pre">vegeta</span></code>.</p>
+</section>
+<section id="initial-velocities">
+<h2>Initial Velocities<a class="headerlink" href="#initial-velocities" title="Permalink to this heading"></a></h2>
+<p>This step is common for all the <em>ab initio</em> codes. We run <code class="docutils literal notranslate"><span class="pre">vegeta.py</span></code> with the optimized geometry and extracted Hessian matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">vegeta</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">xyz</span> <span class="n">geom</span><span class="o">.</span><span class="n">xyz</span> <span class="o">-</span><span class="n">H</span> <span class="n">Hessian_flat</span><span class="o">.</span><span class="n">out</span> <span class="o">-</span><span class="n">o</span> <span class="n">velocity_orca</span><span class="o">.</span><span class="n">xyz</span>
+</pre></div>
+</div>
+<p>We can check that everything went smoothly by comparing the <code class="docutils literal notranslate"><span class="pre">freq.dat</span></code> output file with the one provided in the repository. <strong>NB:</strong> For ORCA, <code class="docutils literal notranslate"><span class="pre">bulma</span></code> expects the initial velocities in a file called <code class="docutils literal notranslate"><span class="pre">velocity_orca.xyz</span></code>, since <code class="docutils literal notranslate"><span class="pre">velocity.xyz</span></code> is the default output for ORCA trajectory velocities.</p>
+</section>
+<section id="classical-dynamics">
+<h2>Classical dynamics<a class="headerlink" href="#classical-dynamics" title="Permalink to this heading"></a></h2>
+<p>We now can generate the input file for the classical dynamics run. Using <code class="docutils literal notranslate"><span class="pre">bulma</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">h2o_opt</span><span class="o">.</span><span class="n">xyz</span> <span class="o">--</span><span class="n">orca</span><span class="o">-</span><span class="n">qmd</span>
+</pre></div>
+</div>
+<p>This will generate the files <code class="docutils literal notranslate"><span class="pre">h2o_opt_qmd.inp</span></code> and <code class="docutils literal notranslate"><span class="pre">h2o_opt_qmd.mdrestart</span></code>. We can run it. When the dynamics is done, we extract the trajectory file using <code class="docutils literal notranslate"><span class="pre">bulma</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">bulma</span><span class="o">.</span><span class="n">py</span> <span class="n">dummy_input</span> <span class="o">--</span><span class="n">parse</span><span class="o">-</span><span class="n">orca</span><span class="o">-</span><span class="n">qmd</span>
+</pre></div>
+</div>
+<p>For ORCA, <code class="docutils literal notranslate"><span class="pre">bulma</span></code> reads the <code class="docutils literal notranslate"><span class="pre">trajectory.xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity.xyz</span></code> files, so the <code class="docutils literal notranslate"><span class="pre">dummy_input</span></code> string is required to satisfy the positional input of the CLI. The trajectory is written in the file <code class="docutils literal notranslate"><span class="pre">parsed_log_traj.xyz</span></code>.</p>
+</section>
+<section id="classical-spectra">
+<h2>Classical spectra<a class="headerlink" href="#classical-spectra" title="Permalink to this heading"></a></h2>
+<p>Finally, it’s time for <code class="docutils literal notranslate"><span class="pre">Flying</span> <span class="pre">Nimbus</span></code>. We want the full cartesian spectrum, so we run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flying_nimbus</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">coord</span> <span class="n">cart</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="n">plot</span><span class="o">-</span><span class="n">dpi</span> <span class="mi">600</span> \
+ <span class="o">--</span><span class="n">xyz</span> <span class="n">h2o_opt</span><span class="o">.</span><span class="n">xyz</span> <span class="o">--</span><span class="n">hess</span> <span class="n">Hessian_flat</span><span class="o">.</span><span class="n">out</span> \
+ <span class="o">--</span><span class="n">traj</span> <span class="n">parsed_log_traj</span><span class="o">.</span><span class="n">xyz</span> <span class="o">--</span><span class="n">norm1</span> 
+</pre></div>
+</div>
+<p>this should give us the following <code class="docutils literal notranslate"><span class="pre">.png</span></code> image:</p>
+<p><img alt="The cartesian spectrum of water" src="_images/H2O_cart_orca.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Gau_tutorial/GAU_tutorial.html" class="btn btn-neutral float-left" title="GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="QChem_tutorial.html" class="btn btn-neutral float-right" title="QChem Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

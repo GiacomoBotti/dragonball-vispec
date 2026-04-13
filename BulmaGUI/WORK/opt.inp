@@ -1,0 +1,32 @@
+$molecule
+   0  1
+   O   0.000000 -0.064952  0.000000
+   H   0.762173  0.515420  0.000000
+   H  -0.762173  0.515420  0.000000
+$end
+
+$rem
+  JOBTYPE FREQ
+  METHOD        B3LYP
+  DFT_D = D4
+  BASIS         def2-TZVP
+$end
+
+@@@
+
+$molecule
+read
+$end
+
+$rem
+   METHOD        B3LYP
+   DFT_D = D4
+   BASIS         def2-TZVP   Basis set
+   JOBTYPE         OPT
+   GEOM_OPT_COORDS -1
+   GEOM_OPT_TOL_DISPLACEMENT   1
+   GEOM_OPT_TOL_GRADIENT       1
+   GEOM_OPT_TOL_ENERGY         1
+   SCF_GUESS          read
+   GEOM_OPT_HESSIAN   read
+$end

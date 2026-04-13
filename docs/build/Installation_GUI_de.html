@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GUI Installation guide &mdash; Dragonball Suite 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=44496db0"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma" href="Gau_tutorial/GAU_tutorial.html" />
+    <link rel="prev" title="VEGETA" href="Readme_VEGETA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_FlyingNimbus.html">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_BULMA.html">BULMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GUI Installation guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#no-libxcb-cursor0">No <code class="docutils literal notranslate"><span class="pre">libxcb-cursor0</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">GUI Installation guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Installation_GUI_de.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="gui-installation-guide">
+<h1>GUI Installation guide<a class="headerlink" href="#gui-installation-guide" title="Permalink to this heading"></a></h1>
+<p>This is the step-by-step installation guide for the DRAGONBALL suite GUIs.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>The GUIs require specific python packages, so we suggest to create a new environment. To do so, make sure to deactivate any previous environment and to have <code class="docutils literal notranslate"><span class="pre">venv</span></code> installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="mf">.8</span><span class="o">-</span><span class="n">venv</span>
+</pre></div>
+</div>
+<p>Then, create a new environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">&lt;</span><span class="n">environment</span> <span class="n">path</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The source it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">&lt;</span><span class="n">environment</span> <span class="n">path</span><span class="o">&gt;/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>At this point, install <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">pip</span>
+</pre></div>
+</div>
+<p>and install the packages listed in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (that you can find in the repository)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> holds the list of packages with the best version. In case you get a <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">matching</span></code> error for a certain package, just remove <code class="docutils literal notranslate"><span class="pre">==xx.yy.zz</span></code> after the package name in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and try again. This may give compatibility issue, so it’s always best to use <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> as is.</p>
+<p>With this, all the prerequisites are successfully included in the <code class="docutils literal notranslate"><span class="pre">&lt;environment</span> <span class="pre">name&gt;</span></code> environment.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>To install the GUI, make sure you are in the environment in which you installed the prerequisites:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">&lt;</span><span class="n">environment</span> <span class="n">path</span><span class="o">&gt;/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>Terminal should appear as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">environment</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">user</span><span class="nd">@machine</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Find the GUI source file (<code class="docutils literal notranslate"><span class="pre">_gui.py</span></code>). Make sure that you have the “core” python script in the same folder. Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">&lt;</span><span class="n">GUI</span> <span class="n">script</span><span class="o">&gt;</span><span class="n">_gui</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Enjoy!</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<p>We list here some issue we encountered during the installation of the GUIs on our machines. Every machine is different, so you may encounter these same errors, or many others!</p>
+<section id="no-libxcb-cursor0">
+<h3>No <code class="docutils literal notranslate"><span class="pre">libxcb-cursor0</span></code><a class="headerlink" href="#no-libxcb-cursor0" title="Permalink to this heading"></a></h3>
+<p>In this case, just install it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libxcb</span><span class="o">-</span><span class="n">cursor0</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Readme_VEGETA.html" class="btn btn-neutral float-left" title="VEGETA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Gau_tutorial/GAU_tutorial.html" class="btn btn-neutral float-right" title="GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

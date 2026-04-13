@@ -1,0 +1,1935 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flying Nimbus &mdash; Dragonball Suite 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=44496db0"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BULMA" href="Readme_BULMA.html" />
+    <link rel="prev" title="Welcome to DragonBall!" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Flying Nimbus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-flying-nimbus-does">What Flying Nimbus does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-workflow">Core workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features-at-a-glance">Features at a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-python-packages">Required Python packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-package">Optional package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#standard-library-modules-used">Standard-library modules used</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-version">Python version</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-the-repository">Clone the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-and-activate-a-virtual-environment">Create and activate a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-the-cli">Check the CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minimal-normal-mode-ta-run-recommended">Minimal normal-mode TA run (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-ft-mode-legacy-mode">Correlation + FT mode (Legacy Mode)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cartesian-spectrum">Cartesian spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reuse-an-existing-cnorm-dat">Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-command-syntax">General command syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-the-program-expects-as-input">What the program expects as input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equilibrium-geometry-xyz">Equilibrium geometry (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hessian-hess">Hessian (<code class="docutils literal notranslate"><span class="pre">--hess</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory-traj">Trajectory (<code class="docutils literal notranslate"><span class="pre">--traj</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cnorm-dat-reuse-readcnorm-1"><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> reuse (<code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-flying-nimbus-works-internally">How Flying Nimbus works internally</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mass-assignment">Mass assignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-or-loading-the-normal-mode-basis">Building or loading the normal-mode basis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#path-a-compute-from-hessian">Path A: compute from Hessian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#path-b-read-from-cnorm-dat">Path B: read from <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory-reading-and-unit-handling">Trajectory reading and unit handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normal-mode-projection">Normal-mode projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-vs-time-averaged-spectra">Correlation vs time-averaged spectra</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ta-mode-default">TA mode (default)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correlation-mode">Correlation mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#frequency-grid-construction">Frequency grid construction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-systems">Coordinate systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#normal-mode-mode-coord-nm">Normal-mode mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cartesian-mode-coord-cart">Cartesian mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-cli-reference">Detailed CLI reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-and-structure-options">System and structure options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n-nat"><code class="docutils literal notranslate"><span class="pre">-N</span></code>, <code class="docutils literal notranslate"><span class="pre">--nat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nrototrasl"><code class="docutils literal notranslate"><span class="pre">--nrototrasl</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#time-and-sampling-options">Time and sampling options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nstart"><code class="docutils literal notranslate"><span class="pre">--nstart</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ncorr"><code class="docutils literal notranslate"><span class="pre">--ncorr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nbeads"><code class="docutils literal notranslate"><span class="pre">--nbeads</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nbeadsstep"><code class="docutils literal notranslate"><span class="pre">--nbeadsstep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dt"><code class="docutils literal notranslate"><span class="pre">--dt</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#spectral-grid-options">Spectral-grid options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#init-wnumb"><code class="docutils literal notranslate"><span class="pre">--init-wnumb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spec-res"><code class="docutils literal notranslate"><span class="pre">--spec-res</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wnumb-span"><code class="docutils literal notranslate"><span class="pre">--wnumb-span</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-mode-options">Analysis mode options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#coord-nm-cart"><code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">{nm,cart}</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-ta"><code class="docutils literal notranslate"><span class="pre">--no-ta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#damping-options">Damping options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#alpha-pow"><code class="docutils literal notranslate"><span class="pre">--alpha-pow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alpha-dip"><code class="docutils literal notranslate"><span class="pre">--alpha-dip</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selection-options">Selection options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#modes"><code class="docutils literal notranslate"><span class="pre">--modes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atoms"><code class="docutils literal notranslate"><span class="pre">--atoms</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#input-output-options">Input/output options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xyz"><code class="docutils literal notranslate"><span class="pre">--xyz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hess"><code class="docutils literal notranslate"><span class="pre">--hess</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#traj"><code class="docutils literal notranslate"><span class="pre">--traj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readcnorm-0-1"><code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">{0,1}</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cnorm"><code class="docutils literal notranslate"><span class="pre">--cnorm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-output"><code class="docutils literal notranslate"><span class="pre">-o</span></code>, <code class="docutils literal notranslate"><span class="pre">--output</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freq-offset"><code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#norm1"><code class="docutils literal notranslate"><span class="pre">--norm1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rm-cnorm"><code class="docutils literal notranslate"><span class="pre">--rm-cnorm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-and-spreadsheet-export">Plotting and spreadsheet export</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plot"><code class="docutils literal notranslate"><span class="pre">--plot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-dir"><code class="docutils literal notranslate"><span class="pre">--plot-dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-dpi"><code class="docutils literal notranslate"><span class="pre">--plot-dpi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#excel"><code class="docutils literal notranslate"><span class="pre">--excel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#excel-sep"><code class="docutils literal notranslate"><span class="pre">--excel-sep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#excel-merge"><code class="docutils literal notranslate"><span class="pre">--excel-merge</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#outputs">Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#normal-mode-outputs">Normal-mode outputs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">TA mode (default)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correlation-ft-mode-no-ta">Correlation + FT mode (<code class="docutils literal notranslate"><span class="pre">--no-ta</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cartesian-outputs">Cartesian outputs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ta-cartesian-mode">TA Cartesian mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correlation-ft-cartesian-mode">Correlation + FT Cartesian mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-inside-the-dat-files">What is inside the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#correlation-files">Correlation files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normal-mode-spectrum-files">Normal-mode spectrum files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cartesian-spectrum-files">Cartesian spectrum files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#csv-outputs">CSV outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#png-outputs">PNG outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atom-selection-filename-tags">Atom-selection filename tags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minimal-normal-mode-time-averaged-spectrum">1. Minimal normal-mode time-averaged spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-ft-instead-of-ta">2. Correlation + FT instead of TA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-vibrational-modes-at-once">3. Multiple vibrational modes at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4. Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5. Cartesian spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyze-only-selected-atoms">6. Analyze only selected atoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-csv-files-for-excel-or-libreoffice">7. Export CSV files for Excel or LibreOffice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#merge-multiple-mode-spectra-into-one-csv">8. Merge multiple mode spectra into one CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-png-plots">9. Save PNG plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shift-the-printed-frequency-axis">10. Shift the printed frequency axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normalize-spectra-to-a-maximum-of-1">11. Normalize spectra to a maximum of 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overwrite-an-existing-cnorm-dat">12. Overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-molecule-handling">13. Linear-molecule handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-from-a-later-md-step">14. Start from a later MD step</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-workflows">Typical workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workflow-a-hessian-trajectory-mode-resolved-ta-spectra">Workflow A: Hessian + trajectory → mode-resolved TA spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workflow-b-precomputed-cnorm-dat-fast-repeat-analyses">Workflow B: Precomputed <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> → fast repeat analyses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workflow-c-whole-system-vs-atom-projected-comparison">Workflow C: Whole-system vs atom-projected comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#units-and-conventions">Units and conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-input">Geometry input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#velocities">Velocities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-step">Time step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frequency-axis">Frequency axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mode-indexing">Mode indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atom-indexing">Atom indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-atomic-symbols-and-masses">Supported atomic symbols and masses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#important-implementation-notes">Important implementation notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ta-is-the-default">1. TA is the default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modes-is-mandatory-only-in-normal-mode-mode">2. <code class="docutils literal notranslate"><span class="pre">--modes</span></code> is mandatory only in normal-mode mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cnorm-dat-is-written-automatically-in-the-hessian-path">3. <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is written automatically in the Hessian path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#existing-cnorm-dat-is-protected-by-default">4. Existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is protected by default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normal-mode-spectrum-dat-files-contain-large-headers">5. Normal-mode spectrum <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files contain large headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freq-offset-affects-printed-exported-axes">6. <code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code> affects printed/exported axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excel-merge-supplements-not-replaces-per-mode-csvs">7. <code class="docutils literal notranslate"><span class="pre">--excel-merge</span></code> supplements, not replaces, per-mode CSVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-display-options-exist-internally-but-are-not-exposed-in-the-current-cli">8. Plot display options exist internally but are not exposed in the current CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modes-is-required-when-coord-nm"><code class="docutils literal notranslate"><span class="pre">--modes</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">when</span> <span class="pre">--coord</span> <span class="pre">nm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hess-is-required-when-readcnorm-0"><code class="docutils literal notranslate"><span class="pre">--hess</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">when</span> <span class="pre">--readcnorm</span> <span class="pre">0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mode-x-is-out-of-range"><code class="docutils literal notranslate"><span class="pre">Mode</span> <span class="pre">X</span> <span class="pre">is</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atoms-selection-out-of-range-for-nat"><code class="docutils literal notranslate"><span class="pre">atoms</span> <span class="pre">selection</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span> <span class="pre">for</span> <span class="pre">nat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not-enough-post-nstart-steps-for-ncorr"><code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">enough</span> <span class="pre">post-nstart</span> <span class="pre">steps</span> <span class="pre">for</span> <span class="pre">ncorr=...</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not-enough-hessian-numbers"><code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">enough</span> <span class="pre">Hessian</span> <span class="pre">numbers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#element-x-not-in-mass-database"><code class="docutils literal notranslate"><span class="pre">Element</span> <span class="pre">'X'</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">mass</span> <span class="pre">database</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cnorm-dat-already-exists-will-not-overwrite"><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span> <span class="pre">already</span> <span class="pre">exists;</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">overwrite</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#input-assumptions-are-strict">Input assumptions are strict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mass-support-is-limited-unless-you-provide-explicit-masses">Mass support is limited unless you provide explicit masses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-is-intentionally-simple">Plotting is intentionally simple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spectra-are-post-processed-outputs-not-full-uncertainty-analyses">Spectra are post-processed outputs, not full uncertainty analyses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authors">Authors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_BULMA.html">BULMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Flying Nimbus</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README_FlyingNimbus.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="flying-nimbus">
+<h1>Flying Nimbus<a class="headerlink" href="#flying-nimbus" title="Permalink to this heading"></a></h1>
+<p><strong>Flying Nimbus</strong> is a command-line Python tool for turning molecular dynamics trajectories into vibrational spectra.</p>
+<p>It is designed for workflows where you already have:</p>
+<ul class="simple">
+<li><p>an equilibrium geometry in XYZ format,</p></li>
+<li><p>a Hessian or a previously exported hessian eigenvectors matrix (<code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code>),</p></li>
+<li><p>and a trajectory containing positions and <strong>velocities</strong>,</p></li>
+</ul>
+<p>and you want to compute one or more of the following:</p>
+<ul class="simple">
+<li><p><strong>time-averaged (TA) spectra</strong>,</p></li>
+<li><p><strong>correlation-function + Fourier-transform spectra</strong>,</p></li>
+<li><p><strong>mode-resolved spectra</strong> in <strong>normal-mode space</strong>,</p></li>
+<li><p><strong>Cartesian velocity autocorrelation spectra</strong>,</p></li>
+<li><p>optional <strong>CSV exports</strong> for spreadsheet tools,</p></li>
+<li><p>and optional <strong>PNG plots</strong> for quick inspection.</p></li>
+</ul>
+<p>The current implementation lives in a single script, <code class="docutils literal notranslate"><span class="pre">flying_nimbus.py</span></code>.</p>
+<hr class="docutils" />
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-flying-nimbus-does"><span class="xref myst">What Flying Nimbus does</span></a></p></li>
+<li><p><a class="reference internal" href="#core-workflow"><span class="xref myst">Core workflow</span></a></p></li>
+<li><p><a class="reference internal" href="#features-at-a-glance"><span class="xref myst">Features at a glance</span></a></p></li>
+<li><p><a class="reference internal" href="#requirements"><span class="xref myst">Requirements</span></a></p></li>
+<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
+<li><p><a class="reference internal" href="#general-command-syntax"><span class="xref myst">General command syntax</span></a></p></li>
+<li><p><a class="reference internal" href="#what-the-program-expects-as-input"><span class="xref myst">What the program expects as input</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#equilibrium-geometry---xyz"><span class="xref myst">Equilibrium geometry (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#hessian---hess"><span class="xref myst">Hessian (<code class="docutils literal notranslate"><span class="pre">--hess</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#trajectory---traj"><span class="xref myst">Trajectory (<code class="docutils literal notranslate"><span class="pre">--traj</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#cnormdat-reuse---readcnorm-1"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> reuse (<code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>)</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#how-flying-nimbus-works-internally"><span class="xref myst">How Flying Nimbus works internally</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#mass-assignment"><span class="xref myst">Mass assignment</span></a></p></li>
+<li><p><a class="reference internal" href="#building-or-loading-the-normal-mode-basis"><span class="xref myst">Building or loading the normal-mode basis</span></a></p></li>
+<li><p><a class="reference internal" href="#trajectory-reading-and-unit-handling"><span class="xref myst">Trajectory reading and unit handling</span></a></p></li>
+<li><p><a class="reference internal" href="#normal-mode-projection"><span class="xref myst">Normal-mode projection</span></a></p></li>
+<li><p><a class="reference internal" href="#correlation-vs-time-averaged-spectra"><span class="xref myst">Correlation vs time-averaged spectra</span></a></p></li>
+<li><p><a class="reference internal" href="#frequency-grid-construction"><span class="xref myst">Frequency grid construction</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#coordinate-systems"><span class="xref myst">Coordinate systems</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#normal-mode-mode---coord-nm"><span class="xref myst">Normal-mode mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>)</span></a></p></li>
+<li><p><a class="reference internal" href="#cartesian-mode---coord-cart"><span class="xref myst">Cartesian mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>)</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#detailed-cli-reference"><span class="xref myst">Detailed CLI reference</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#system-and-structure-options"><span class="xref myst">System and structure options</span></a></p></li>
+<li><p><a class="reference internal" href="#time-and-sampling-options"><span class="xref myst">Time and sampling options</span></a></p></li>
+<li><p><a class="reference internal" href="#spectral-grid-options"><span class="xref myst">Spectral-grid options</span></a></p></li>
+<li><p><a class="reference internal" href="#analysis-mode-options"><span class="xref myst">Analysis mode options</span></a></p></li>
+<li><p><a class="reference internal" href="#damping-options"><span class="xref myst">Damping options</span></a></p></li>
+<li><p><a class="reference internal" href="#selection-options"><span class="xref myst">Selection options</span></a></p></li>
+<li><p><a class="reference internal" href="#inputoutput-options"><span class="xref myst">Input/output options</span></a></p></li>
+<li><p><a class="reference internal" href="#plotting-and-spreadsheet-export"><span class="xref myst">Plotting and spreadsheet export</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#outputs"><span class="xref myst">Outputs</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#normal-mode-outputs"><span class="xref myst">Normal-mode outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#cartesian-outputs"><span class="xref myst">Cartesian outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#what-is-inside-the-dat-files"><span class="xref myst">What is inside the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files</span></a></p></li>
+<li><p><a class="reference internal" href="#csv-outputs"><span class="xref myst">CSV outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#png-outputs"><span class="xref myst">PNG outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#atom-selection-filename-tags"><span class="xref myst">Atom-selection filename tags</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#examples"><span class="xref myst">Examples</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#1-minimal-normal-mode-time-averaged-spectrum"><span class="xref myst">1. Minimal normal-mode time-averaged spectrum</span></a></p></li>
+<li><p><a class="reference internal" href="#2-correlation--ft-instead-of-ta"><span class="xref myst">2. Correlation + FT instead of TA</span></a></p></li>
+<li><p><a class="reference internal" href="#3-multiple-vibrational-modes-at-once"><span class="xref myst">3. Multiple vibrational modes at once</span></a></p></li>
+<li><p><a class="reference internal" href="#4-reuse-an-existing-cnormdat"><span class="xref myst">4. Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#5-cartesian-spectrum"><span class="xref myst">5. Cartesian VACF spectrum</span></a></p></li>
+<li><p><a class="reference internal" href="#6-analyze-only-selected-atoms"><span class="xref myst">6. Analyze only selected atoms</span></a></p></li>
+<li><p><a class="reference internal" href="#7-export-csv-files-for-excel-or-libreoffice"><span class="xref myst">7. Export CSV files for Excel or LibreOffice</span></a></p></li>
+<li><p><a class="reference internal" href="#8-merge-multiple-mode-spectra-into-one-csv"><span class="xref myst">8. Merge multiple mode spectra into one CSV</span></a></p></li>
+<li><p><a class="reference internal" href="#9-save-png-plots"><span class="xref myst">9. Save PNG plots</span></a></p></li>
+<li><p><a class="reference internal" href="#10-shift-the-printed-frequency-axis"><span class="xref myst">10. Shift the printed frequency axis</span></a></p></li>
+<li><p><a class="reference internal" href="#11-normalize-spectra-to-a-maximum-of-1"><span class="xref myst">11. Normalize spectra to a maximum of 1</span></a></p></li>
+<li><p><a class="reference internal" href="#12-overwrite-an-existing-cnormdat"><span class="xref myst">12. Overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#13-linear-molecule-handling"><span class="xref myst">13. Linear-molecule handling</span></a></p></li>
+<li><p><a class="reference internal" href="#14-start-from-a-later-md-step"><span class="xref myst">14. Start from a later MD step</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#typical-workflows"><span class="xref myst">Typical workflows</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#workflow-a-hessian--trajectory--mode-resolved-ta-spectra"><span class="xref myst">Workflow A: Hessian + trajectory → mode-resolved TA spectra</span></a></p></li>
+<li><p><a class="reference internal" href="#workflow-b-precomputed-cnormdat--fast-repeat-analyses"><span class="xref myst">Workflow B: Precomputed <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> → fast repeat analyses</span></a></p></li>
+<li><p><a class="reference internal" href="#workflow-c-whole-system-vs-atom-projected-comparison"><span class="xref myst">Workflow C: Whole-system vs atom-projected comparison</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#units-and-conventions"><span class="xref myst">Units and conventions</span></a></p></li>
+<li><p><a class="reference internal" href="#supported-atomic-symbols-and-masses"><span class="xref myst">Supported atomic symbols and masses</span></a></p></li>
+<li><p><a class="reference internal" href="#important-implementation-notes"><span class="xref myst">Important implementation notes</span></a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
+<li><p><a class="reference internal" href="#limitations"><span class="xref myst">Limitations</span></a></p></li>
+<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
+<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="what-flying-nimbus-does">
+<h2>What Flying Nimbus does<a class="headerlink" href="#what-flying-nimbus-does" title="Permalink to this heading"></a></h2>
+<p>Flying Nimbus analyzes MD trajectories using either:</p>
+<ol class="arabic simple">
+<li><p><strong>normal-mode coordinates</strong> derived from a Hessian, or</p></li>
+<li><p><strong>Cartesian velocities</strong> directly.</p></li>
+</ol>
+<p>In normal-mode mode, the script projects the trajectory onto the normal-mode basis and can compute:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpp</span></code> correlations and spectra from projected velocities,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cqq</span></code> correlations and spectra from projected coordinates,</p></li>
+<li><p><strong>time-averaged</strong> mode-resolved spectra,</p></li>
+<li><p>or <strong>correlation + FT</strong> mode-resolved spectra.</p></li>
+</ul>
+<p>In Cartesian mode, the script computes the velocity autocorrelation and writes:</p>
+<ul class="simple">
+<li><p>the Cartesian correlation function (<code class="docutils literal notranslate"><span class="pre">cvv</span></code>),</p></li>
+<li><p>a Cartesian FT autocorrelation spectrum,</p></li>
+<li><p>or a Cartesian TA spectrum.</p></li>
+</ul>
+<p>The tool is especially useful when you want:</p>
+<ul class="simple">
+<li><p><strong>mode-specific vibrational analysis</strong> from trajectory data,</p></li>
+<li><p>atom-projected contributions,</p></li>
+<li><p>outputs that can be plotted quickly,</p></li>
+<li><p>or spreadsheet-friendly numeric exports.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="core-workflow">
+<h2>Core workflow<a class="headerlink" href="#core-workflow" title="Permalink to this heading"></a></h2>
+<p>A typical Flying Nimbus run looks like this:</p>
+<ol class="arabic simple">
+<li><p>Read the equilibrium geometry from <code class="docutils literal notranslate"><span class="pre">--xyz</span></code>.</p></li>
+<li><p>Determine <code class="docutils literal notranslate"><span class="pre">nat</span></code> either from <code class="docutils literal notranslate"><span class="pre">-N/--nat</span></code> or from the first line of the XYZ file.</p></li>
+<li><p>Assign atomic masses using either:</p>
+<ul class="simple">
+<li><p>the internal mass database, or</p></li>
+<li><p>a fifth column in the XYZ atom lines.</p></li>
+</ul>
+</li>
+<li><p>Build the normal-mode basis by either:</p>
+<ul class="simple">
+<li><p>reading the Hessian and diagonalizing the mass-weighted Hessian, or</p></li>
+<li><p>reading an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Read the trajectory from <code class="docutils literal notranslate"><span class="pre">--traj</span></code>.</p></li>
+<li><p>Optionally discard early MD steps with <code class="docutils literal notranslate"><span class="pre">--nstart</span></code>.</p></li>
+<li><p>Choose one of two coordinate systems:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code> for normal-mode analysis,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code> for Cartesian analysis.</p></li>
+</ul>
+</li>
+<li><p>Choose one of two strategies:</p>
+<ul class="simple">
+<li><p><strong>TA mode</strong> (default), or</p></li>
+<li><p><strong>autocorrelation</strong> mode via <code class="docutils literal notranslate"><span class="pre">--no-ta</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">.dat</span></code> outputs, and optionally CSV and PNG files.</p></li>
+</ol>
+<p>That makes Flying Nimbus a post-processing tool that sits naturally after geometry/Hessian preparation and trajectory generation.</p>
+</section>
+<hr class="docutils" />
+<section id="features-at-a-glance">
+<h2>Features at a glance<a class="headerlink" href="#features-at-a-glance" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Capability</p></th>
+<th class="head text-right"><p>Supported</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Read masses from XYZ fifth column</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fall back to internal masses</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Build <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> from Hessian</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reuse existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code></p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Normal-mode analysis</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cartesian analysis</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Time-averaged spectra</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Correlation + FT spectra</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Mode selection</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Atom subset selection (Atom-Wise Spectra)</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>CSV export</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Merged multi-mode CSV export</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>PNG plot export</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frequency-axis offset</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Per-spectrum max normalization</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<section id="required-python-packages">
+<h3>Required Python packages<a class="headerlink" href="#required-python-packages" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
+</ul>
+</section>
+<section id="optional-package">
+<h3>Optional package<a class="headerlink" href="#optional-package" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> — only needed if you use <code class="docutils literal notranslate"><span class="pre">--plot</span></code></p></li>
+</ul>
+</section>
+<section id="standard-library-modules-used">
+<h3>Standard-library modules used<a class="headerlink" href="#standard-library-modules-used" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">argparse</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">math</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">re</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataclasses</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typing</span></code></p></li>
+</ul>
+</section>
+<section id="python-version">
+<h3>Python version<a class="headerlink" href="#python-version" title="Permalink to this heading"></a></h3>
+<p>Any modern Python 3 version that supports dataclasses, type annotations, <code class="docutils literal notranslate"><span class="pre">pathlib</span></code>, and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> should work.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<section id="clone-the-repository">
+<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/giacomande95-oss/FLYINGNIMBUS_GUI.git
+<span class="nb">cd</span><span class="w"> </span>flying_nimbus
+</pre></div>
+</div>
+</section>
+<section id="create-and-activate-a-virtual-environment">
+<h3>Create and activate a virtual environment<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="install-dependencies">
+<h3>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+<p>If you do not need PNG plots, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> is enough for core functionality.</p>
+</section>
+<section id="check-the-cli">
+<h3>Check the CLI<a class="headerlink" href="#check-the-cli" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading"></a></h2>
+<section id="minimal-normal-mode-ta-run-recommended">
+<h3>Minimal normal-mode TA run (Recommended)<a class="headerlink" href="#minimal-normal-mode-ta-run-recommended" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>This uses:</p>
+<ul class="simple">
+<li><p>normal-mode analysis (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>, <strong>default</strong>),</p></li>
+<li><p>time-averaged spectra (TA on by <strong>default</strong>),</p></li>
+<li><p>automatic <code class="docutils literal notranslate"><span class="pre">nat</span></code> detection from the XYZ file if <code class="docutils literal notranslate"><span class="pre">-N</span></code> is not given,</p></li>
+<li><p>and writes spectra prefixed by <code class="docutils literal notranslate"><span class="pre">QCT_</span></code> unless you change it with <code class="docutils literal notranslate"><span class="pre">-o</span></code>.</p></li>
+</ul>
+</section>
+<section id="correlation-ft-mode-legacy-mode">
+<h3>Correlation + FT mode (Legacy Mode)<a class="headerlink" href="#correlation-ft-mode-legacy-mode" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-ta
+</pre></div>
+</div>
+<p>This writes both correlation functions and FT spectra for the selected modes.</p>
+</section>
+<section id="cartesian-spectrum">
+<h3>Cartesian spectrum<a class="headerlink" href="#cartesian-spectrum" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--coord<span class="w"> </span>cart
+</pre></div>
+</div>
+</section>
+<section id="reuse-an-existing-cnorm-dat">
+<h3>Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code><a class="headerlink" href="#reuse-an-existing-cnorm-dat" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--readcnorm<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cnorm<span class="w"> </span>cnorm.dat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="general-command-syntax">
+<h2>General command syntax<a class="headerlink" href="#general-command-syntax" title="Permalink to this heading"></a></h2>
+<p>The general form is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span>--xyz<span class="w"> </span>&lt;geometry.xyz&gt;<span class="w"> </span>--traj<span class="w"> </span>&lt;trajectory.xyz&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<p>Normal-mode analysis usually looks like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>&lt;geometry.xyz&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>&lt;hessian_file&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>&lt;trajectory.xyz&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span>&lt;mode1&gt;<span class="w"> </span><span class="o">[</span>mode2<span class="w"> </span>mode3<span class="w"> </span>...<span class="o">]</span>
+</pre></div>
+</div>
+<p>Cartesian analysis usually looks like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>&lt;geometry.xyz&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>&lt;hessian_file&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>&lt;trajectory.xyz&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--coord<span class="w"> </span>cart
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code> is used, <code class="docutils literal notranslate"><span class="pre">--hess</span></code> is no longer required.</p>
+</section>
+<hr class="docutils" />
+<section id="what-the-program-expects-as-input">
+<h2>What the program expects as input<a class="headerlink" href="#what-the-program-expects-as-input" title="Permalink to this heading"></a></h2>
+<section id="equilibrium-geometry-xyz">
+<h3>Equilibrium geometry (<code class="docutils literal notranslate"><span class="pre">--xyz</span></code>)<a class="headerlink" href="#equilibrium-geometry-xyz" title="Permalink to this heading"></a></h3>
+<p>The XYZ file is required in every run.</p>
+<p>The script expects standard XYZ layout:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>N
+comment line
+Atom1   x   y   z
+Atom2   x   y   z
+...
+</pre></div>
+</div>
+<p>It also supports an <strong>optional fifth column</strong> on each atom line that provides the atomic mass in atomic units:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3
+water with explicit masses
+O   0.000000   0.000000   0.000000   29156.96
+H   0.758602   0.000000   0.504284    1837.15
+H  -0.758602   0.000000   0.504284    1837.15
+</pre></div>
+</div>
+<p>This is important when:</p>
+<ul class="simple">
+<li><p>you are using an element not present in the internal mass table,</p></li>
+<li><p>or you want to override the built-in masses.</p></li>
+</ul>
+<p>The first line is also used to auto-detect <code class="docutils literal notranslate"><span class="pre">nat</span></code> when <code class="docutils literal notranslate"><span class="pre">-N/--nat</span></code> is omitted or set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</section>
+<section id="hessian-hess">
+<h3>Hessian (<code class="docutils literal notranslate"><span class="pre">--hess</span></code>)<a class="headerlink" href="#hessian-hess" title="Permalink to this heading"></a></h3>
+<p>The Hessian is required when <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">0</span></code>.</p>
+<p>The implementation expects:</p>
+<ul class="simple">
+<li><p><strong>two header lines</strong> at the top of the file,</p></li>
+<li><p>followed by lower-triangle Hessian values,</p></li>
+<li><p>read as a single column</p></li>
+</ul>
+<p>The script reconstructs a full symmetric <code class="docutils literal notranslate"><span class="pre">3N</span> <span class="pre">×</span> <span class="pre">3N</span></code> matrix from those lower-triangle values.</p>
+<p>The parser is flexible about whitespace and accepts Fortran-style <code class="docutils literal notranslate"><span class="pre">D</span></code> exponents.</p>
+</section>
+<section id="trajectory-traj">
+<h3>Trajectory (<code class="docutils literal notranslate"><span class="pre">--traj</span></code>)<a class="headerlink" href="#trajectory-traj" title="Permalink to this heading"></a></h3>
+<p>The trajectory must be an <strong>extended XYZ trajectory</strong> containing, for each atom:</p>
+<ul class="simple">
+<li><p>element symbol,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vx</span> <span class="pre">vy</span> <span class="pre">vz</span></code>.</p></li>
+</ul>
+<p>Each frame is read as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>N
+comment line
+Atom1   x   y   z   vx   vy   vz
+Atom2   x   y   z   vx   vy   vz
+...
+</pre></div>
+</div>
+<p>Important notes:</p>
+<ul class="simple">
+<li><p>Positions are assumed to be in <strong>Ångström</strong> and velocities in <strong>bohr</strong>.</p></li>
+<li><p>The file must contain complete frames with exactly <code class="docutils literal notranslate"><span class="pre">nat</span></code> atom lines per frame.</p></li>
+</ul>
+</section>
+<section id="cnorm-dat-reuse-readcnorm-1">
+<h3><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> reuse (<code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>)<a class="headerlink" href="#cnorm-dat-reuse-readcnorm-1" title="Permalink to this heading"></a></h3>
+<p>When you run with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--readcnorm<span class="w"> </span><span class="m">1</span><span class="w"> </span>--cnorm<span class="w"> </span>cnorm.dat
+</pre></div>
+</div>
+<p>the script skips Hessian diagonalization and instead loads the normal-mode basis from <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code>.</p>
+<p>The current implementation supports:</p>
+<ol class="arabic simple">
+<li><p>the script’s own <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> layout, and</p></li>
+<li><p>a fallback numeric layout labeled in the code as a legacy or alternate path.</p></li>
+</ol>
+<p>This is useful when you want to:</p>
+<ul class="simple">
+<li><p>run multiple analyses without repeatedly diagonalizing the Hessian,</p></li>
+<li><p>keep a fixed normal-mode basis across repeated runs.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="how-flying-nimbus-works-internally">
+<h2>How Flying Nimbus works internally<a class="headerlink" href="#how-flying-nimbus-works-internally" title="Permalink to this heading"></a></h2>
+<section id="mass-assignment">
+<h3>Mass assignment<a class="headerlink" href="#mass-assignment" title="Permalink to this heading"></a></h3>
+<p>The script first reads symbols and masses from the equilibrium XYZ.</p>
+<p>Masses are assigned as follows:</p>
+<ol class="arabic simple">
+<li><p>If a fifth column is present and numeric, that value is used.</p></li>
+<li><p>Otherwise the script looks up the symbol in its internal mass database.</p></li>
+<li><p>If the symbol is not present and no mass is provided, the run fails.</p></li>
+</ol>
+</section>
+<section id="building-or-loading-the-normal-mode-basis">
+<h3>Building or loading the normal-mode basis<a class="headerlink" href="#building-or-loading-the-normal-mode-basis" title="Permalink to this heading"></a></h3>
+<p>There are two paths.</p>
+<section id="path-a-compute-from-hessian">
+<h4>Path A: compute from Hessian<a class="headerlink" href="#path-a-compute-from-hessian" title="Permalink to this heading"></a></h4>
+<p>When <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">0</span></code> (the default):</p>
+<ol class="arabic simple">
+<li><p>The lower-triangle Hessian is read and reconstructed.</p></li>
+<li><p>The Hessian is mass-weighted.</p></li>
+<li><p>The Hessian is diagonalized.</p></li>
+<li><p>The eigenpairs are reordered so that <strong>vibrational modes come first</strong> and roto-translational modes are moved to the end.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> file is written.</p></li>
+</ol>
+<p>By design, the script writes <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> during this path. If the target file already exists, the run stops unless you pass:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--rm-cnorm
+</pre></div>
+</div>
+</section>
+<section id="path-b-read-from-cnorm-dat">
+<h4>Path B: read from <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code><a class="headerlink" href="#path-b-read-from-cnorm-dat" title="Permalink to this heading"></a></h4>
+<p>When <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span></code>, the script reads:</p>
+<ul class="simple">
+<li><p>the normal-mode matrix,</p></li>
+<li><p>and the eigenvalue-derived <code class="docutils literal notranslate"><span class="pre">deltaq</span></code> data,</p></li>
+</ul>
+<p>from the <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> file itself.</p>
+</section>
+</section>
+<section id="trajectory-reading-and-unit-handling">
+<h3>Trajectory reading and unit handling<a class="headerlink" href="#trajectory-reading-and-unit-handling" title="Permalink to this heading"></a></h3>
+<p>The trajectory is read frame-by-frame from extended XYZ.</p>
+<p>Internally:</p>
+<ul class="simple">
+<li><p>positions are stored as a <code class="docutils literal notranslate"><span class="pre">NT</span> <span class="pre">×</span> <span class="pre">3N</span></code> array (<code class="docutils literal notranslate"><span class="pre">NT</span></code> being the number of steps),</p></li>
+<li><p>velocities are stored as a <code class="docutils literal notranslate"><span class="pre">NT</span> <span class="pre">×</span> <span class="pre">3N</span></code> array (<code class="docutils literal notranslate"><span class="pre">NT</span></code> being the number of steps),</p></li>
+<li><p>positions are converted from Å to bohr,</p></li>
+<li><p>velocities are left numerically unchanged by the current version.</p></li>
+</ul>
+<p>The script then discards the first <code class="docutils literal notranslate"><span class="pre">nstart</span> <span class="pre">-</span> <span class="pre">1</span></code> frames.</p>
+</section>
+<section id="normal-mode-projection">
+<h3>Normal-mode projection<a class="headerlink" href="#normal-mode-projection" title="Permalink to this heading"></a></h3>
+<p>In normal-mode execution, the code projects both:</p>
+<ul class="simple">
+<li><p>the velocity series <code class="docutils literal notranslate"><span class="pre">v</span></code>, and</p></li>
+<li><p>the coordinate series <code class="docutils literal notranslate"><span class="pre">x</span></code>,</p></li>
+</ul>
+<p>into the normal-mode basis.</p>
+<p>Before projection, each Cartesian degree of freedom is multiplied by <code class="docutils literal notranslate"><span class="pre">sqrt(mass)</span></code>, so the projection is performed in a mass-weighted way.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">--atoms</span></code> is used in normal-mode mode, a Cartesian mask is applied <strong>before</strong> projection. This means only the selected atoms contribute to the projected signal.</p>
+</section>
+<section id="correlation-vs-time-averaged-spectra">
+<h3>Correlation vs time-averaged spectra<a class="headerlink" href="#correlation-vs-time-averaged-spectra" title="Permalink to this heading"></a></h3>
+<p>Flying Nimbus implements two strategies, that in first approximation differ in the function that is Fourier transformed.</p>
+<section id="ta-mode-default">
+<h4>TA mode (default)<a class="headerlink" href="#ta-mode-default" title="Permalink to this heading"></a></h4>
+<p>If you do nothing, TA is enabled.</p>
+<p>For normal-mode analysis:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TA-cpp</span></code> is built from the projected velocity-like mode amplitudes,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TA-cqq</span></code> is built from the projected coordinate-like mode amplitudes.</p></li>
+</ul>
+<p>For Cartesian analysis:</p>
+<ul class="simple">
+<li><p>a TA Cartesian spectrum is built directly from the selected Cartesian velocity series.</p></li>
+</ul>
+</section>
+<section id="correlation-mode">
+<h4>Correlation mode<a class="headerlink" href="#correlation-mode" title="Permalink to this heading"></a></h4>
+<p>If you pass <code class="docutils literal notranslate"><span class="pre">--no-ta</span></code>, the script instead computes correlations and then Fourier transforms them.</p>
+<p>For normal-mode analysis:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpp</span></code> is the mode-resolved correlation built from projected velocities,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cqq</span></code> is the mode-resolved correlation built from projected coordinates,</p></li>
+<li><p>each is Fourier transformed to produce <code class="docutils literal notranslate"><span class="pre">FT-cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">FT-cqq</span></code> spectra.</p></li>
+</ul>
+<p>For Cartesian analysis:</p>
+<ul class="simple">
+<li><p>a Cartesian <code class="docutils literal notranslate"><span class="pre">cvv</span></code> correlation is computed,</p></li>
+<li><p>then Fourier transformed to <code class="docutils literal notranslate"><span class="pre">FT-cvv_cartesian</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="frequency-grid-construction">
+<h3>Frequency grid construction<a class="headerlink" href="#frequency-grid-construction" title="Permalink to this heading"></a></h3>
+<p>The printed frequency axis is controlled by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--init-wnumb</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--spec-res</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--wnumb-span</span></code></p></li>
+</ul>
+<p>The number of frequency points is computed internally as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nf = int(wnumb_span / spec_res)
+</pre></div>
+</div>
+<p>So the output grid is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>init_wnumb + i * spec_res,  for i = 0 .. nf-1
+</pre></div>
+</div>
+<p>This means the upper edge is controlled by integer truncation. If <code class="docutils literal notranslate"><span class="pre">wnumb_span</span></code> is not an exact multiple of <code class="docutils literal notranslate"><span class="pre">spec_res</span></code>, the last printed point will be below the nominal span limit.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="coordinate-systems">
+<h2>Coordinate systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this heading"></a></h2>
+<section id="normal-mode-mode-coord-nm">
+<h3>Normal-mode mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>)<a class="headerlink" href="#normal-mode-mode-coord-nm" title="Permalink to this heading"></a></h3>
+<p>This is the default mode.</p>
+<p>You <strong>must</strong> provide:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--modes<span class="w"> </span>...
+</pre></div>
+</div>
+<p>Mode indices are:</p>
+<ul class="simple">
+<li><p><strong>1-based</strong>,</p></li>
+<li><p>interpreted as <strong>vibrational mode indices</strong>,</p></li>
+<li><p>and must lie between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">nvib</span> <span class="pre">=</span> <span class="pre">3N</span> <span class="pre">-</span> <span class="pre">nrototrasl</span></code>.</p></li>
+</ul>
+<p>In this mode the script can generate:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpp</span></code> correlations and spectra,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cqq</span></code> correlations and spectra,</p></li>
+<li><p>TA mode spectra,</p></li>
+<li><p>CSV exports per mode,</p></li>
+<li><p>merged CSV files across multiple modes,</p></li>
+<li><p>and PNG plots.</p></li>
+</ul>
+</section>
+<section id="cartesian-mode-coord-cart">
+<h3>Cartesian mode (<code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>)<a class="headerlink" href="#cartesian-mode-coord-cart" title="Permalink to this heading"></a></h3>
+<p>This mode skips mode selection and works directly in Cartesian velocity space.</p>
+<p>In this mode:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--modes</span></code> is not used,</p></li>
+<li><p>atom selection still works,</p></li>
+<li><p>the output is a single Cartesian correlation/spectrum rather than one file per mode.</p></li>
+</ul>
+<p>This is the right choice when you want a global or atom-projected velocity-autocorrelation-style spectrum without decomposing into normal modes.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="detailed-cli-reference">
+<h2>Detailed CLI reference<a class="headerlink" href="#detailed-cli-reference" title="Permalink to this heading"></a></h2>
+<section id="system-and-structure-options">
+<h3>System and structure options<a class="headerlink" href="#system-and-structure-options" title="Permalink to this heading"></a></h3>
+<section id="n-nat">
+<h4><code class="docutils literal notranslate"><span class="pre">-N</span></code>, <code class="docutils literal notranslate"><span class="pre">--nat</span></code><a class="headerlink" href="#n-nat" title="Permalink to this heading"></a></h4>
+<p>Number of atoms.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+<p>Behavior:</p>
+<ul class="simple">
+<li><p>if <code class="docutils literal notranslate"><span class="pre">0</span></code>, the script reads <code class="docutils literal notranslate"><span class="pre">nat</span></code> from the first line of <code class="docutils literal notranslate"><span class="pre">--xyz</span></code>.</p></li>
+<li><p>if positive, that explicit value is used.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span>--hess<span class="w"> </span>Hessian.out<span class="w"> </span>-N<span class="w"> </span><span class="m">24</span><span class="w"> </span>--modes<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="nrototrasl">
+<h4><code class="docutils literal notranslate"><span class="pre">--nrototrasl</span></code><a class="headerlink" href="#nrototrasl" title="Permalink to this heading"></a></h4>
+<p>Number of rotational + translational modes to exclude from the vibrational count.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">5</span></code> for linear molecules.</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span>--xyz<span class="w"> </span>co2.xyz<span class="w"> </span>--traj<span class="w"> </span>co2_traj.xyz<span class="w"> </span>--hess<span class="w"> </span>hess.dat<span class="w"> </span>--modes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>--nrototrasl<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="time-and-sampling-options">
+<h3>Time and sampling options<a class="headerlink" href="#time-and-sampling-options" title="Permalink to this heading"></a></h3>
+<section id="nstart">
+<h4><code class="docutils literal notranslate"><span class="pre">--nstart</span></code><a class="headerlink" href="#nstart" title="Permalink to this heading"></a></h4>
+<p>First MD step to use, <strong>1-based</strong>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+<p>The script discards the first <code class="docutils literal notranslate"><span class="pre">nstart</span> <span class="pre">-</span> <span class="pre">1</span></code> frames.</p>
+</section>
+<section id="ncorr">
+<h4><code class="docutils literal notranslate"><span class="pre">--ncorr</span></code><a class="headerlink" href="#ncorr" title="Permalink to this heading"></a></h4>
+<p>Length of the correlation window.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2500
+</pre></div>
+</div>
+<p>This affects both TA and correlation-based branches because it defines how many time points are used in the spectral transform.</p>
+</section>
+<section id="nbeads">
+<h4><code class="docutils literal notranslate"><span class="pre">--nbeads</span></code><a class="headerlink" href="#nbeads" title="Permalink to this heading"></a></h4>
+<p>Number of time origins.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+<p>Behavior:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> means automatic: the script uses as many origins as possible given <code class="docutils literal notranslate"><span class="pre">ncorr</span></code> and trajectory length.</p></li>
+</ul>
+</section>
+<section id="nbeadsstep">
+<h4><code class="docutils literal notranslate"><span class="pre">--nbeadsstep</span></code><a class="headerlink" href="#nbeadsstep" title="Permalink to this heading"></a></h4>
+<p>Stride between time origins.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+<p>Use values larger than <code class="docutils literal notranslate"><span class="pre">1</span></code> to thin the set of time origins.</p>
+</section>
+<section id="dt">
+<h4><code class="docutils literal notranslate"><span class="pre">--dt</span></code><a class="headerlink" href="#dt" title="Permalink to this heading"></a></h4>
+<p>Time step in <strong>atomic units</strong>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>8.2682749151502
+</pre></div>
+</div>
+<p>This value is used directly in the correlation and FT machinery. The script does not infer it from the trajectory file.</p>
+</section>
+</section>
+<section id="spectral-grid-options">
+<h3>Spectral-grid options<a class="headerlink" href="#spectral-grid-options" title="Permalink to this heading"></a></h3>
+<section id="init-wnumb">
+<h4><code class="docutils literal notranslate"><span class="pre">--init-wnumb</span></code><a class="headerlink" href="#init-wnumb" title="Permalink to this heading"></a></h4>
+<p>Initial wavenumber in <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</section>
+<section id="spec-res">
+<h4><code class="docutils literal notranslate"><span class="pre">--spec-res</span></code><a class="headerlink" href="#spec-res" title="Permalink to this heading"></a></h4>
+<p>Spectral resolution in <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</section>
+<section id="wnumb-span">
+<h4><code class="docutils literal notranslate"><span class="pre">--wnumb-span</span></code><a class="headerlink" href="#wnumb-span" title="Permalink to this heading"></a></h4>
+<p>Total spectral span in <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>5000
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span>--hess<span class="w"> </span>Hessian.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--init-wnumb<span class="w"> </span><span class="m">500</span><span class="w"> </span>--spec-res<span class="w"> </span><span class="m">2</span><span class="w"> </span>--wnumb-span<span class="w"> </span><span class="m">3500</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="analysis-mode-options">
+<h3>Analysis mode options<a class="headerlink" href="#analysis-mode-options" title="Permalink to this heading"></a></h3>
+<section id="coord-nm-cart">
+<h4><code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">{nm,cart}</span></code><a class="headerlink" href="#coord-nm-cart" title="Permalink to this heading"></a></h4>
+<p>Select analysis in:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nm</span></code> = normal-mode space,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cart</span></code> = Cartesian space.</p></li>
+</ul>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nm
+</pre></div>
+</div>
+</section>
+<section id="no-ta">
+<h4><code class="docutils literal notranslate"><span class="pre">--no-ta</span></code><a class="headerlink" href="#no-ta" title="Permalink to this heading"></a></h4>
+<p>Disable time-averaged spectra and switch to correlation + FT mode.</p>
+<p>Default behavior without this flag: <strong>TA is on</strong>.</p>
+</section>
+</section>
+<section id="damping-options">
+<h3>Damping options<a class="headerlink" href="#damping-options" title="Permalink to this heading"></a></h3>
+<p>These are only relevant in the <code class="docutils literal notranslate"><span class="pre">--no-ta</span></code> branch.</p>
+<section id="alpha-pow">
+<h4><code class="docutils literal notranslate"><span class="pre">--alpha-pow</span></code><a class="headerlink" href="#alpha-pow" title="Permalink to this heading"></a></h4>
+<p>Gaussian damping applied to <code class="docutils literal notranslate"><span class="pre">cpp</span></code> correlations.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</section>
+<section id="alpha-dip">
+<h4><code class="docutils literal notranslate"><span class="pre">--alpha-dip</span></code><a class="headerlink" href="#alpha-dip" title="Permalink to this heading"></a></h4>
+<p>Gaussian damping applied to <code class="docutils literal notranslate"><span class="pre">cqq</span></code> correlations.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1e-8
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geom.xyz<span class="w"> </span>--traj<span class="w"> </span>traj.xyz<span class="w"> </span>--hess<span class="w"> </span>Hessian.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span>--no-ta<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--alpha-pow<span class="w"> </span>1e-8<span class="w"> </span>--alpha-dip<span class="w"> </span>1e-8
+</pre></div>
+</div>
+</section>
+</section>
+<section id="selection-options">
+<h3>Selection options<a class="headerlink" href="#selection-options" title="Permalink to this heading"></a></h3>
+<section id="modes">
+<h4><code class="docutils literal notranslate"><span class="pre">--modes</span></code><a class="headerlink" href="#modes" title="Permalink to this heading"></a></h4>
+<p>List of <strong>1-based vibrational mode indices</strong>.</p>
+<p>Required when <code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>.</p>
+<p>Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--modes<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--modes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span>
+</pre></div>
+</div>
+</section>
+<section id="atoms">
+<h4><code class="docutils literal notranslate"><span class="pre">--atoms</span></code><a class="headerlink" href="#atoms" title="Permalink to this heading"></a></h4>
+<p>List of <strong>1-based atom indices</strong> to include.</p>
+<p>Default: all atoms.</p>
+<p>Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--atoms<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--atoms<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<p><strong>Behavior differs slightly by coordinate system:</strong></p>
+<ul class="simple">
+<li><p>in <code class="docutils literal notranslate"><span class="pre">nm</span></code> mode, selected atoms contribute through a Cartesian mask before projection;</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">cart</span></code> mode, only selected atoms are used in the Cartesian velocity series.</p></li>
+</ul>
+<p>If you explicitly provide all atoms, the script treats that as equivalent to no selection.</p>
+</section>
+</section>
+<section id="input-output-options">
+<h3>Input/output options<a class="headerlink" href="#input-output-options" title="Permalink to this heading"></a></h3>
+<section id="xyz">
+<h4><code class="docutils literal notranslate"><span class="pre">--xyz</span></code><a class="headerlink" href="#xyz" title="Permalink to this heading"></a></h4>
+<p>Required equilibrium geometry file.</p>
+</section>
+<section id="hess">
+<h4><code class="docutils literal notranslate"><span class="pre">--hess</span></code><a class="headerlink" href="#hess" title="Permalink to this heading"></a></h4>
+<p>Hessian file.</p>
+<p>Required unless:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--readcnorm<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="traj">
+<h4><code class="docutils literal notranslate"><span class="pre">--traj</span></code><a class="headerlink" href="#traj" title="Permalink to this heading"></a></h4>
+<p>Required extended XYZ trajectory with positions and velocities.</p>
+</section>
+<section id="readcnorm-0-1">
+<h4><code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">{0,1}</span></code><a class="headerlink" href="#readcnorm-0-1" title="Permalink to this heading"></a></h4>
+<p>Choose whether to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: compute <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> from the Hessian,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: read <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> instead.</p></li>
+</ul>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</section>
+<section id="cnorm">
+<h4><code class="docutils literal notranslate"><span class="pre">--cnorm</span></code><a class="headerlink" href="#cnorm" title="Permalink to this heading"></a></h4>
+<p>Path to the <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> file.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cnorm.dat
+</pre></div>
+</div>
+</section>
+<section id="o-output">
+<h4><code class="docutils literal notranslate"><span class="pre">-o</span></code>, <code class="docutils literal notranslate"><span class="pre">--output</span></code><a class="headerlink" href="#o-output" title="Permalink to this heading"></a></h4>
+<p>Root output prefix.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT_
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-o<span class="w"> </span>water_
+</pre></div>
+</div>
+</section>
+<section id="freq-offset">
+<h4><code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code><a class="headerlink" href="#freq-offset" title="Permalink to this heading"></a></h4>
+<p>Shift the <strong>printed output wavenumber axis</strong> by this offset in <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+<p>This changes the written x-axis values, not the underlying trajectory itself.</p>
+</section>
+<section id="norm1">
+<h4><code class="docutils literal notranslate"><span class="pre">--norm1</span></code><a class="headerlink" href="#norm1" title="Permalink to this heading"></a></h4>
+<p>Normalize each printed spectrum so its maximum is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>This is applied independently per spectrum.</p>
+</section>
+<section id="rm-cnorm">
+<h4><code class="docutils literal notranslate"><span class="pre">--rm-cnorm</span></code><a class="headerlink" href="#rm-cnorm" title="Permalink to this heading"></a></h4>
+<p>If the script is about to write <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> and that file already exists, remove it first.</p>
+<p>Without this flag, an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> causes the run to stop with a file-exists error.</p>
+</section>
+</section>
+<section id="plotting-and-spreadsheet-export">
+<h3>Plotting and spreadsheet export<a class="headerlink" href="#plotting-and-spreadsheet-export" title="Permalink to this heading"></a></h3>
+<section id="plot">
+<h4><code class="docutils literal notranslate"><span class="pre">--plot</span></code><a class="headerlink" href="#plot" title="Permalink to this heading"></a></h4>
+<p>Save PNG plots of the spectra.</p>
+</section>
+<section id="plot-dir">
+<h4><code class="docutils literal notranslate"><span class="pre">--plot-dir</span></code><a class="headerlink" href="#plot-dir" title="Permalink to this heading"></a></h4>
+<p>Directory where PNG plots are written.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.
+</pre></div>
+</div>
+</section>
+<section id="plot-dpi">
+<h4><code class="docutils literal notranslate"><span class="pre">--plot-dpi</span></code><a class="headerlink" href="#plot-dpi" title="Permalink to this heading"></a></h4>
+<p>PNG resolution.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</section>
+<section id="excel">
+<h4><code class="docutils literal notranslate"><span class="pre">--excel</span></code><a class="headerlink" href="#excel" title="Permalink to this heading"></a></h4>
+<p>Also write spreadsheet-friendly CSV or TSV output without comment headers.</p>
+</section>
+<section id="excel-sep">
+<h4><code class="docutils literal notranslate"><span class="pre">--excel-sep</span></code><a class="headerlink" href="#excel-sep" title="Permalink to this heading"></a></h4>
+<p>Delimiter used for spreadsheet export.</p>
+<p>Default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>,
+</pre></div>
+</div>
+<p>Useful values include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tab</span></code></p></li>
+</ul>
+</section>
+<section id="excel-merge">
+<h4><code class="docutils literal notranslate"><span class="pre">--excel-merge</span></code><a class="headerlink" href="#excel-merge" title="Permalink to this heading"></a></h4>
+<p>In normal-mode runs with multiple selected modes, also write one merged CSV per spectrum type, with one column per selected mode.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h2>
+<p>Output filenames are built from:</p>
+<ul class="simple">
+<li><p>the root prefix from <code class="docutils literal notranslate"><span class="pre">-o/--output</span></code>,</p></li>
+<li><p>an optional atom-selection tag,</p></li>
+<li><p>the spectrum/correlation type,</p></li>
+<li><p>and, in normal-mode mode, the mode index.</p></li>
+</ul>
+<section id="normal-mode-outputs">
+<h3>Normal-mode outputs<a class="headerlink" href="#normal-mode-outputs" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h4>TA mode (default)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>For each selected mode <code class="docutils literal notranslate"><span class="pre">X</span></code>, the script writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;root&gt;_TA-cpp_mode_X.dat
+&lt;root&gt;_TA-cqq_mode_X.dat
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">--excel</span></code> is active, it also writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;root&gt;_TA-cpp_mode_X.csv
+&lt;root&gt;_TA-cqq_mode_X.csv
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">--plot</span></code> is active, it also writes PNGs with matching basenames.</p>
+</section>
+<section id="correlation-ft-mode-no-ta">
+<h4>Correlation + FT mode (<code class="docutils literal notranslate"><span class="pre">--no-ta</span></code>)<a class="headerlink" href="#correlation-ft-mode-no-ta" title="Permalink to this heading"></a></h4>
+<p>For each selected mode <code class="docutils literal notranslate"><span class="pre">X</span></code>, the script writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;root&gt;_cpp_mode_X.dat
+&lt;root&gt;_cqq_mode_X.dat
+&lt;root&gt;_FT-cpp_mode_X.dat
+&lt;root&gt;_FT-cqq_mode_X.dat
+</pre></div>
+</div>
+<p>Optional CSV exports are added for both correlation and FT outputs.</p>
+</section>
+</section>
+<section id="cartesian-outputs">
+<h3>Cartesian outputs<a class="headerlink" href="#cartesian-outputs" title="Permalink to this heading"></a></h3>
+<section id="ta-cartesian-mode">
+<h4>TA Cartesian mode<a class="headerlink" href="#ta-cartesian-mode" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;root&gt;_TA-cvv_cartesian.dat
+</pre></div>
+</div>
+</section>
+<section id="correlation-ft-cartesian-mode">
+<h4>Correlation + FT Cartesian mode<a class="headerlink" href="#correlation-ft-cartesian-mode" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;root&gt;_cvv_cartesian.dat
+&lt;root&gt;_FT-cvv_cartesian.dat
+</pre></div>
+</div>
+<p>Optional <code class="docutils literal notranslate"><span class="pre">.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">.png</span></code> companions may also be produced.</p>
+</section>
+</section>
+<section id="what-is-inside-the-dat-files">
+<h3>What is inside the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files<a class="headerlink" href="#what-is-inside-the-dat-files" title="Permalink to this heading"></a></h3>
+<section id="correlation-files">
+<h4>Correlation files<a class="headerlink" href="#correlation-files" title="Permalink to this heading"></a></h4>
+<p>The correlation writers produce two numeric columns:</p>
+<ul class="simple">
+<li><p>time in atomic units,</p></li>
+<li><p>correlation value.</p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000000000000e+00  1.234567890123e-03
+8.268274915150e+00  9.876543210987e-04
+...
+</pre></div>
+</div>
+</section>
+<section id="normal-mode-spectrum-files">
+<h4>Normal-mode spectrum files<a class="headerlink" href="#normal-mode-spectrum-files" title="Permalink to this heading"></a></h4>
+<p>The normal-mode spectrum writers include a large comment header containing:</p>
+<ul class="simple">
+<li><p>normal-mode frequencies in Hartree, eV, and <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>,</p></li>
+<li><p>normal-mode vector components,</p></li>
+<li><p>and the zero-point energy.</p></li>
+</ul>
+<p>After the header, the actual spectrum is printed as two columns:</p>
+<ul class="simple">
+<li><p>wavenumber (<code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>),</p></li>
+<li><p>intensity.</p></li>
+</ul>
+<p>This means the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files in normal-mode mode are both <strong>machine-readable</strong> and <strong>self-documented</strong>, but they are not as convenient as CSV for spreadsheets.</p>
+</section>
+<section id="cartesian-spectrum-files">
+<h4>Cartesian spectrum files<a class="headerlink" href="#cartesian-spectrum-files" title="Permalink to this heading"></a></h4>
+<p>Cartesian <code class="docutils literal notranslate"><span class="pre">.dat</span></code> spectrum files include a smaller header with the zero-point energy followed by two-column spectrum data.</p>
+</section>
+</section>
+<section id="csv-outputs">
+<h3>CSV outputs<a class="headerlink" href="#csv-outputs" title="Permalink to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">--excel</span></code> is active, the script writes clean tabular files without comment blocks.</p>
+<p>Examples:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wn_cm-1,intensity
+0.000000,1.234567890123e-05
+1.000000,1.456789012345e-05
+...
+</pre></div>
+</div>
+<p>Correlation CSV files use time-axis headers such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">t_au,cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_au,cqq</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_au,cvv</span></code></p></li>
+</ul>
+<p>Spectrum CSV files use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wn_cm-1,intensity</span></code></p></li>
+</ul>
+</section>
+<section id="png-outputs">
+<h3>PNG outputs<a class="headerlink" href="#png-outputs" title="Permalink to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">--plot</span></code> is enabled, the script writes one PNG per spectrum using the same basename as the <code class="docutils literal notranslate"><span class="pre">.dat</span></code> file.</p>
+<p>Example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT_TA-cpp_mode_3.png
+</pre></div>
+</div>
+<p>The plots:</p>
+<ul class="simple">
+<li><p>use wavenumber on the x-axis,</p></li>
+<li><p>intensity on the y-axis,</p></li>
+<li><p>suppress y tick labels in the saved figure,</p></li>
+<li><p>and are saved at the requested DPI.</p></li>
+</ul>
+</section>
+<section id="atom-selection-filename-tags">
+<h3>Atom-selection filename tags<a class="headerlink" href="#atom-selection-filename-tags" title="Permalink to this heading"></a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">--atoms</span></code> is used, Flying Nimbus appends an atom-selection tag to the root.</p>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--atoms<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
+</pre></div>
+</div>
+<p>becomes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>_atoms_1-3_5_8-9
+</pre></div>
+</div>
+<p>So a file may look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT__atoms_1-3_5_8-9_TA-cpp_mode_4.dat
+</pre></div>
+</div>
+<p>This compression makes filenames manageable even when you select multiple non-consecutive atoms.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="minimal-normal-mode-time-averaged-spectrum">
+<h3>1. Minimal normal-mode time-averaged spectrum<a class="headerlink" href="#minimal-normal-mode-time-averaged-spectrum" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>What happens:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nat</span></code> is read from <code class="docutils literal notranslate"><span class="pre">eq.xyz</span></code> if not specified,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is computed from the Hessian,</p></li>
+<li><p>the trajectory is projected to normal modes,</p></li>
+<li><p>TA normal mode spectra are written for mode 1.</p></li>
+</ul>
+</section>
+<section id="correlation-ft-instead-of-ta">
+<h3>2. Correlation + FT instead of TA<a class="headerlink" href="#correlation-ft-instead-of-ta" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-ta
+</pre></div>
+</div>
+<p>This produces both:</p>
+<ul class="simple">
+<li><p>correlation functions (<code class="docutils literal notranslate"><span class="pre">cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">cqq</span></code>),</p></li>
+<li><p>and Fourier-transformed spectra (<code class="docutils literal notranslate"><span class="pre">FT-cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">FT-cqq</span></code>).</p></li>
+</ul>
+</section>
+<section id="multiple-vibrational-modes-at-once">
+<h3>3. Multiple vibrational modes at once<a class="headerlink" href="#multiple-vibrational-modes-at-once" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span>
+</pre></div>
+</div>
+<p>You get one spectrum file per selected mode.</p>
+</section>
+<section id="id2">
+<h3>4. Reuse an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--readcnorm<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cnorm<span class="w"> </span>cnorm.dat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span>
+</pre></div>
+</div>
+<p>This is useful when you are repeating analyses with different:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--nstart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ncorr</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--atoms</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--norm1</span></code></p></li>
+</ul>
+<p>without rebuilding the basis each time. It is also useful if you are working with a cleaned CNORM matrix.</p>
+</section>
+<section id="id3">
+<h3>5. Cartesian spectrum<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--coord<span class="w"> </span>cart<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-ta
+</pre></div>
+</div>
+<p>This writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT__cvv_cartesian.dat
+QCT__FT-cvv_cartesian.dat
+</pre></div>
+</div>
+</section>
+<section id="analyze-only-selected-atoms">
+<h3>6. Analyze only selected atoms<a class="headerlink" href="#analyze-only-selected-atoms" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--atoms<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<p>This restricts the signal to atoms 1–3 and adds an atom-selection tag to the filenames.</p>
+</section>
+<section id="export-csv-files-for-excel-or-libreoffice">
+<h3>7. Export CSV files for Excel or LibreOffice<a class="headerlink" href="#export-csv-files-for-excel-or-libreoffice" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--excel
+</pre></div>
+</div>
+<p>If your spreadsheet locale expects semicolons:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--excel<span class="w"> </span>--excel-sep<span class="w"> </span><span class="s1">&#39;;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="merge-multiple-mode-spectra-into-one-csv">
+<h3>8. Merge multiple mode spectra into one CSV<a class="headerlink" href="#merge-multiple-mode-spectra-into-one-csv" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--excel<span class="w"> </span>--excel-merge
+</pre></div>
+</div>
+<p>This adds merged files such as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT__TA-cpp_modes_3_4_5_6.csv
+QCT__TA-cqq_modes_3_4_5_6.csv
+</pre></div>
+</div>
+<p>or, in non-TA mode:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QCT__FT-cpp_modes_3_4_5_6.csv
+QCT__FT-cqq_modes_3_4_5_6.csv
+</pre></div>
+</div>
+</section>
+<section id="save-png-plots">
+<h3>9. Save PNG plots<a class="headerlink" href="#save-png-plots" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plot<span class="w"> </span>--plot-dir<span class="w"> </span>spectra_png<span class="w"> </span>--plot-dpi<span class="w"> </span><span class="m">300</span>
+</pre></div>
+</div>
+</section>
+<section id="shift-the-printed-frequency-axis">
+<h3>10. Shift the printed frequency axis<a class="headerlink" href="#shift-the-printed-frequency-axis" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--freq-offset<span class="w"> </span><span class="m">35</span>.0
+</pre></div>
+</div>
+<p>Useful when you want to compare with an externally corrected or empirically shifted reference axis.</p>
+</section>
+<section id="normalize-spectra-to-a-maximum-of-1">
+<h3>11. Normalize spectra to a maximum of 1<a class="headerlink" href="#normalize-spectra-to-a-maximum-of-1" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norm1
+</pre></div>
+</div>
+<p>Each printed spectrum is normalized independently.</p>
+</section>
+<section id="overwrite-an-existing-cnorm-dat">
+<h3>12. Overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code><a class="headerlink" href="#overwrite-an-existing-cnorm-dat" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rm-cnorm
+</pre></div>
+</div>
+<p>Without <code class="docutils literal notranslate"><span class="pre">--rm-cnorm</span></code>, the script refuses to overwrite an existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> when recomputing the basis.</p>
+</section>
+<section id="linear-molecule-handling">
+<h3>13. Linear-molecule handling<a class="headerlink" href="#linear-molecule-handling" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>co2.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>co2_hess.dat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>co2_traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nrototrasl<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</section>
+<section id="start-from-a-later-md-step">
+<h3>14. Start from a later MD step<a class="headerlink" href="#start-from-a-later-md-step" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nstart<span class="w"> </span><span class="m">501</span>
+</pre></div>
+</div>
+<p>This skips the first 500 frames and starts analysis from frame 501.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="typical-workflows">
+<h2>Typical workflows<a class="headerlink" href="#typical-workflows" title="Permalink to this heading"></a></h2>
+<section id="workflow-a-hessian-trajectory-mode-resolved-ta-spectra">
+<h3>Workflow A: Hessian + trajectory → mode-resolved TA spectra<a class="headerlink" href="#workflow-a-hessian-trajectory-mode-resolved-ta-spectra" title="Permalink to this heading"></a></h3>
+<p>Use this when you have a single trajectory and want physically interpretable vibrational spectra by mode.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>This is the most direct “full analysis” route.</p>
+</section>
+<section id="workflow-b-precomputed-cnorm-dat-fast-repeat-analyses">
+<h3>Workflow B: Precomputed <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> → fast repeat analyses<a class="headerlink" href="#workflow-b-precomputed-cnorm-dat-fast-repeat-analyses" title="Permalink to this heading"></a></h3>
+<p>First run once to generate <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rm-cnorm
+</pre></div>
+</div>
+<p>Then reuse it repeatedly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--readcnorm<span class="w"> </span><span class="m">1</span><span class="w"> </span>--cnorm<span class="w"> </span>cnorm.dat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nstart<span class="w"> </span><span class="m">1001</span><span class="w"> </span>--ncorr<span class="w"> </span><span class="m">1500</span><span class="w"> </span>--norm1
+</pre></div>
+</div>
+<p>This is especially convenient for parameter scans.</p>
+</section>
+<section id="workflow-c-whole-system-vs-atom-projected-comparison">
+<h3>Workflow C: Whole-system vs atom-projected comparison<a class="headerlink" href="#workflow-c-whole-system-vs-atom-projected-comparison" title="Permalink to this heading"></a></h3>
+<p>Whole system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span>--excel
+</pre></div>
+</div>
+<p>Subset only:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>flying_nimbus.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span>--hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span>--traj<span class="w"> </span>md.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--modes<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span>--atoms<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>--excel
+</pre></div>
+</div>
+<p>This gives you a practical way to compare full-mode behavior with the contribution from a selected fragment or functional group.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="units-and-conventions">
+<h2>Units and conventions<a class="headerlink" href="#units-and-conventions" title="Permalink to this heading"></a></h2>
+<p>Flying Nimbus mixes a few unit conventions that are worth understanding clearly.</p>
+<section id="geometry-input">
+<h3>Geometry input<a class="headerlink" href="#geometry-input" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>XYZ coordinates are read in <strong>Ångström</strong>.</p></li>
+<li><p>Internally they are converted to <strong>bohr</strong>.</p></li>
+</ul>
+</section>
+<section id="velocities">
+<h3>Velocities<a class="headerlink" href="#velocities" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Trajectory velocities are read from the trajectory file.</p></li>
+<li><p>The current code requires them directly in <strong>bohr</strong> by default.</p></li>
+</ul>
+</section>
+<section id="time-step">
+<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--dt</span></code> must be given in <strong>atomic units</strong>.</p></li>
+<li><p>The default is <code class="docutils literal notranslate"><span class="pre">8.2682749151502</span></code> atomic units.</p></li>
+</ul>
+</section>
+<section id="frequency-axis">
+<h3>Frequency axis<a class="headerlink" href="#frequency-axis" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--init-wnumb</span></code>, <code class="docutils literal notranslate"><span class="pre">--spec-res</span></code>, <code class="docutils literal notranslate"><span class="pre">--wnumb-span</span></code>, and <code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code> are all in <code class="docutils literal notranslate"><span class="pre">cm^-1</span></code>.</p></li>
+</ul>
+</section>
+<section id="mode-indexing">
+<h3>Mode indexing<a class="headerlink" href="#mode-indexing" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Modes are <strong>1-based</strong> at the CLI.</p></li>
+<li><p>Internally the code converts them to 0-based indices.</p></li>
+</ul>
+</section>
+<section id="atom-indexing">
+<h3>Atom indexing<a class="headerlink" href="#atom-indexing" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Atoms are <strong>1-based</strong> at the CLI.</p></li>
+<li><p>Internally the code converts them to 0-based indices.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="supported-atomic-symbols-and-masses">
+<h2>Supported atomic symbols and masses<a class="headerlink" href="#supported-atomic-symbols-and-masses" title="Permalink to this heading"></a></h2>
+<p>The built-in mass table includes the following symbols:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head text-right"><p>Mass (au)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
+<td class="text-right"><p>1837.15</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">D</span></code></p></td>
+<td class="text-right"><p>3671.48</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">O</span></code></p></td>
+<td class="text-right"><p>29156.96</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Od</span></code></p></td>
+<td class="text-right"><p>32810.46</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></td>
+<td class="text-right"><p>21874.66</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">N</span></code></p></td>
+<td class="text-right"><p>25526.06</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ti</span></code></p></td>
+<td class="text-right"><p>87256.20</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">F</span></code></p></td>
+<td class="text-right"><p>34631.97</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
+<td class="text-right"><p>58281.54</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td class="text-right"><p>231332.70</p></td>
+</tr>
+</tbody>
+</table>
+<p>If your element is not listed here, provide the mass explicitly as the fifth column in the XYZ atom line.</p>
+</section>
+<hr class="docutils" />
+<section id="important-implementation-notes">
+<h2>Important implementation notes<a class="headerlink" href="#important-implementation-notes" title="Permalink to this heading"></a></h2>
+<section id="ta-is-the-default">
+<h3>1. TA is the default<a class="headerlink" href="#ta-is-the-default" title="Permalink to this heading"></a></h3>
+<p>This is easy to miss.</p>
+<p>If you do not pass <code class="docutils literal notranslate"><span class="pre">--no-ta</span></code>, the script computes <strong>time-averaged spectra</strong>, not correlation + FT outputs. This mode is recommended and is the one that should be used in almost all applications.</p>
+</section>
+<section id="modes-is-mandatory-only-in-normal-mode-mode">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">--modes</span></code> is mandatory only in normal-mode mode<a class="headerlink" href="#modes-is-mandatory-only-in-normal-mode-mode" title="Permalink to this heading"></a></h3>
+<p>With <code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">nm</span></code>, omitting <code class="docutils literal notranslate"><span class="pre">--modes</span></code> causes an argument error.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">--coord</span> <span class="pre">cart</span></code>, mode selection is irrelevant.</p>
+</section>
+<section id="cnorm-dat-is-written-automatically-in-the-hessian-path">
+<h3>3. <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is written automatically in the Hessian path<a class="headerlink" href="#cnorm-dat-is-written-automatically-in-the-hessian-path" title="Permalink to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">0</span></code>, the script computes the basis from the Hessian and writes <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code>.</p>
+<p>This is not just an internal temporary object; it is an explicit output artifact.</p>
+</section>
+<section id="existing-cnorm-dat-is-protected-by-default">
+<h3>4. Existing <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is protected by default<a class="headerlink" href="#existing-cnorm-dat-is-protected-by-default" title="Permalink to this heading"></a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> already exists, the script raises an error instead of overwriting it. Use <code class="docutils literal notranslate"><span class="pre">--rm-cnorm</span></code> to replace it.</p>
+</section>
+<section id="normal-mode-spectrum-dat-files-contain-large-headers">
+<h3>5. Normal-mode spectrum <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files contain large headers<a class="headerlink" href="#normal-mode-spectrum-dat-files-contain-large-headers" title="Permalink to this heading"></a></h3>
+<p>These files are more informative than minimal two-column spectra because they include:</p>
+<ul class="simple">
+<li><p>mode vectors,</p></li>
+<li><p>frequencies,</p></li>
+<li><p>and ZPE.</p></li>
+</ul>
+<p>That is useful for archival or manual inspection, but can surprise users expecting a plain two-column file.</p>
+</section>
+<section id="freq-offset-affects-printed-exported-axes">
+<h3>6. <code class="docutils literal notranslate"><span class="pre">--freq-offset</span></code> affects printed/exported axes<a class="headerlink" href="#freq-offset-affects-printed-exported-axes" title="Permalink to this heading"></a></h3>
+<p>The offset is applied to the written wavenumber axis of spectra and plots. It does not re-run the dynamics or alter the normal-mode basis.</p>
+</section>
+<section id="excel-merge-supplements-not-replaces-per-mode-csvs">
+<h3>7. <code class="docutils literal notranslate"><span class="pre">--excel-merge</span></code> supplements, not replaces, per-mode CSVs<a class="headerlink" href="#excel-merge-supplements-not-replaces-per-mode-csvs" title="Permalink to this heading"></a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">--excel</span></code> and <code class="docutils literal notranslate"><span class="pre">--excel-merge</span></code> are both active, the merged CSVs are added <strong>in addition to</strong> the per-mode CSV outputs.</p>
+</section>
+<section id="plot-display-options-exist-internally-but-are-not-exposed-in-the-current-cli">
+<h3>8. Plot display options exist internally but are not exposed in the current CLI<a class="headerlink" href="#plot-display-options-exist-internally-but-are-not-exposed-in-the-current-cli" title="Permalink to this heading"></a></h3>
+<p>The configuration object has fields related to log-scale y axes and interactive display, but those arguments are not exposed as active CLI options in the current script version.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="modes-is-required-when-coord-nm">
+<h3><code class="docutils literal notranslate"><span class="pre">--modes</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">when</span> <span class="pre">--coord</span> <span class="pre">nm</span></code><a class="headerlink" href="#modes-is-required-when-coord-nm" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>you are in normal-mode mode and did not provide any modes.</p></li>
+</ul>
+<p>Fix:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--modes<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>or switch to Cartesian mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--coord<span class="w"> </span>cart
+</pre></div>
+</div>
+</section>
+<section id="hess-is-required-when-readcnorm-0">
+<h3><code class="docutils literal notranslate"><span class="pre">--hess</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">when</span> <span class="pre">--readcnorm</span> <span class="pre">0</span></code><a class="headerlink" href="#hess-is-required-when-readcnorm-0" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>you asked the script to compute the mode basis but did not provide a Hessian.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>either pass <code class="docutils literal notranslate"><span class="pre">--hess</span> <span class="pre">&lt;file&gt;</span></code>,</p></li>
+<li><p>or switch to <code class="docutils literal notranslate"><span class="pre">--readcnorm</span> <span class="pre">1</span> <span class="pre">--cnorm</span> <span class="pre">cnorm.dat</span></code>.</p></li>
+</ul>
+</section>
+<section id="mode-x-is-out-of-range">
+<h3><code class="docutils literal notranslate"><span class="pre">Mode</span> <span class="pre">X</span> <span class="pre">is</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code><a class="headerlink" href="#mode-x-is-out-of-range" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>one of the selected mode indices exceeds <code class="docutils literal notranslate"><span class="pre">3N</span> <span class="pre">-</span> <span class="pre">nrototrasl</span></code>.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>verify <code class="docutils literal notranslate"><span class="pre">nat</span></code>,</p></li>
+<li><p>verify <code class="docutils literal notranslate"><span class="pre">--nrototrasl</span></code>,</p></li>
+<li><p>and check whether your molecule is linear.</p></li>
+</ul>
+</section>
+<section id="atoms-selection-out-of-range-for-nat">
+<h3><code class="docutils literal notranslate"><span class="pre">atoms</span> <span class="pre">selection</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span> <span class="pre">for</span> <span class="pre">nat</span></code><a class="headerlink" href="#atoms-selection-out-of-range-for-nat" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>at least one atom index in <code class="docutils literal notranslate"><span class="pre">--atoms</span></code> is outside <code class="docutils literal notranslate"><span class="pre">1..nat</span></code>.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>recheck your indexing against the XYZ file.</p></li>
+</ul>
+</section>
+<section id="not-enough-post-nstart-steps-for-ncorr">
+<h3><code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">enough</span> <span class="pre">post-nstart</span> <span class="pre">steps</span> <span class="pre">for</span> <span class="pre">ncorr=...</span></code><a class="headerlink" href="#not-enough-post-nstart-steps-for-ncorr" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>after dropping the first <code class="docutils literal notranslate"><span class="pre">nstart</span> <span class="pre">-</span> <span class="pre">1</span></code> frames, the remaining trajectory is shorter than <code class="docutils literal notranslate"><span class="pre">ncorr</span></code>.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>lower <code class="docutils literal notranslate"><span class="pre">--ncorr</span></code>,</p></li>
+<li><p>lower <code class="docutils literal notranslate"><span class="pre">--nstart</span></code>,</p></li>
+<li><p>or provide a longer trajectory.</p></li>
+</ul>
+</section>
+<section id="not-enough-hessian-numbers">
+<h3><code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">enough</span> <span class="pre">Hessian</span> <span class="pre">numbers</span></code><a class="headerlink" href="#not-enough-hessian-numbers" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>the Hessian file does not contain enough lower-triangle values for a <code class="docutils literal notranslate"><span class="pre">3N</span> <span class="pre">×</span> <span class="pre">3N</span></code> matrix.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>verify the Hessian extraction workflow,</p></li>
+<li><p>and confirm that the file contains all lower-triangle elements after the two header lines.</p></li>
+</ul>
+</section>
+<section id="element-x-not-in-mass-database">
+<h3><code class="docutils literal notranslate"><span class="pre">Element</span> <span class="pre">'X'</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">mass</span> <span class="pre">database</span></code><a class="headerlink" href="#element-x-not-in-mass-database" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>your XYZ contains an element missing from the internal mass table.</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>add a fifth mass column to each affected atom line.</p></li>
+</ul>
+</section>
+<section id="cnorm-dat-already-exists-will-not-overwrite">
+<h3><code class="docutils literal notranslate"><span class="pre">cnorm.dat</span> <span class="pre">already</span> <span class="pre">exists;</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">overwrite</span></code><a class="headerlink" href="#cnorm-dat-already-exists-will-not-overwrite" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>a previous <code class="docutils literal notranslate"><span class="pre">cnorm.dat</span></code> is present and you are in the Hessian-compute path.</p></li>
+</ul>
+<p>Fix:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--rm-cnorm
+</pre></div>
+</div>
+<p>or change the <code class="docutils literal notranslate"><span class="pre">--cnorm</span></code> target path.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading"></a></h2>
+<p>The current script is powerful but intentionally narrow in scope.</p>
+<section id="input-assumptions-are-strict">
+<h3>Input assumptions are strict<a class="headerlink" href="#input-assumptions-are-strict" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The trajectory must be extended XYZ with <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span> <span class="pre">vx</span> <span class="pre">vy</span> <span class="pre">vz</span></code> for every atom line.</p></li>
+<li><p>The Hessian reader expects lower-triangle values after exactly two header lines.</p></li>
+</ul>
+</section>
+<section id="mass-support-is-limited-unless-you-provide-explicit-masses">
+<h3>Mass support is limited unless you provide explicit masses<a class="headerlink" href="#mass-support-is-limited-unless-you-provide-explicit-masses" title="Permalink to this heading"></a></h3>
+<p>Only a small internal set of atomic symbols is built in. For less common species, explicit mass columns are the safe solution.</p>
+</section>
+<section id="plotting-is-intentionally-simple">
+<h3>Plotting is intentionally simple<a class="headerlink" href="#plotting-is-intentionally-simple" title="Permalink to this heading"></a></h3>
+<p>The plotting helper saves one PNG per spectrum and does not expose extensive styling controls in the current CLI.</p>
+</section>
+<section id="spectra-are-post-processed-outputs-not-full-uncertainty-analyses">
+<h3>Spectra are post-processed outputs, not full uncertainty analyses<a class="headerlink" href="#spectra-are-post-processed-outputs-not-full-uncertainty-analyses" title="Permalink to this heading"></a></h3>
+<p>The script gives you spectra and correlations, but it does not attempt statistical error bars, bootstrap analysis, or trajectory-block uncertainty estimates.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<p>This project is marked in the source with:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+</pre></div>
+</div>
+<p>Check the repository for the full license text and any additional usage notes.</p>
+</section>
+<hr class="docutils" />
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
+<p>Authors listed in the source:</p>
+<ul class="simple">
+<li><p>Giacomo Mandelli, Ph.D., Politecnico di Milano</p></li>
+<li><p>Giacomo Botti, Ph.D., University of South Carolina</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="Welcome to DragonBall!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Readme_BULMA.html" class="btn btn-neutral float-right" title="BULMA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

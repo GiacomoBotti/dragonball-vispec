@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaussian tutorial &mdash; Dragonball Suite 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=44496db0"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ORCA Tutorial" href="../ORCA_tutorial.html" />
+    <link rel="prev" title="GUI Installation guide" href="../Installation_GUI_de.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README_FlyingNimbus.html">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Readme_BULMA.html">BULMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation_GUI_de.html">GUI Installation guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gaussian tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-big-picture">The big picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-overview">Quick overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#bulma-gui-tutorial">Bulma GUI Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-about-the-gui">How about the GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-create-an-optimization-or-frequency-input">Step 1 — Create an optimization or frequency input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-to-check-after-clicking-run">What to check after clicking Run</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-extract-the-optimized-geometry">Step 2 — Extract the optimized geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-extract-the-hessian">Step 3 — Extract the Hessian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-generate-a-bomd-input">Step 4 — Generate a BOMD input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-bomd-parse-nimbus">Step 5 — BOMD → Parse → Nimbus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-bomd-custom-args">Step 6 — BOMD → Custom args</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-beginner-mistakes-in-bulma">Common beginner mistakes in Bulma</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#vegeta-gui-tutorial">Vegeta GUI Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-files-page">Step 1 — Files page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-modes-page">Step 2 — Modes page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-export-page">Step 3 — Export page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-you-usually-keep-from-vegeta">What you usually keep from Vegeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-mistakes-in-vegeta">Common mistakes in Vegeta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#presets">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Step 1 — Files page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-dynamics-page">Step 2 — Dynamics page</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-basic-layer">The basic layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-selective-analysis-layer">The selective-analysis layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-spectrum-page">Step 3 — Spectrum page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-export-page">Step 4 — Export page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-results-page">Step 5 — Results page</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-spectra-and-organizing-series">Loading spectra and organizing series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-controls">Plot controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-controls">Analysis controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-shaded-peak-region-fwhm-resuls-peak-peak-distance">Example: shaded peak region, FWHM resuls, peak-peak distance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-mistakes-in-flying-nimbus">Common mistakes in Flying Nimbus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ORCA_tutorial.html">ORCA Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Download.html">Download and useful links</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Gaussian tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Gau_tutorial/GAU_tutorial.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="gaussian-tutorial">
+<h1>Gaussian tutorial<a class="headerlink" href="#gaussian-tutorial" title="Permalink to this heading"></a></h1>
+<p>A simple, beginner-friendly guide to the Flying Nimbus programs.</p>
+<section id="the-big-picture">
+<h2>The big picture<a class="headerlink" href="#the-big-picture" title="Permalink to this heading"></a></h2>
+<p>These tools work together as a pipeline:</p>
+<p><strong>Bulma → Vegeta → Flying Nimbus</strong></p>
+<ul class="simple">
+<li><p><strong>Bulma</strong> prepares files from quantum-chemistry data.</p></li>
+<li><p><strong>Vegeta</strong> uses the optimized structure and Hessian to build velocity and mode-related outputs.</p></li>
+<li><p><strong>Flying Nimbus</strong> reads trajectory-based data and turns it into spectra that you can compare, export, and analyze.</p></li>
+</ul>
+</section>
+<section id="quick-overview">
+<h2>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Program</p></th>
+<th class="head"><p>Main job</p></th>
+<th class="head"><p>Typical inputs</p></th>
+<th class="head"><p>Typical outputs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Bulma</strong></p></td>
+<td><p>Build inputs and extract useful files</p></td>
+<td><p>XYZ geometry, Gaussian/ORCA/Q-Chem outputs</p></td>
+<td><p>optimized XYZ, Hessian files, BOMD/OPT/FREQ input</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Vegeta</strong></p></td>
+<td><p>Build velocity and mode-related outputs</p></td>
+<td><p>equilibrium XYZ, flat Hessian</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">velocity.xyz</span></code>, optional bohr/s velocities, frequencies, optional <code class="docutils literal notranslate"><span class="pre">cnorm</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Flying Nimbus</strong></p></td>
+<td><p>Compute, compare, and analyze spectra</p></td>
+<td><p>equilibrium XYZ, trajectory, Hessian, <code class="docutils literal notranslate"><span class="pre">cnorm</span></code>, spectra files</p></td>
+<td><p>plotted spectra, CSV export, peak metrics</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bulma-gui-tutorial">
+<h1>Bulma GUI Tutorial<a class="headerlink" href="#bulma-gui-tutorial" title="Permalink to this heading"></a></h1>
+<p>Bulma is the preparation tool. This is where you usually:</p>
+<ul class="simple">
+<li><p>create an optimization or frequency input</p></li>
+<li><p>extract the final optimized geometry</p></li>
+<li><p>extract the Hessian</p></li>
+<li><p>prepare BOMD inputs</p></li>
+<li><p>and, if needed, convert BOMD data into files that are easier to use later in Flying Nimbus</p></li>
+</ul>
+<p><img alt="Bulma splash screen" src="../_images/bulma_splash.png" /></p>
+<p><em>Bulma splash screen.</em></p>
+<section id="how-about-the-gui">
+<h2>How about the GUI<a class="headerlink" href="#how-about-the-gui" title="Permalink to this heading"></a></h2>
+<p>The most important ideas are simple:</p>
+<ul class="simple">
+<li><p><strong>Choose the working directory first</strong></p></li>
+<li><p>Use the left sidebar to switch between <strong>Opt</strong>, <strong>Hessian</strong>, <strong>BOMD</strong>, and <strong>About</strong></p></li>
+<li><p>Use the <strong>Help</strong> panel on the right whenever a field name is unclear</p></li>
+<li><p>Always check the <strong>Log</strong> panel at the bottom after you run something</p></li>
+</ul>
+<p>If you are unsure about a field, keep the default and only change the options you understand.</p>
+</section>
+<section id="step-1-create-an-optimization-or-frequency-input">
+<h2>Step 1 — Create an optimization or frequency input<a class="headerlink" href="#step-1-create-an-optimization-or-frequency-input" title="Permalink to this heading"></a></h2>
+<p>On the <strong>Opt</strong> page, start by selecting the <strong>workdir</strong>. Then choose the software row that matches your code, such as Gaussian, ORCA, or Q-Chem.</p>
+<p><img alt="Bulma Opt page" src="../_images/bulma_opt_page.png" /></p>
+<p><em>Bulma Opt page. The working directory is at the top, the software-specific settings are in the middle, the help panel is on the right, and the log is at the bottom.</em></p>
+<p>As a beginner, focus on these fields first:</p>
+<ul class="simple">
+<li><p>geometry input file</p></li>
+<li><p>job type</p></li>
+<li><p>theory</p></li>
+<li><p>basis set</p></li>
+<li><p>charge</p></li>
+<li><p>multiplicity</p></li>
+<li><p>number of processors</p></li>
+<li><p>memory</p></li>
+<li><p>optional dispersion</p></li>
+</ul>
+<p>A completed example looks like this:</p>
+<p><img alt="Bulma completed Opt example" src="../_images/bulma_opt_completed.png" /></p>
+<p><em>Completed Bulma example. The log confirms the command and the file that was written.</em></p>
+<section id="what-to-check-after-clicking-run">
+<h3>What to check after clicking Run<a class="headerlink" href="#what-to-check-after-clicking-run" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The <strong>log</strong> should finish cleanly</p></li>
+<li><p>The output file name should appear in the log</p></li>
+<li><p>If nothing is written, the first things to check are the <strong>workdir</strong> and the <strong>input path</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="step-2-extract-the-optimized-geometry">
+<h2>Step 2 — Extract the optimized geometry<a class="headerlink" href="#step-2-extract-the-optimized-geometry" title="Permalink to this heading"></a></h2>
+<p>Inside <strong>Opt</strong>, Bulma also lets you extract the last optimized geometry from a finished output file. This is useful when you want a clean <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file to pass to Vegeta or Flying Nimbus.</p>
+<p><img alt="Bulma geometry extraction" src="../_images/bulma_extract_geometry.png" /></p>
+<p><em>Bulma can extract the optimized geometry into a new XYZ file.</em></p>
+</section>
+<section id="step-3-extract-the-hessian">
+<h2>Step 3 — Extract the Hessian<a class="headerlink" href="#step-3-extract-the-hessian" title="Permalink to this heading"></a></h2>
+<p>Use the <strong>Hessian</strong> page when you need the Hessian matrix and its flat-vector version. The flat version is the one Vegeta typically uses later.</p>
+<p><img alt="Bulma Hessian extraction" src="../_images/bulma_hessian.png" /></p>
+<p><em>Bulma Hessian extraction page.</em></p>
+<p>A good beginner rule is:</p>
+<ul class="simple">
+<li><p>keep both outputs if possible</p></li>
+<li><p>label them clearly</p></li>
+<li><p>and store them in the same working directory as the optimized geometry</p></li>
+</ul>
+</section>
+<section id="step-4-generate-a-bomd-input">
+<h2>Step 4 — Generate a BOMD input<a class="headerlink" href="#step-4-generate-a-bomd-input" title="Permalink to this heading"></a></h2>
+<p>The <strong>BOMD → Generate</strong> tab is where you build a dynamics input from an equilibrium geometry and a velocity file.</p>
+<p><img alt="Bulma BOMD generate page" src="../_images/bulma_bomd_generate.png" /></p>
+<p><em>Bulma BOMD generate page.</em></p>
+<p>The fields you will usually care about most are:</p>
+<ul class="simple">
+<li><p><strong>XYZ</strong>: the equilibrium geometry</p></li>
+<li><p><strong>Velocity file</strong>: usually the file produced by Vegeta,</p></li>
+<li><p><strong>stepsize</strong></p></li>
+<li><p><strong>npoints</strong></p></li>
+<li><p><strong>dyn-out</strong></p></li>
+<li><p>optional <strong>dispersion</strong></p></li>
+<li><p>and the shared ab initio settings</p></li>
+</ul>
+<p>A safe beginner order is:</p>
+<ol class="arabic simple">
+<li><p>prepare the geometry</p></li>
+<li><p>prepare the velocity file</p></li>
+<li><p>then generate the BOMD input</p></li>
+</ol>
+</section>
+<section id="step-5-bomd-parse-nimbus">
+<h2>Step 5 — BOMD → Parse → Nimbus<a class="headerlink" href="#step-5-bomd-parse-nimbus" title="Permalink to this heading"></a></h2>
+<p>The <strong>Parse → Nimbus</strong> tab converts BOMD-style outputs into files that are easier to use in Flying Nimbus.</p>
+<p>This tab is especially useful when you already have a finished dynamics run and want to move from raw trajectory-style output to spectral analysis.</p>
+<p>Pay attention to:</p>
+<ul class="simple">
+<li><p>the selected parser type</p></li>
+<li><p>the input log or output file</p></li>
+<li><p>the equilibrium geometry template if requested</p></li>
+<li><p>the frame range</p></li>
+<li><p>the base name for the generated outputs</p></li>
+<li><p>and any optional energy export</p></li>
+</ul>
+<p>A good beginner habit is to keep the output base name simple and descriptive, because you will see that name again later in Flying Nimbus.</p>
+</section>
+<section id="step-6-bomd-custom-args">
+<h2>Step 6 — BOMD → Custom args<a class="headerlink" href="#step-6-bomd-custom-args" title="Permalink to this heading"></a></h2>
+<p>The <strong>Custom args</strong> tab is the advanced escape hatch.</p>
+<p>Use it when:</p>
+<ul class="simple">
+<li><p>the GUI does not expose the exact option you need</p></li>
+<li><p>you already know the command-line syntax</p></li>
+<li><p>or you want to reproduce a command exactly</p></li>
+</ul>
+<p>As a beginner, only use this page when the normal tabs are not enough. If you do use it, copy the command carefully and test with short runs first.</p>
+</section>
+<section id="common-beginner-mistakes-in-bulma">
+<h2>Common beginner mistakes in Bulma<a class="headerlink" href="#common-beginner-mistakes-in-bulma" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Forgetting to set the <strong>workdir</strong></p></li>
+<li><p>Using the wrong output file when extracting the optimized geometry</p></li>
+<li><p>Sending the wrong Hessian file to Vegeta</p></li>
+<li><p>Mixing files from different molecules or different calculations in the same folder</p></li>
+<li><p>Changing too many advanced settings at once</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="vegeta-gui-tutorial">
+<h1>Vegeta GUI Tutorial<a class="headerlink" href="#vegeta-gui-tutorial" title="Permalink to this heading"></a></h1>
+<p>Vegeta sits between Bulma and Flying Nimbus. It uses the optimized structure and Hessian to generate velocities and other mode-related outputs.</p>
+<p><img alt="Vegeta splash screen" src="../_images/vegeta_splash.png" /></p>
+<p><em>Vegeta splash screen.</em></p>
+<section id="step-1-files-page">
+<h2>Step 1 — Files page<a class="headerlink" href="#step-1-files-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Files</strong> page is where you load the key inputs.</p>
+<p><img alt="Vegeta Files page" src="../_images/vegeta_files.png" /></p>
+<p><em>Vegeta Files page.</em></p>
+<p>The most important fields are:</p>
+<ul class="simple">
+<li><p><strong>working directory</strong></p></li>
+<li><p><strong>equilibrium XYZ</strong></p></li>
+<li><p><strong>flat Hessian</strong></p></li>
+<li><p>optional geometry-only output</p></li>
+</ul>
+<p>For a first run, keep it simple: load the optimized geometry from Bulma, load the flat Hessian from Bulma, and leave the optional output fields alone unless you know you need them.</p>
+</section>
+<section id="step-2-modes-page">
+<h2>Step 2 — Modes page<a class="headerlink" href="#step-2-modes-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Modes</strong> page is where the main configuration happens.</p>
+<p><img alt="Vegeta Modes page" src="../_images/vegeta_modes.png" /></p>
+<p><em>Vegeta Modes page.</em></p>
+<p>Here is how to read it:</p>
+<ul class="simple">
+<li><p><strong>nrotrasl</strong> controls how translational and rotational modes are handled</p></li>
+<li><p><strong>on</strong> and <strong>off</strong> let you excite specific modes or switch them off</p></li>
+<li><p><strong>freq threshold</strong> can be left alone at first, it is used to remove low frequency modes below the threshold</p></li>
+<li><p><strong>zero-velocity atoms</strong> is useful only when you deliberately want some atoms to have zero velocity</p></li>
+<li><p><strong>normal modes movies</strong> is optional and mainly for inspection and visualization</p></li>
+</ul>
+</section>
+<section id="step-3-export-page">
+<h2>Step 3 — Export page<a class="headerlink" href="#step-3-export-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Export</strong> page controls the output names.</p>
+<p><img alt="Vegeta Export page" src="../_images/vegeta_export_completed.png" /></p>
+<p><em>Vegeta Export page after a successful run.</em></p>
+<p>The main outputs are usually:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">velocity.xyz</span></code></strong></p></li>
+<li><p>optional <strong>bohr/s</strong> velocity output</p></li>
+<li><p>optional <strong><code class="docutils literal notranslate"><span class="pre">cnorm</span></code></strong> file</p></li>
+<li><p>frequency information written to the working directory</p></li>
+</ul>
+</section>
+<section id="what-you-usually-keep-from-vegeta">
+<h2>What you usually keep from Vegeta<a class="headerlink" href="#what-you-usually-keep-from-vegeta" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>a velocity file for later dynamics work</p></li>
+<li><p>frequency information (freq.dat)</p></li>
+<li><p>an optional <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> file when Flying Nimbus needs it</p></li>
+</ul>
+</section>
+<section id="common-mistakes-in-vegeta">
+<h2>Common mistakes in Vegeta<a class="headerlink" href="#common-mistakes-in-vegeta" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Using the wrong geometry for the Hessian</p></li>
+<li><p>Mixing Hessians and structures from different jobs</p></li>
+<li><p>Excluding or exciting modes without keeping track of what was removed or excited</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="flying-nimbus-gui-tutorial">
+<h1>Flying Nimbus GUI Tutorial<a class="headerlink" href="#flying-nimbus-gui-tutorial" title="Permalink to this heading"></a></h1>
+<p><img alt="Flying Nimbus splash screen" src="../_images/flying_nimbus_splash.png" /></p>
+<p><em>Flying Nimbus splash screen.</em></p>
+<p>Flying Nimbus is the analysis and visualization tool. It reads structural and dynamics information and turns it into spectra that you can compare and analyze inside the GUI.</p>
+<section id="presets">
+<h2>Presets<a class="headerlink" href="#presets" title="Permalink to this heading"></a></h2>
+<p>At the top of the GUI, Flying Nimbus includes <strong>Load preset</strong> and <strong>Save preset</strong> buttons.</p>
+<p>These are useful when:</p>
+<ul class="simple">
+<li><p>you repeat the same analysis often</p></li>
+<li><p>you want to save a known-good setup</p></li>
+<li><p>or you want to compare different analyses without retyping everything</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Step 1 — Files page<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>The <strong>Files</strong> page collects the core inputs.</p>
+<p><img alt="Flying Nimbus Files page" src="../_images/flying_nimbus_files.png" /></p>
+<p><em>Flying Nimbus Files page.</em></p>
+<p>The key inputs are:</p>
+<ul class="simple">
+<li><p><strong>working directory</strong></p></li>
+<li><p><strong>equilibrium XYZ</strong></p></li>
+<li><p><strong>trajectory</strong></p></li>
+<li><p><strong>Hessian</strong></p></li>
+<li><p>optional <strong>cnorm file</strong></p></li>
+<li><p>output prefix for plots</p></li>
+</ul>
+</section>
+<section id="step-2-dynamics-page">
+<h2>Step 2 — Dynamics page<a class="headerlink" href="#step-2-dynamics-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Dynamics</strong> page controls how the trajectory file is interpreted.</p>
+<p><img alt="Flying Nimbus Dynamics page, upper part" src="../_images/flying_nimbus_dynamics_upper.png" /></p>
+<p><em>Flying Nimbus Dynamics page: upper part.</em></p>
+<p><img alt="Flying Nimbus Dynamics page, lower part" src="../_images/flying_nimbus_dynamics_lower.png" /></p>
+<p><em>Flying Nimbus Dynamics page: lower part.</em></p>
+<p><strong>Treat this page in two layers:</strong></p>
+<section id="the-basic-layer">
+<h3>The basic layer<a class="headerlink" href="#the-basic-layer" title="Permalink to this heading"></a></h3>
+<p>Start with the main run settings shown in the screenshots, such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nrotrasl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nstart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncorr</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbeads</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbeadstep</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt</span></code></p></li>
+</ul>
+<p>For Gaussian trajectory files and non-linear molecules, the default values are usually fine.</p>
+</section>
+<section id="the-selective-analysis-layer">
+<h3>The selective-analysis layer<a class="headerlink" href="#the-selective-analysis-layer" title="Permalink to this heading"></a></h3>
+<p>The lower part lets you narrow the analysis.</p>
+<p>Common examples:</p>
+<ul class="simple">
+<li><p>select only specific <strong>modes</strong></p></li>
+<li><p>select only specific <strong>atoms</strong> (atomwise spectra)</p></li>
+<li><p>choose whether the calculation is done in <strong>normal-mode</strong> or <strong>Cartesian</strong> form</p></li>
+<li><p>choose whether you want time averaged spectra or not (TA). We recommend using TA as default</p></li>
+<li><p>reuse or overwrite the <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> file</p></li>
+</ul>
+</section>
+</section>
+<section id="step-3-spectrum-page">
+<h2>Step 3 — Spectrum page<a class="headerlink" href="#step-3-spectrum-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Spectrum</strong> page controls the spectral grid and simple post-processing.</p>
+<p><img alt="Flying Nimbus Spectrum page" src="../_images/flying_nimbus_spectrum.png" /></p>
+<p><em>Flying Nimbus Spectrum page.</em></p>
+<p>The most important fields are usually:</p>
+<ul class="simple">
+<li><p>initial wavenumber</p></li>
+<li><p>spectral resolution</p></li>
+<li><p>total wavenumber span</p></li>
+<li><p>frequency offset</p></li>
+<li><p>normalization of the highest peak</p></li>
+</ul>
+<p>For a first pass, keep the setup simple and only change the range or resolution when you have a clear reason.</p>
+</section>
+<section id="step-4-export-page">
+<h2>Step 4 — Export page<a class="headerlink" href="#step-4-export-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Export</strong> page controls CSV and other export options.</p>
+<ul class="simple">
+<li><p>writing CSV output</p></li>
+<li><p>choosing the delimiter</p></li>
+<li><p>exporting merged CSV data when you want a single combined table</p></li>
+</ul>
+<p>This page is especially useful when you want to move the processed spectra into Excel, Origin, Python, or another plotting tool.</p>
+</section>
+<section id="step-5-results-page">
+<h2>Step 5 — Results page<a class="headerlink" href="#step-5-results-page" title="Permalink to this heading"></a></h2>
+<p>The <strong>Results</strong> page is where comparison and interpretation happen.</p>
+<section id="loading-spectra-and-organizing-series">
+<h3>Loading spectra and organizing series<a class="headerlink" href="#loading-spectra-and-organizing-series" title="Permalink to this heading"></a></h3>
+<p><img alt="Flying Nimbus Results page: loading spectra" src="../_images/flying_nimbus_results_loading.png" /></p>
+<p><em>Flying Nimbus Results page: loading spectra and organizing series.</em></p>
+<p>This is where you:</p>
+<ul class="simple">
+<li><p>load one or many spectra</p></li>
+<li><p>group them into series</p></li>
+<li><p>rename datasets</p></li>
+<li><p>decide which curves should appear together</p></li>
+</ul>
+</section>
+<section id="plot-controls">
+<h3>Plot controls<a class="headerlink" href="#plot-controls" title="Permalink to this heading"></a></h3>
+<p><img alt="Flying Nimbus Results page: plot controls" src="../_images/flying_nimbus_results_controls.png" /></p>
+<p><em>Flying Nimbus Results page: plot controls.</em></p>
+<p>Useful controls include:</p>
+<ul class="simple">
+<li><p>normalization</p></li>
+<li><p>x offset</p></li>
+<li><p>smoothing window</p></li>
+<li><p>x range</p></li>
+<li><p>log y scale</p></li>
+<li><p>filling the area under curves</p></li>
+<li><p>grid options</p></li>
+<li><p>frame or spine settings</p></li>
+<li><p>background</p></li>
+<li><p>legend settings</p></li>
+</ul>
+<p>These controls are extremely helpful for making comparisons readable.</p>
+</section>
+<section id="analysis-controls">
+<h3>Analysis controls<a class="headerlink" href="#analysis-controls" title="Permalink to this heading"></a></h3>
+<p><img alt="Flying Nimbus Results page: analysis controls" src="../_images/flying_nimbus_results_analysis.png" /></p>
+<p><em>Flying Nimbus Results page: analysis controls.</em></p>
+<p>This part of the page lets you:</p>
+<ul class="simple">
+<li><p>select the active curve</p></li>
+<li><p>pick <strong>peak A</strong></p></li>
+<li><p>pick <strong>peak B</strong></p></li>
+<li><p>compute <strong>FWHM</strong> for peak A</p></li>
+<li><p>measure the <strong>distance A–B</strong></p></li>
+<li><p>shade the region around a selected peak</p></li>
+<li><p>save the plot</p></li>
+<li><p>export the plotted spectra</p></li>
+</ul>
+</section>
+<section id="example-shaded-peak-region-fwhm-resuls-peak-peak-distance">
+<h3>Example: shaded peak region, FWHM resuls, peak-peak distance<a class="headerlink" href="#example-shaded-peak-region-fwhm-resuls-peak-peak-distance" title="Permalink to this heading"></a></h3>
+<p><img alt="Flying Nimbus shaded peak example" src="../_images/Spec1.png" />
+<img alt="Flying Nimbus shaded peak example" src="../_images/Spec2.png" />
+<img alt="Flying Nimbus shaded peak example" src="../_images/Spec3.png" /></p>
+</section>
+</section>
+<section id="common-mistakes-in-flying-nimbus">
+<h2>Common mistakes in Flying Nimbus<a class="headerlink" href="#common-mistakes-in-flying-nimbus" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Loading a trajectory that does not match the equilibrium geometry</p></li>
+<li><p>Reusing a stale <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> file without noticing</p></li>
+<li><p>Comparing spectra with different scaling and forgetting to normalize</p></li>
+<li><p>Measuring peak distances without checking which curve is currently active</p></li>
+<li><p>Exporting a plot before checking the x range and legend</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Installation_GUI_de.html" class="btn btn-neutral float-left" title="GUI Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ORCA_tutorial.html" class="btn btn-neutral float-right" title="ORCA Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

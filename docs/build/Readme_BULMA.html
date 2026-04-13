@@ -1,0 +1,1918 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BULMA &mdash; Dragonball Suite 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=44496db0"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="VEGETA" href="Readme_VEGETA.html" />
+    <link rel="prev" title="Flying Nimbus" href="README_FlyingNimbus.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_FlyingNimbus.html">Flying Nimbus</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BULMA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-bulma-does">What BULMA does</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-capabilities">Core capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-workflows">Supported workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minimum">Minimum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-but-required-for-some-md-parsing-paths">Optional but required for some MD parsing paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-the-repository">Clone the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-directly">Run directly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-virtual-environment">Optional virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#extract-a-gaussian-hessian">1. Extract a Gaussian Hessian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-a-gaussian-optimization-input-from-an-xyz-file">2. Generate a Gaussian optimization input from an XYZ file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-final-optimized-geometry-from-an-output-file">3. Extract the final optimized geometry from an output file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-orca-optimization-input">4. Generate ORCA optimization input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parse-gaussian-bomd-output-and-write-a-flying-nimbus-trajectory">5. Parse Gaussian BOMD output and write a flying_nimbus trajectory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-command-syntax">General command syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hessian-extraction">Hessian extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-output-names">Default output names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gaussian-hessian-extraction">Gaussian Hessian extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-output-names">Custom output names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-gets-written">What gets written</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#typical-use-case">Typical use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#orca-hessian-extraction">ORCA Hessian extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-outputs">Custom outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-behavior">Output behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#q-chem-hessian-extraction">Q-Chem Hessian extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Custom outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#geometry-extraction">Geometry extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-bulma-detects-the-engine">How BULMA detects the engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gaussian-geometry-extraction">Gaussian geometry extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-template">Default template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-output">Custom output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-note">Important note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#orca-geometry-extraction">ORCA geometry extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#q-chem-geometry-extraction">Q-Chem geometry extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#input-generation">Input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shared-ab-initio-options">Shared ab initio options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gaussian-input-generation">Gaussian input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-optimization-input">Gaussian optimization input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-route-details">Default route details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customized-example">Customized example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-frequency-input">Gaussian frequency input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Default route details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#orca-input-generation">ORCA input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#orca-optimization-input">ORCA optimization input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#orca-optimization-frequency-input">ORCA optimization + frequency input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#default-orca-behavior">Default ORCA behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-written">What is written</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#q-chem-input-generation">Q-Chem input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-job-optimization-input">1. Single-job optimization input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-job-frequency-input">2. Single-job frequency input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-job-optimization-input">3. Multi-job optimization input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-job-optimization-final-frequency-input">4. Multi-job optimization + final frequency input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-chem-basis-naming">Q-Chem basis naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamics-and-md-workflows">Dynamics and MD workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gaussian-bomd-input-generation">Gaussian BOMD input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-supporting-files">Default supporting files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-options">Additional options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#orca-qmd-input-generation">ORCA QMD input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-outputs">Default outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-supporting-file">Default supporting file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#velocity-units">Velocity units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#q-chem-aimd-qmd-input-generation">Q-Chem AIMD/QMD input generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-files">Default files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-chem-aimd-specific-options">Q-Chem AIMD-specific options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#trajectory-parsing">Trajectory parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-gaussian-bomd-output">Parsing Gaussian BOMD output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-arguments">Required arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-arguments">Optional arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-files">Output files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-with-all-major-outputs">Example with all major outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-bulma-parses-from-gaussian-output">What BULMA parses from Gaussian output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-note-on-masses">Important note on masses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-orca-qmd-dumps">Parsing ORCA QMD dumps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-input-files">Default input files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-with-explicit-range-and-epot-output">Example with explicit range and Epot output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#behavior">Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-q-chem-aimd-output">Parsing Q-Chem AIMD output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-controls">Optional controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-cli-reference">Complete CLI reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#positional-argument">Positional argument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hessian-output-control">Hessian output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hessian-mode-selection">Hessian mode selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Geometry extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-generation-mode-selection">Input generation mode selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Shared ab initio options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-bomd-generation-options">Gaussian BOMD generation options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orca-qmd-generation-options">ORCA QMD generation options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-chem-aimd-qmd-generation-options">Q-Chem AIMD/QMD generation options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-bomd-parsing-options">Gaussian BOMD parsing options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orca-and-q-chem-trajectory-parsing-options">ORCA and Q-Chem trajectory parsing options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#units-and-conventions">Units and conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constants-used-internally">Constants used internally</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-conventions-in-bulma-outputs">Common conventions in BULMA outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-units">Geometry units</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-file-naming-conventions">Common file naming conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Hessian extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Geometry extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-generation">Gaussian generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orca-generation">ORCA generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-chem-generation">Q-Chem generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-outputs">Parsing outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-end-to-end-examples">Typical end-to-end examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-gaussian-optimization-input-from-xyz">Example 1: Gaussian optimization input from XYZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-2-extract-final-gaussian-geometry-and-reuse-it-for-orca">Example 2: Extract final Gaussian geometry and reuse it for ORCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-3-generate-q-chem-opt-freq-workflow-from-optimized-xyz">Example 3: Generate Q-Chem opt+freq workflow from optimized XYZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-4-convert-orca-qmd-into-a-flying-nimbus-trajectory">Example 4: Convert ORCA QMD into a flying_nimbus trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-5-parse-gaussian-bomd-and-write-nimbus-compatible-outputs">Example 5: Parse Gaussian BOMD and write Nimbus compatible outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations-and-important-notes">Limitations and important notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-geometry-extraction-needs-an-xyz-template">1. Gaussian geometry extraction needs an XYZ template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-bomd-mass-table-is-limited">2. Gaussian BOMD mass table is limited</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#velocity-file-sizes-must-match-the-atom-count">3. Velocity file sizes must match the atom count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#some-cli-modes-still-require-a-positional-input-file-even-if-they-mainly-read-auxiliary-files">4. Some CLI modes still require a positional <code class="docutils literal notranslate"><span class="pre">input_file</span></code> even if they mainly read auxiliary files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orca-and-q-chem-defaults-are-adapted-internally">5. ORCA and Q-Chem defaults are adapted internally</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#could-not-find-start-marker-during-gaussian-hessian-extraction">“Could not find start marker” during Gaussian Hessian extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#could-not-find-orca-start-marker-or-incomplete-orca-hessian-parsing">“Could not find ORCA start marker” or incomplete ORCA Hessian parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-chem-hessian-size-mismatch">“Q-Chem Hessian size mismatch”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#velocity-geometry-mismatch">“Velocity/geometry mismatch”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#no-md-step-markers-found-in-gaussian-trajectory-parsing">“No MD step markers found” in Gaussian trajectory parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atom-x-not-in-mass-database">“Atom X not in mass database”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authors">Authors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">GAUSSIAN Guide to Flying Nimbus, Vegeta, and Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma">Bulma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta">Vegeta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BULMA</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Readme_BULMA.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="bulma">
+<h1>BULMA<a class="headerlink" href="#bulma" title="Permalink to this heading"></a></h1>
+<p><strong>BULMA</strong> = <strong>Batch Utilities for Log parsing, hessian Matrix &amp; Automation</strong></p>
+<p>BULMA is a command-line Python utility. It is built around one main script and supports three broad categories of tasks:</p>
+<ol class="arabic simple">
+<li><p><strong>Extracting data from calculations</strong></p></li>
+<li><p><strong>Generating new input files for Gaussian, ORCA, and Q-Chem</strong></p></li>
+<li><p><strong>Parsing molecular dynamics trajectories</strong></p></li>
+</ol>
+<p>The tool is especially useful when you need to move quickly between quantum chemistry packages, reuse geometries and velocities, or convert outputs into formats compatible with other analysis tools such as <strong>Flying Nimbus</strong>.</p>
+<hr class="docutils" />
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-bulma-does"><span class="xref myst">What BULMA does</span></a></p></li>
+<li><p><a class="reference internal" href="#supported-workflows"><span class="xref myst">Supported workflows</span></a></p></li>
+<li><p><a class="reference internal" href="#project-structure"><span class="xref myst">Project structure</span></a></p></li>
+<li><p><a class="reference internal" href="#requirements"><span class="xref myst">Requirements</span></a></p></li>
+<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
+<li><p><a class="reference internal" href="#general-command-syntax"><span class="xref myst">General command syntax</span></a></p></li>
+<li><p><a class="reference internal" href="#hessian-extraction"><span class="xref myst">Hessian extraction</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#gaussian-hessian-extraction"><span class="xref myst">Gaussian Hessian extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#orca-hessian-extraction"><span class="xref myst">ORCA Hessian extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#q-chem-hessian-extraction"><span class="xref myst">Q-Chem Hessian extraction</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#geometry-extraction"><span class="xref myst">Geometry extraction</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#gaussian-geometry-extraction"><span class="xref myst">Gaussian geometry extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#orca-geometry-extraction"><span class="xref myst">ORCA geometry extraction</span></a></p></li>
+<li><p><a class="reference internal" href="#q-chem-geometry-extraction"><span class="xref myst">Q-Chem geometry extraction</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#input-generation"><span class="xref myst">Input generation</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#gaussian-input-generation"><span class="xref myst">Gaussian input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#orca-input-generation"><span class="xref myst">ORCA input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#q-chem-input-generation"><span class="xref myst">Q-Chem input generation</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dynamics-and-md-workflows"><span class="xref myst">Dynamics and MD workflows</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#gaussian-bomd-input-generation"><span class="xref myst">Gaussian BOMD input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#orca-qmd-input-generation"><span class="xref myst">ORCA QMD input generation</span></a></p></li>
+<li><p><a class="reference internal" href="#q-chem-aimdqmd-input-generation"><span class="xref myst">Q-Chem AIMD input generation</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#trajectory-parsing"><span class="xref myst">Trajectory parsing</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#parsing-gaussian-bomd-output"><span class="xref myst">Parsing Gaussian BOMD output</span></a></p></li>
+<li><p><a class="reference internal" href="#parsing-orca-qmd-dumps"><span class="xref myst">Parsing ORCA QMD</span></a></p></li>
+<li><p><a class="reference internal" href="#parsing-q-chem-aimd-output"><span class="xref myst">Parsing Q-Chem AIMD output</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#complete-cli-reference"><span class="xref myst">Complete CLI reference</span></a></p></li>
+<li><p><a class="reference internal" href="#units-and-conventions"><span class="xref myst">Units and conventions</span></a></p></li>
+<li><p><a class="reference internal" href="#common-file-naming-conventions"><span class="xref myst">Common file naming conventions</span></a></p></li>
+<li><p><a class="reference internal" href="#typical-end-to-end-examples"><span class="xref myst">Typical end-to-end examples</span></a></p></li>
+<li><p><a class="reference internal" href="#limitations-and-important-notes"><span class="xref myst">Limitations and important notes</span></a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
+<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
+<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="what-bulma-does">
+<h2>What BULMA does<a class="headerlink" href="#what-bulma-does" title="Permalink to this heading"></a></h2>
+<p>BULMA combines several quantum chemistry tasks into a single CLI.</p>
+<section id="core-capabilities">
+<h3>Core capabilities<a class="headerlink" href="#core-capabilities" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Extract lower-triangular Hessians from:</p>
+<ul>
+<li><p><strong>Gaussian16</strong> output</p></li>
+<li><p><strong>ORCA</strong> <code class="docutils literal notranslate"><span class="pre">.hess</span></code> files</p></li>
+<li><p><strong>Q-Chem</strong> <code class="docutils literal notranslate"><span class="pre">HESS</span></code> files</p></li>
+</ul>
+</li>
+<li><p>Extract optimized geometries from:</p>
+<ul>
+<li><p>Gaussian output</p></li>
+<li><p>ORCA output</p></li>
+<li><p>Q-Chem output</p></li>
+</ul>
+</li>
+<li><p>Generate new input files for:</p>
+<ul>
+<li><p><strong>Gaussian</strong> optimization and frequency jobs</p></li>
+<li><p><strong>ORCA</strong> optimization and frequency jobs</p></li>
+<li><p><strong>Q-Chem</strong> optimization, frequency, and AIMD jobs</p></li>
+</ul>
+</li>
+<li><p>Generate molecular dynamics inputs for:</p>
+<ul>
+<li><p><strong>Gaussian BOMD</strong></p></li>
+<li><p><strong>ORCA QMD</strong></p></li>
+<li><p><strong>Q-Chem AIMD</strong></p></li>
+</ul>
+</li>
+<li><p>Parse MD output and trajectory into formats that can be reused later</p></li>
+<li><p>Export trajectories compatible with the <strong>flying_nimbus</strong> code</p></li>
+</ul>
+<p>In short, BULMA is a workflow glue tool: it helps you move data between electronic structure calculations, geometry files, MD trajectories, and post-processing.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="supported-workflows">
+<h2>Supported workflows<a class="headerlink" href="#supported-workflows" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Workflow</p></th>
+<th class="head text-right"><p>Gaussian</p></th>
+<th class="head text-right"><p>ORCA</p></th>
+<th class="head text-right"><p>Q-Chem</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Hessian extraction</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Geometry extraction</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Optimization input generation</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frequency input generation</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>BOMD / AIMD / QMD input generation</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>MD trajectory parsing</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>flying_nimbus trajectory output</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+<td class="text-right"><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="project-structure">
+<h2>Project structure<a class="headerlink" href="#project-structure" title="Permalink to this heading"></a></h2>
+<p>The current project is implemented as a single script:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bulma.py
+</pre></div>
+</div>
+<p>The script handles all supported modes through command-line flags. Different behaviors are selected with mutually exclusive options such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--opt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--freq</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--orca-opt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--orca-freq</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dyn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--orca-qmd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qchem-opt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qchem-opt-freq</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qchem-qmd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--parse-dyn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--parse-orca-qmd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--parse-qchem-qmd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--extract-geo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--orca-hess</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qchem-hess</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<section id="minimum">
+<h3>Minimum<a class="headerlink" href="#minimum" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Python 3</p></li>
+<li><p>Standard Python library modules used by the script:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">argparse</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">re</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sys</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="optional-but-required-for-some-md-parsing-paths">
+<h3>Optional but required for some MD parsing paths<a class="headerlink" href="#optional-but-required-for-some-md-parsing-paths" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> is used in the Gaussian BOMD parsing branch when converting coordinates, weighted velocities, and energies into array form.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<section id="clone-the-repository">
+<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/giacomande95-oss/FLYINGNIMBUS_GUI.git
+<span class="nb">cd</span><span class="w"> </span>Bulma_terminal_version
+</pre></div>
+</div>
+</section>
+<section id="run-directly">
+<h3>Run directly<a class="headerlink" href="#run-directly" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="optional-virtual-environment">
+<h3>Optional virtual environment<a class="headerlink" href="#optional-virtual-environment" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>numpy
+</pre></div>
+</div>
+<p>If you only use Hessian extraction or input generation, you may not need any extra package beyond Python itself. For Gaussian BOMD parsing, install <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading"></a></h2>
+<section id="extract-a-gaussian-hessian">
+<h3>1. Extract a Gaussian Hessian<a class="headerlink" href="#extract-a-gaussian-hessian" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>job.out
+</pre></div>
+</div>
+<p>This writes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Hessian.out</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hessian_flat.out</span></code></p></li>
+</ul>
+</section>
+<section id="generate-a-gaussian-optimization-input-from-an-xyz-file">
+<h3>2. Generate a Gaussian optimization input from an XYZ file<a class="headerlink" href="#generate-a-gaussian-optimization-input-from-an-xyz-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--opt
+</pre></div>
+</div>
+<p>This writes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.com</span></code></p></li>
+</ul>
+</section>
+<section id="extract-the-final-optimized-geometry-from-an-output-file">
+<h3>3. Extract the final optimized geometry from an output file<a class="headerlink" href="#extract-the-final-optimized-geometry-from-an-output-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>opt.out<span class="w"> </span>--extract-geo
+</pre></div>
+</div>
+<p>This writes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geo_opt.xyz</span></code></p></li>
+</ul>
+</section>
+<section id="generate-orca-optimization-input">
+<h3>4. Generate ORCA optimization input<a class="headerlink" href="#generate-orca-optimization-input" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-opt
+</pre></div>
+</div>
+<p>This writes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.inp</span></code></p></li>
+</ul>
+</section>
+<section id="parse-gaussian-bomd-output-and-write-a-flying-nimbus-trajectory">
+<h3>5. Parse Gaussian BOMD output and write a flying_nimbus trajectory<a class="headerlink" href="#parse-gaussian-bomd-output-and-write-a-flying-nimbus-trajectory" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>dyn.out<span class="w"> </span>--parse-dyn<span class="w"> </span>--inizio<span class="w"> </span><span class="m">1</span><span class="w"> </span>--fine<span class="w"> </span><span class="m">2500</span><span class="w"> </span>--xyz<span class="w"> </span>geo.xyz<span class="w"> </span>--nimbus-traj
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="general-command-syntax">
+<h2>General command syntax<a class="headerlink" href="#general-command-syntax" title="Permalink to this heading"></a></h2>
+<p>BULMA takes one positional argument:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>&lt;input_file&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<p>The meaning of <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> depends on the selected mode.</p>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>In default mode, <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> is usually a <strong>Gaussian output file</strong> for Hessian extraction.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">--opt</span></code>, <code class="docutils literal notranslate"><span class="pre">--freq</span></code>, <code class="docutils literal notranslate"><span class="pre">--orca-opt</span></code>, <code class="docutils literal notranslate"><span class="pre">--orca-freq</span></code>, <code class="docutils literal notranslate"><span class="pre">--dyn</span></code>, <code class="docutils literal notranslate"><span class="pre">--qchem-*</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> is an <strong>XYZ geometry file</strong>.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">--orca-hess</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> is an <strong>ORCA <code class="docutils literal notranslate"><span class="pre">.hess</span></code> file</strong>.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">--qchem-hess</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> is a <strong>Q-Chem <code class="docutils literal notranslate"><span class="pre">HESS</span></code> file</strong>.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">--parse-qchem-qmd</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_file&gt;</span></code> is a <strong>Q-Chem AIMD/QMD <code class="docutils literal notranslate"><span class="pre">.out</span></code> file</strong>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hessian-extraction">
+<h2>Hessian extraction<a class="headerlink" href="#hessian-extraction" title="Permalink to this heading"></a></h2>
+<p>BULMA writes Hessians in two different output forms:</p>
+<ol class="arabic simple">
+<li><p><strong>Matrix-style lower-triangular text output</strong></p></li>
+<li><p><strong>Flattened one-column vector output</strong></p></li>
+</ol>
+<p>Both outputs use <strong>Fortran <code class="docutils literal notranslate"><span class="pre">D</span></code> exponent notation</strong>.</p>
+<section id="default-output-names">
+<h3>Default output names<a class="headerlink" href="#default-output-names" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Matrix file: <code class="docutils literal notranslate"><span class="pre">Hessian.out</span></code></p></li>
+<li><p>Flat vector: <code class="docutils literal notranslate"><span class="pre">Hessian_flat.out</span></code></p></li>
+</ul>
+<p>You can change them with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code> / <code class="docutils literal notranslate"><span class="pre">--matrix-out</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> / <code class="docutils literal notranslate"><span class="pre">--vector-out</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gaussian-hessian-extraction">
+<h2>Gaussian Hessian extraction<a class="headerlink" href="#gaussian-hessian-extraction" title="Permalink to this heading"></a></h2>
+<p>This is the default behavior when no mutually exclusive generation or parsing flag is used.</p>
+<p>BULMA scans the output for the block between:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Force</span> <span class="pre">constants</span> <span class="pre">in</span> <span class="pre">Cartesian</span> <span class="pre">coordinates</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Final</span> <span class="pre">forces</span> <span class="pre">over</span> <span class="pre">variables</span></code></p></li>
+</ul>
+<p>and then reconstructs the <strong>lower triangular Hessian</strong> and writes both outputs.</p>
+<section id="basic-example">
+<h3>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>gaussian_freq.out
+</pre></div>
+</div>
+</section>
+<section id="custom-output-names">
+<h3>Custom output names<a class="headerlink" href="#custom-output-names" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>gaussian_freq.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--matrix-out<span class="w"> </span>my_hessian.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vector-out<span class="w"> </span>my_hessian_flat.out
+</pre></div>
+</div>
+</section>
+<section id="what-gets-written">
+<h3>What gets written<a class="headerlink" href="#what-gets-written" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">my_hessian.out</span></code> contains rows where row <code class="docutils literal notranslate"><span class="pre">r</span></code> has exactly <code class="docutils literal notranslate"><span class="pre">r</span></code> values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_hessian_flat.out</span></code> contains the same values as a one-column vector</p></li>
+<li><p>The flat vector file begins with <strong>two blank lines</strong></p></li>
+</ul>
+</section>
+<section id="typical-use-case">
+<h3>Typical use case<a class="headerlink" href="#typical-use-case" title="Permalink to this heading"></a></h3>
+<p>Use this mode when the code expects a lower-triangular Hessian or a flattened vector in Fortran-style notation.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="orca-hessian-extraction">
+<h2>ORCA Hessian extraction<a class="headerlink" href="#orca-hessian-extraction" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--orca-hess</span></code> when the input file is an ORCA <code class="docutils literal notranslate"><span class="pre">.hess</span></code> file.</p>
+<p>BULMA reads the ORCA Hessian block starting at <code class="docutils literal notranslate"><span class="pre">$hessian</span></code>, reconstructs the <strong>full symmetric matrix</strong>, and converts it into the same lower-triangular BULMA format used elsewhere.</p>
+<section id="id1">
+<h3>Basic example<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>job.hess<span class="w"> </span>--orca-hess
+</pre></div>
+</div>
+</section>
+<section id="custom-outputs">
+<h3>Custom outputs<a class="headerlink" href="#custom-outputs" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>job.hess<span class="w"> </span>--orca-hess<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>orca_hessian.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>orca_hessian_flat.out
+</pre></div>
+</div>
+</section>
+<section id="output-behavior">
+<h3>Output behavior<a class="headerlink" href="#output-behavior" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Full ORCA matrix is parsed internally</p></li>
+<li><p>Output is converted to BULMA’s lower-triangle convention</p></li>
+<li><p>Exponents are written in <code class="docutils literal notranslate"><span class="pre">D</span></code> format</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="q-chem-hessian-extraction">
+<h2>Q-Chem Hessian extraction<a class="headerlink" href="#q-chem-hessian-extraction" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-hess</span></code> when the input file is a Q-Chem <code class="docutils literal notranslate"><span class="pre">HESS</span></code> file.</p>
+<p>BULMA looks for a block shaped like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$hessian
+Dimension N
+...
+$end
+</pre></div>
+</div>
+<p>It then reads the lower triangle, validates the expected number of elements, and writes the same two output files as for Gaussian and ORCA.</p>
+<section id="id2">
+<h3>Basic example<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>HESS<span class="w"> </span>--qchem-hess
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Custom outputs<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>HESS<span class="w"> </span>--qchem-hess<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>qchem_hessian.out<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>qchem_hessian_flat.out
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="geometry-extraction">
+<h2>Geometry extraction<a class="headerlink" href="#geometry-extraction" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--extract-geo</span></code> to extract the final geometry from a finished calculation.</p>
+<p>Default output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geo_opt.xyz
+</pre></div>
+</div>
+<p>Override with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--geo-out<span class="w"> </span>my_geometry.xyz
+</pre></div>
+</div>
+<section id="how-bulma-detects-the-engine">
+<h3>How BULMA detects the engine<a class="headerlink" href="#how-bulma-detects-the-engine" title="Permalink to this heading"></a></h3>
+<p>BULMA automatically selects the extraction strategy depending on the file content:</p>
+<ul class="simple">
+<li><p><strong>Gaussian</strong>: last <code class="docutils literal notranslate"><span class="pre">Standard</span> <span class="pre">orientation:</span></code> block</p></li>
+<li><p><strong>Q-Chem</strong>: last <code class="docutils literal notranslate"><span class="pre">Standard</span> <span class="pre">Nuclear</span> <span class="pre">Orientation</span> <span class="pre">(Angstroms)</span></code> block</p></li>
+<li><p><strong>ORCA</strong>: last <code class="docutils literal notranslate"><span class="pre">CARTESIAN</span> <span class="pre">COORDINATES</span> <span class="pre">(ANGSTROEM)</span></code> block after <code class="docutils literal notranslate"><span class="pre">THE</span> <span class="pre">OPTIMIZATION</span> <span class="pre">HAS</span> <span class="pre">CONVERGED</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gaussian-geometry-extraction">
+<h2>Gaussian geometry extraction<a class="headerlink" href="#gaussian-geometry-extraction" title="Permalink to this heading"></a></h2>
+<p>For Gaussian outputs, BULMA extracts coordinates from the <strong>last</strong> <code class="docutils literal notranslate"><span class="pre">Standard</span> <span class="pre">orientation:</span></code> block.</p>
+<p>Because Gaussian standard orientation blocks do not contain the element symbols in the final XYZ, BULMA uses an <strong>XYZ template</strong> to recover the atomic symbols and ordering.</p>
+<section id="default-template">
+<h3>Default template<a class="headerlink" href="#default-template" title="Permalink to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geo.xyz
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>opt.out<span class="w"> </span>--extract-geo<span class="w"> </span>--xyz-template<span class="w"> </span>geo.xyz
+</pre></div>
+</div>
+</section>
+<section id="custom-output">
+<h3>Custom output<a class="headerlink" href="#custom-output" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>opt.out<span class="w"> </span>--extract-geo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz-template<span class="w"> </span>geo.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--geo-out<span class="w"> </span>extracted.xyz
+</pre></div>
+</div>
+</section>
+<section id="important-note">
+<h3>Important note<a class="headerlink" href="#important-note" title="Permalink to this heading"></a></h3>
+<p>For Gaussian geometry extraction, the template file must contain the <strong>same atoms in the same order</strong> as the calculation.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="orca-geometry-extraction">
+<h2>ORCA geometry extraction<a class="headerlink" href="#orca-geometry-extraction" title="Permalink to this heading"></a></h2>
+<p>For ORCA outputs, BULMA finds the optimization convergence marker and then extracts the last Cartesian block in Ångström units.</p>
+<section id="id4">
+<h3>Example<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>orca_opt.out<span class="w"> </span>--extract-geo<span class="w"> </span>--geo-out<span class="w"> </span>orca_final.xyz
+</pre></div>
+</div>
+<p>No template is needed because ORCA prints element symbols directly in the coordinate block.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="q-chem-geometry-extraction">
+<h2>Q-Chem geometry extraction<a class="headerlink" href="#q-chem-geometry-extraction" title="Permalink to this heading"></a></h2>
+<p>For Q-Chem outputs, BULMA reads the last <code class="docutils literal notranslate"><span class="pre">Standard</span> <span class="pre">Nuclear</span> <span class="pre">Orientation</span> <span class="pre">(Angstroms)</span></code> block.</p>
+<section id="id5">
+<h3>Example<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>qchem_opt.out<span class="w"> </span>--extract-geo<span class="w"> </span>--geo-out<span class="w"> </span>qchem_final.xyz
+</pre></div>
+</div>
+<p>No template is required.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="input-generation">
+<h2>Input generation<a class="headerlink" href="#input-generation" title="Permalink to this heading"></a></h2>
+<p>BULMA can generate new job inputs directly from an XYZ file.</p>
+<p>These modes share a common set of ab initio options.</p>
+<section id="shared-ab-initio-options">
+<h3>Shared ab initio options<a class="headerlink" href="#shared-ab-initio-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--BS<span class="w">            </span>Basis<span class="w"> </span><span class="nb">set</span><span class="w">                </span><span class="o">(</span>default:<span class="w"> </span>Def2TZVP<span class="o">)</span>
+--THEORY<span class="w">        </span>Electronic<span class="w"> </span>structure<span class="w"> </span>method<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>B3LYP<span class="o">)</span>
+--convergence<span class="w">   </span>Optimization<span class="w"> </span>keyword<span class="w">     </span><span class="o">(</span>default:<span class="w"> </span>VeryTight<span class="o">)</span>
+--Nproc<span class="w">         </span>Number<span class="w"> </span>of<span class="w"> </span>processors<span class="w">     </span><span class="o">(</span>default:<span class="w"> </span><span class="m">48</span><span class="o">)</span>
+--mem<span class="w">           </span>Memory<span class="w">                   </span><span class="o">(</span>default:<span class="w"> </span>300Gb<span class="o">)</span>
+--charge<span class="w">        </span>Total<span class="w"> </span>charge<span class="w">             </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+--mult<span class="w">          </span>Spin<span class="w"> </span>multiplicity<span class="w">        </span><span class="o">(</span>default:<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gaussian-input-generation">
+<h2>Gaussian input generation<a class="headerlink" href="#gaussian-input-generation" title="Permalink to this heading"></a></h2>
+<section id="gaussian-optimization-input">
+<h3>Gaussian optimization input<a class="headerlink" href="#gaussian-optimization-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--opt</span></code> to generate <code class="docutils literal notranslate"><span class="pre">geom.com</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--opt
+</pre></div>
+</div>
+<section id="output">
+<h4>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geom.com
+</pre></div>
+</div>
+</section>
+<section id="default-route-details">
+<h4>Default route details<a class="headerlink" href="#default-route-details" title="Permalink to this heading"></a></h4>
+<p>The generated input includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EmpiricalDispersion=GD3BJ</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Opt=(CalcAll,MaxCycles=200,&lt;convergence&gt;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int=ultrafine</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCF(XQC,Tight)</span></code></p></li>
+</ul>
+</section>
+<section id="customized-example">
+<h4>Customized example<a class="headerlink" href="#customized-example" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--opt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>M06-2X<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--Nproc<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mem<span class="w"> </span>64Gb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--charge<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mult<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--convergence<span class="w"> </span>Tight
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gaussian-frequency-input">
+<h3>Gaussian frequency input<a class="headerlink" href="#gaussian-frequency-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--freq</span></code> to generate <code class="docutils literal notranslate"><span class="pre">geom_freq.com</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--freq
+</pre></div>
+</div>
+<section id="id6">
+<h4>Output<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geom_freq.com
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>Default route details<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<p>The generated frequency input includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EmpiricalDispersion=GD3BJ</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Freq</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Iop(7/33=1)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int=ultrafine</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCF(XQC,Tight)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nosymm</span></code></p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>Example<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--freq<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--Nproc<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mem<span class="w"> </span>128Gb
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="orca-input-generation">
+<h2>ORCA input generation<a class="headerlink" href="#orca-input-generation" title="Permalink to this heading"></a></h2>
+<section id="orca-optimization-input">
+<h3>ORCA optimization input<a class="headerlink" href="#orca-optimization-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--orca-opt</span></code> to generate <code class="docutils literal notranslate"><span class="pre">geom.inp</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-opt
+</pre></div>
+</div>
+<section id="id9">
+<h4>Output<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geom.inp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="orca-optimization-frequency-input">
+<h3>ORCA optimization + frequency input<a class="headerlink" href="#orca-optimization-frequency-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--orca-freq</span></code> to generate <code class="docutils literal notranslate"><span class="pre">geom_freq.inp</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-freq
+</pre></div>
+</div>
+<section id="id10">
+<h4>Output<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geom_freq.inp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="default-orca-behavior">
+<h3>Default ORCA behavior<a class="headerlink" href="#default-orca-behavior" title="Permalink to this heading"></a></h3>
+<p>BULMA maps some generic defaults into ORCA-style settings:</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">--BS</span></code> is left at the global default <code class="docutils literal notranslate"><span class="pre">Def2TZVP</span></code>, ORCA input uses <code class="docutils literal notranslate"><span class="pre">Def2-TZVPD</span></code></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">--Nproc</span></code> is left at the global default <code class="docutils literal notranslate"><span class="pre">48</span></code>, ORCA input uses <code class="docutils literal notranslate"><span class="pre">20</span></code></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">--mem</span></code> is left at the global default <code class="docutils literal notranslate"><span class="pre">300Gb</span></code>, no <code class="docutils literal notranslate"><span class="pre">%maxcore</span></code> line is written</p></li>
+<li><p>Convergence (<code class="docutils literal notranslate"><span class="pre">--convergence</span></code>) is translated into ORCA optimization keywords such as:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">VeryTight</span></code> → <code class="docutils literal notranslate"><span class="pre">VERYTIGHTOPT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tight</span></code> → <code class="docutils literal notranslate"><span class="pre">TIGHTOPT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Normal</span></code> → <code class="docutils literal notranslate"><span class="pre">OPT</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h3>Example<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-opt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--Nproc<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mem<span class="w"> </span>48Gb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--charge<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mult<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--convergence<span class="w"> </span>VeryTight
+</pre></div>
+</div>
+</section>
+<section id="what-is-written">
+<h3>What is written<a class="headerlink" href="#what-is-written" title="Permalink to this heading"></a></h3>
+<p>The ORCA input includes:</p>
+<ul class="simple">
+<li><p>keyword line with method, dispersion, basis, SCF keyword, and job type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%PAL</span> <span class="pre">NPROCS</span> <span class="pre">...</span> <span class="pre">END</span></code></p></li>
+<li><p>optional <code class="docutils literal notranslate"><span class="pre">%maxcore</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%SCF</span></code> with <code class="docutils literal notranslate"><span class="pre">MAXITER</span> <span class="pre">500</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%geom</span></code> with <code class="docutils literal notranslate"><span class="pre">MAXITER</span> <span class="pre">500</span></code></p></li>
+<li><p>Cartesian geometry block in XYZ style</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="q-chem-input-generation">
+<h2>Q-Chem input generation<a class="headerlink" href="#q-chem-input-generation" title="Permalink to this heading"></a></h2>
+<p>BULMA supports multiple Q-Chem generation modes.</p>
+<section id="single-job-optimization-input">
+<h3>1. Single-job optimization input<a class="headerlink" href="#single-job-optimization-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-opt-single</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-opt-single
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>opt.inp
+</pre></div>
+</div>
+</section>
+<section id="single-job-frequency-input">
+<h3>2. Single-job frequency input<a class="headerlink" href="#single-job-frequency-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-freq</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-freq
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>freq.inp
+</pre></div>
+</div>
+</section>
+<section id="multi-job-optimization-input">
+<h3>3. Multi-job optimization input<a class="headerlink" href="#multi-job-optimization-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-opt</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-opt
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>opt.inp
+</pre></div>
+</div>
+<p>This creates a chained Q-Chem workflow that starts with a frequency job and then launches an optimization that reads the Hessian and SCF guess.</p>
+</section>
+<section id="multi-job-optimization-final-frequency-input">
+<h3>4. Multi-job optimization + final frequency input<a class="headerlink" href="#multi-job-optimization-final-frequency-input" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-opt-freq</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-opt-freq
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>opt-freq.inp
+</pre></div>
+</div>
+<p>This creates a three-stage input:</p>
+<ol class="arabic simple">
+<li><p>Initial frequency job</p></li>
+<li><p>Optimization reading Hessian and guess</p></li>
+<li><p>Final frequency job reading the SCF guess and printing vibrational analysis data</p></li>
+</ol>
+</section>
+<section id="q-chem-basis-naming">
+<h3>Q-Chem basis naming<a class="headerlink" href="#q-chem-basis-naming" title="Permalink to this heading"></a></h3>
+<p>BULMA automatically maps:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Def2TZVP -&gt; def2-TZVP
+</pre></div>
+</div>
+<p>when writing Q-Chem inputs.</p>
+</section>
+<section id="id12">
+<h3>Example<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-opt-freq<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--charge<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mult<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="dynamics-and-md-workflows">
+<h2>Dynamics and MD workflows<a class="headerlink" href="#dynamics-and-md-workflows" title="Permalink to this heading"></a></h2>
+<p>BULMA can both <strong>generate</strong> MD inputs and <strong>parse</strong> MD outputs.</p>
+</section>
+<hr class="docutils" />
+<section id="gaussian-bomd-input-generation">
+<h2>Gaussian BOMD input generation<a class="headerlink" href="#gaussian-bomd-input-generation" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--dyn</span></code> to generate a Gaussian BOMD input file.</p>
+<section id="id13">
+<h3>Basic example<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--dyn
+</pre></div>
+</div>
+<p>Default output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dyn.com
+</pre></div>
+</div>
+</section>
+<section id="default-supporting-files">
+<h3>Default supporting files<a class="headerlink" href="#default-supporting-files" title="Permalink to this heading"></a></h3>
+<p>By default, BULMA expects a velocity file named:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>velocity_gau.xyz
+</pre></div>
+</div>
+<p>Override it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--vel-file<span class="w"> </span>my_velocities.xyz
+</pre></div>
+</div>
+</section>
+<section id="additional-options">
+<h3>Additional options<a class="headerlink" href="#additional-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--stepsize<span class="w">   </span>BOMD<span class="w"> </span>StepSize<span class="w">   </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2000</span><span class="o">)</span>
+--npoints<span class="w">    </span>BOMD<span class="w"> </span>MaxPoints<span class="w">  </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2500</span><span class="o">)</span>
+--dyn-out<span class="w">    </span>Output<span class="w"> </span>filename<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>dyn.com<span class="o">)</span>
+--chk<span class="w">        </span>Checkpoint<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>dyn.chk<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3>Example<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--dyn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vel-file<span class="w"> </span>velocity_gau.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--stepsize<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--npoints<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dyn-out<span class="w"> </span>dyn.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--chk<span class="w"> </span>dyn.chk
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Velocities are appended after the geometry block</p></li>
+<li><p>BULMA writes the separator line <code class="docutils literal notranslate"><span class="pre">0</span></code> before the velocity section</p></li>
+<li><p>The script expects one velocity triplet per atom</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="orca-qmd-input-generation">
+<h2>ORCA QMD input generation<a class="headerlink" href="#orca-qmd-input-generation" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--orca-qmd</span></code> to generate both:</p>
+<ul class="simple">
+<li><p>an ORCA QMD input file</p></li>
+<li><p>an ORCA MD restart file</p></li>
+</ul>
+<section id="id15">
+<h3>Basic example<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-qmd
+</pre></div>
+</div>
+</section>
+<section id="default-outputs">
+<h3>Default outputs<a class="headerlink" href="#default-outputs" title="Permalink to this heading"></a></h3>
+<p>If the XYZ file is <code class="docutils literal notranslate"><span class="pre">geo.xyz</span></code>, BULMA writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geo_qmd.inp
+geo_qmd.mdrestart
+</pre></div>
+</div>
+</section>
+<section id="default-supporting-file">
+<h3>Default supporting file<a class="headerlink" href="#default-supporting-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>velocity_orca.xyz
+</pre></div>
+</div>
+<p>Override it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--orca-vel-file<span class="w"> </span>my_velocity.xyz
+</pre></div>
+</div>
+</section>
+<section id="velocity-units">
+<h3>Velocity units<a class="headerlink" href="#velocity-units" title="Permalink to this heading"></a></h3>
+<p>You can specify whether the ORCA velocity file uses:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">au</span></code>      (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">angfs</span></code></p></li>
+</ul>
+<p>with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--orca-vel-unit<span class="w"> </span>au
+--orca-vel-unit<span class="w"> </span>angfs
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h3>Example<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--orca-qmd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-vel-file<span class="w"> </span>velocity_orca.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-vel-unit<span class="w"> </span>au<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qmd-timestep<span class="w"> </span><span class="m">0</span>.20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qmd-run<span class="w"> </span><span class="m">2501</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qmd-prefix<span class="w"> </span>test_run
+</pre></div>
+</div>
+<p>This writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test_run_qmd.inp
+test_run_qmd.mdrestart
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h3>Notes<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The restart writer converts <code class="docutils literal notranslate"><span class="pre">au</span></code> velocities into <code class="docutils literal notranslate"><span class="pre">Å/fs</span></code> when needed</p></li>
+<li><p>The MD input enables position and velocity dumps with stride 1</p></li>
+<li><p>The thermostat is set to <code class="docutils literal notranslate"><span class="pre">none</span></code></p></li>
+<li><p>Restart mode is explicitly enabled in the <code class="docutils literal notranslate"><span class="pre">%md</span></code> block</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="q-chem-aimd-qmd-input-generation">
+<h2>Q-Chem AIMD/QMD input generation<a class="headerlink" href="#q-chem-aimd-qmd-input-generation" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--qchem-qmd</span></code> to generate a Q-Chem AIMD input.</p>
+<section id="id18">
+<h3>Basic example<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-qmd
+</pre></div>
+</div>
+</section>
+<section id="default-files">
+<h3>Default files<a class="headerlink" href="#default-files" title="Permalink to this heading"></a></h3>
+<p>Input XYZ:</p>
+<ul class="simple">
+<li><p>positional argument, e.g. <code class="docutils literal notranslate"><span class="pre">geo.xyz</span></code></p></li>
+</ul>
+<p>Default velocity file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>velocity.xyz
+</pre></div>
+</div>
+<p>Default output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dyn.inp
+</pre></div>
+</div>
+</section>
+<section id="q-chem-aimd-specific-options">
+<h3>Q-Chem AIMD-specific options<a class="headerlink" href="#q-chem-aimd-specific-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--qchem-vel-file<span class="w">   </span>Velocity<span class="w"> </span>file<span class="w">      </span><span class="o">(</span>default:<span class="w"> </span>velocity.xyz<span class="o">)</span>
+--qchem-qmd-out<span class="w">    </span>Output<span class="w"> </span>filename<span class="w">    </span><span class="o">(</span>default:<span class="w"> </span>dyn.inp<span class="o">)</span>
+--qchem-timestep<span class="w">   </span>Time_step<span class="w">          </span><span class="o">(</span>default:<span class="w"> </span><span class="m">8</span><span class="o">)</span>
+--qchem-steps<span class="w">      </span>aimd_steps<span class="w">         </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2500</span><span class="o">)</span>
+--qchem-print<span class="w">      </span>aimd_print<span class="w">         </span><span class="o">(</span>default:<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h3>Example<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>geo.xyz<span class="w"> </span>--qchem-qmd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qchem-vel-file<span class="w"> </span>velocity.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qchem-qmd-out<span class="w"> </span>dyn.inp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qchem-timestep<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qchem-steps<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--qchem-print<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h3>Notes<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Velocities are written without unit conversion</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">$velocity</span></code> block contains one <code class="docutils literal notranslate"><span class="pre">(vx</span> <span class="pre">vy</span> <span class="pre">vz)</span></code> triplet per atom</p></li>
+<li><p>The generated <code class="docutils literal notranslate"><span class="pre">$rem</span></code> section sets <code class="docutils literal notranslate"><span class="pre">JOBTYPE</span> <span class="pre">=</span> <span class="pre">aimd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AIMD_METHOD</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">bomd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DFT_D</span> <span class="pre">=</span> <span class="pre">D4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no_reorient</span> <span class="pre">=</span> <span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sym_ignore</span> <span class="pre">=</span> <span class="pre">true</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="trajectory-parsing">
+<h2>Trajectory parsing<a class="headerlink" href="#trajectory-parsing" title="Permalink to this heading"></a></h2>
+<p>BULMA supports parsing output from multiple engines into trajectory formats suitable for visualization, energy analysis, or workflows such as flying_nimbus.</p>
+</section>
+<hr class="docutils" />
+<section id="parsing-gaussian-bomd-output">
+<h2>Parsing Gaussian BOMD output<a class="headerlink" href="#parsing-gaussian-bomd-output" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--parse-dyn</span></code> to parse Gaussian BOMD output.</p>
+<section id="required-arguments">
+<h3>Required arguments<a class="headerlink" href="#required-arguments" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--parse-dyn
+--inizio<span class="w"> </span>&lt;start_step&gt;
+--fine<span class="w"> </span>&lt;end_step_exclusive&gt;
+--xyz<span class="w"> </span>&lt;reference_geometry.xyz&gt;
+</pre></div>
+</div>
+</section>
+<section id="optional-arguments">
+<h3>Optional arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--gout<span class="w">       </span>Explicit<span class="w"> </span>Gaussian<span class="w"> </span>output<span class="w"> </span>file
+--vel<span class="w">        </span>Fallback<span class="w"> </span>velocity<span class="w"> </span>file
+--output<span class="w">     </span>Basename<span class="w"> </span><span class="k">for</span><span class="w"> </span>written<span class="w"> </span>files<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>parsed_log<span class="o">)</span>
+--movie<span class="w">      </span>Also<span class="w"> </span>write<span class="w"> </span>coordinates-only<span class="w"> </span>movie<span class="w"> </span>XYZ
+--total<span class="w">      </span>Also<span class="w"> </span>write<span class="w"> </span>energies<span class="w"> </span>file
+--scale<span class="w">      </span>Shift<span class="w"> </span>Epot<span class="w"> </span>and<span class="w"> </span>Etot<span class="w"> </span>by<span class="w"> </span>--Emin
+--Emin<span class="w">       </span>Minimum<span class="w"> </span>energy<span class="w"> </span>used<span class="w"> </span>with<span class="w"> </span>--scale
+--nimbus-traj<span class="w"> </span>Print<span class="w"> </span>the<span class="w"> </span>trajectory<span class="w"> </span><span class="k">for</span><span class="w"> </span>Flying<span class="w"> </span>Nimbus<span class="w"> </span>
+--nimbus-out<span class="w"> </span>Trajectory<span class="w"> </span>file<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Flying<span class="w"> </span>Nimbus<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>parsed_log_traj.xyz<span class="o">)</span>
+--Natom<span class="w">      </span>Number<span class="w"> </span>of<span class="w"> </span>atoms<span class="w"> </span><span class="o">(</span>OPTIONAL,<span class="w"> </span>deprecated<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h3>Basic example<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>dyn.out<span class="w"> </span>--parse-dyn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--inizio<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fine<span class="w"> </span><span class="m">1001</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geo.xyz
+</pre></div>
+</div>
+</section>
+<section id="output-files">
+<h3>Output files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h3>
+<p>By default, BULMA writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>parsed_log_xv.xyz
+</pre></div>
+</div>
+<p>Optional outputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parsed_log.xyz</span></code> if <code class="docutils literal notranslate"><span class="pre">--movie</span></code> is used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parsed_log_energies.dat</span></code> if <code class="docutils literal notranslate"><span class="pre">--total</span></code> is used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parsed_log_traj.xyz</span></code> if <code class="docutils literal notranslate"><span class="pre">--nimbus-traj</span></code> is used and <code class="docutils literal notranslate"><span class="pre">--nimbus-out</span></code> is not provided</p></li>
+</ul>
+</section>
+<section id="example-with-all-major-outputs">
+<h3>Example with all major outputs<a class="headerlink" href="#example-with-all-major-outputs" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>dyn.out<span class="w"> </span>--parse-dyn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--inizio<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fine<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>geo.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--movie<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--total<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nimbus-traj<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>run1
+</pre></div>
+</div>
+<p>This writes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>run1_xv.xyz
+run1.xyz
+run1_energies.dat
+run1_traj.xyz
+</pre></div>
+</div>
+</section>
+<section id="what-bulma-parses-from-gaussian-output">
+<h3>What BULMA parses from Gaussian output<a class="headerlink" href="#what-bulma-parses-from-gaussian-output" title="Permalink to this heading"></a></h3>
+<p>It supports step segmentation based on either of these markers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Summary</span> <span class="pre">information</span> <span class="pre">for</span> <span class="pre">step</span> <span class="pre">N</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Trajectory</span> <span class="pre">Number</span> <span class="pre">1</span> <span class="pre">Step</span> <span class="pre">Number</span> <span class="pre">N</span></code></p></li>
+</ul>
+<p>For each selected step, it attempts to read:</p>
+<ul class="simple">
+<li><p>Cartesian coordinates</p></li>
+<li><p>Mass-weighted Cartesian velocities</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EKin</span></code>, <code class="docutils literal notranslate"><span class="pre">EPot</span></code>, and <code class="docutils literal notranslate"><span class="pre">ETot</span></code> when <code class="docutils literal notranslate"><span class="pre">--total</span></code> is requested</p></li>
+</ul>
+</section>
+<section id="important-note-on-masses">
+<h3>Important note on masses<a class="headerlink" href="#important-note-on-masses" title="Permalink to this heading"></a></h3>
+<p>The Gaussian BOMD parser uses an internal mass database. The current implementation includes:</p>
+<ul class="simple">
+<li><p>H</p></li>
+<li><p>C</p></li>
+<li><p>O</p></li>
+<li><p>N</p></li>
+<li><p>S</p></li>
+</ul>
+<p>If your system contains a different element, you must extend the mass table in the source code. If you are using the precompiled version feel free to write on github and we will do it for you.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="parsing-orca-qmd-dumps">
+<h2>Parsing ORCA QMD dumps<a class="headerlink" href="#parsing-orca-qmd-dumps" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--parse-orca-qmd</span></code> to parse ORCA trajectory dump files.</p>
+<section id="default-input-files">
+<h3>Default input files<a class="headerlink" href="#default-input-files" title="Permalink to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>trajectory.xyz
+velocity.xyz
+</pre></div>
+</div>
+<p>Override them with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--orca-traj<span class="w"> </span>custom_trajectory.xyz
+--orca-vel<span class="w"> </span>custom_velocity.xyz
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3>Basic example<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>dummy_input<span class="w"> </span>--parse-orca-qmd
+</pre></div>
+</div>
+<p>The positional <code class="docutils literal notranslate"><span class="pre">input_file</span></code> is still required by the CLI, but in this mode BULMA actually reads the trajectory and velocity files given by <code class="docutils literal notranslate"><span class="pre">--orca-traj</span></code> and <code class="docutils literal notranslate"><span class="pre">--orca-vel</span></code>. Give it the orca output file name if you feel more comfortable.</p>
+</section>
+<section id="id23">
+<h3>Output<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<p>By default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>parsed_log_traj.xyz
+</pre></div>
+</div>
+<p>or whatever basename you set with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--output<span class="w"> </span>myrun
+</pre></div>
+</div>
+</section>
+<section id="example-with-explicit-range-and-epot-output">
+<h3>Example with explicit range and Epot output<a class="headerlink" href="#example-with-explicit-range-and-epot-output" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>placeholder<span class="w"> </span>--parse-orca-qmd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-traj<span class="w"> </span>trajectory.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-vel<span class="w"> </span>velocity.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--inizio<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fine<span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>orca_run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--epot-out<span class="w"> </span>epot.dat
+</pre></div>
+</div>
+</section>
+<section id="behavior">
+<h3>Behavior<a class="headerlink" href="#behavior" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Positions are read in Ångström</p></li>
+<li><p>Velocities are read in Å/fs</p></li>
+<li><p>BULMA converts velocities to <strong>bohr/au_time</strong> for flying_nimbus-style output</p></li>
+<li><p>Potential energies can be parsed from <code class="docutils literal notranslate"><span class="pre">trajectory.xyz</span></code> comments when available</p></li>
+<li><p>Output step numbering is renormalized so that the first exported frame becomes step 1</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="parsing-q-chem-aimd-output">
+<h2>Parsing Q-Chem AIMD output<a class="headerlink" href="#parsing-q-chem-aimd-output" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--parse-qchem-qmd</span></code> when the input file is a Q-Chem AIMD output file.</p>
+<section id="id24">
+<h3>Basic example<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>qchem_aimd.out<span class="w"> </span>--parse-qchem-qmd
+</pre></div>
+</div>
+</section>
+<section id="optional-controls">
+<h3>Optional controls<a class="headerlink" href="#optional-controls" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--inizio
+--fine
+--output
+--nimbus-out
+--epot-out
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h3>Example<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>qchem_aimd.out<span class="w"> </span>--parse-qchem-qmd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--inizio<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fine<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>qmd_run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--epot-out<span class="w"> </span>qmd_epot.dat
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h3>Behavior<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<p>BULMA looks for blocks marked by:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nuclear coordinates (Angst) and velocities (a.u.)
+</pre></div>
+</div>
+<p>and matches them to corresponding <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span> <span class="pre">#</span></code> sections.</p>
+<p>It writes a flying_nimbus-style trajectory where:</p>
+<ul class="simple">
+<li><p>positions are in <strong>Ångström</strong></p></li>
+<li><p>velocities are kept in <strong>atomic units</strong></p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">--epot-out</span></code> is requested, BULMA tries to obtain the potential energy from:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">V(Electronic)</span></code></p></li>
+<li><p>otherwise <code class="docutils literal notranslate"><span class="pre">E(Total)</span> <span class="pre">-</span> <span class="pre">T(Nuclear)</span></code></p></li>
+</ol>
+<p>Output step numbering is renormalized so that the first exported frame becomes step 1.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="complete-cli-reference">
+<h2>Complete CLI reference<a class="headerlink" href="#complete-cli-reference" title="Permalink to this heading"></a></h2>
+<p>Available options by purpose.</p>
+<section id="positional-argument">
+<h3>Positional argument<a class="headerlink" href="#positional-argument" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>input_file
+</pre></div>
+</div>
+<p>Meaning depends on the selected mode.</p>
+</section>
+<hr class="docutils" />
+<section id="hessian-output-control">
+<h3>Hessian output control<a class="headerlink" href="#hessian-output-control" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-m,<span class="w"> </span>--matrix-out<span class="w">   </span>Output<span class="w"> </span>Hessian<span class="w"> </span>matrix<span class="w"> </span>file<span class="w">    </span><span class="o">(</span>default:<span class="w"> </span>Hessian.out<span class="o">)</span>
+-v,<span class="w"> </span>--vector-out<span class="w">   </span>Output<span class="w"> </span>Hessian<span class="w"> </span>vector<span class="w"> </span>file<span class="w">    </span><span class="o">(</span>default:<span class="w"> </span>Hessian_flat.out<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="hessian-mode-selection">
+<h3>Hessian mode selection<a class="headerlink" href="#hessian-mode-selection" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--orca-hess<span class="w">        </span>Extract<span class="w"> </span>Hessian<span class="w"> </span>from<span class="w"> </span>ORCA<span class="w"> </span>.hess
+--qchem-hess<span class="w">       </span>Extract<span class="w"> </span>Hessian<span class="w"> </span>from<span class="w"> </span>Q-Chem<span class="w"> </span>HESS
+</pre></div>
+</div>
+<p>If neither is used, the default Hessian mode assumes Gaussian output.</p>
+</section>
+<hr class="docutils" />
+<section id="id27">
+<h3>Geometry extraction<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--extract-geo<span class="w">      </span>Extract<span class="w"> </span>final<span class="w"> </span>geometry<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+--geo-out<span class="w">          </span>Output<span class="w"> </span>XYZ<span class="w"> </span>name<span class="w">               </span><span class="o">(</span>default:<span class="w"> </span>geo_opt.xyz<span class="o">)</span>
+--xyz-template<span class="w">     </span>Template<span class="w"> </span>XYZ<span class="w"> </span><span class="k">for</span><span class="w"> </span>Gaussian<span class="w">     </span><span class="o">(</span>default:<span class="w"> </span>geo.xyz<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="input-generation-mode-selection">
+<h3>Input generation mode selection<a class="headerlink" href="#input-generation-mode-selection" title="Permalink to this heading"></a></h3>
+<p>These options are mutually exclusive:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--opt
+--freq
+--orca-opt
+--orca-freq
+--dyn
+--orca-qmd
+--qchem-qmd
+--qchem-opt-single
+--qchem-freq
+--qchem-opt
+--qchem-opt-freq
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id28">
+<h3>Shared ab initio options<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--BS<span class="w">             </span>Basis<span class="w"> </span><span class="nb">set</span><span class="w">              </span><span class="o">(</span>default:<span class="w"> </span>Def2TZVP<span class="o">)</span>
+--THEORY<span class="w">         </span>Method<span class="w">                 </span><span class="o">(</span>default:<span class="w"> </span>B3LYP<span class="o">)</span>
+--convergence<span class="w">    </span>Opt<span class="w"> </span>keyword<span class="w">            </span><span class="o">(</span>default:<span class="w"> </span>VeryTight<span class="o">)</span>
+--Nproc<span class="w">          </span>Number<span class="w"> </span>of<span class="w"> </span>processors<span class="w">   </span><span class="o">(</span>default:<span class="w"> </span><span class="m">48</span><span class="o">)</span>
+--mem<span class="w">            </span>Memory<span class="w">                 </span><span class="o">(</span>default:<span class="w"> </span>300Gb<span class="o">)</span>
+--charge<span class="w">         </span>Total<span class="w"> </span>charge<span class="w">           </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+--mult<span class="w">           </span>Spin<span class="w"> </span>multiplicity<span class="w">      </span><span class="o">(</span>default:<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="gaussian-bomd-generation-options">
+<h3>Gaussian BOMD generation options<a class="headerlink" href="#gaussian-bomd-generation-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--stepsize<span class="w">       </span>BOMD<span class="w"> </span>StepSize<span class="w">          </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2000</span><span class="o">)</span>
+--npoints<span class="w">        </span>BOMD<span class="w"> </span>MaxPoints<span class="w">         </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2500</span><span class="o">)</span>
+--vel-file<span class="w">       </span>Velocity<span class="w"> </span>file<span class="w">          </span><span class="o">(</span>default:<span class="w"> </span>velocity_gau.xyz<span class="o">)</span>
+--dyn-out<span class="w">        </span>Output<span class="w"> </span>filename<span class="w">        </span><span class="o">(</span>default:<span class="w"> </span>dyn.com<span class="o">)</span>
+--chk<span class="w">            </span>Checkpoint<span class="w"> </span>filename<span class="w">    </span><span class="o">(</span>default:<span class="w"> </span>dyn.chk<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="orca-qmd-generation-options">
+<h3>ORCA QMD generation options<a class="headerlink" href="#orca-qmd-generation-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--orca-vel-file<span class="w">  </span>Velocity<span class="w"> </span>file<span class="w">          </span><span class="o">(</span>default:<span class="w"> </span>velocity_orca.xyz<span class="o">)</span>
+--orca-vel-unit<span class="w">  </span>Velocity<span class="w"> </span>unit<span class="w">          </span><span class="o">(</span>choices:<span class="w"> </span>au,<span class="w"> </span>angfs<span class="p">;</span><span class="w"> </span>default:<span class="w"> </span>au<span class="o">)</span>
+--qmd-timestep<span class="w">   </span>Timestep<span class="w"> </span><span class="k">in</span><span class="w"> </span>fs<span class="w">         </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span>.20<span class="o">)</span>
+--qmd-run<span class="w">        </span>Number<span class="w"> </span>of<span class="w"> </span>MD<span class="w"> </span>steps<span class="w">     </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2501</span><span class="o">)</span>
+--qmd-prefix<span class="w">     </span>Prefix<span class="w"> </span><span class="k">for</span><span class="w"> </span>output<span class="w"> </span>files
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="q-chem-aimd-qmd-generation-options">
+<h3>Q-Chem AIMD/QMD generation options<a class="headerlink" href="#q-chem-aimd-qmd-generation-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--qchem-vel-file<span class="w"> </span>Velocity<span class="w"> </span>file<span class="w">          </span><span class="o">(</span>default:<span class="w"> </span>velocity.xyz<span class="o">)</span>
+--qchem-qmd-out<span class="w">  </span>Output<span class="w"> </span>filename<span class="w">        </span><span class="o">(</span>default:<span class="w"> </span>dyn.inp<span class="o">)</span>
+--qchem-timestep<span class="w"> </span>Time_step<span class="w">              </span><span class="o">(</span>default:<span class="w"> </span><span class="m">8</span><span class="o">)</span>
+--qchem-steps<span class="w">    </span>aimd_steps<span class="w">             </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2500</span><span class="o">)</span>
+--qchem-print<span class="w">    </span>aimd_print<span class="w">             </span><span class="o">(</span>default:<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="gaussian-bomd-parsing-options">
+<h3>Gaussian BOMD parsing options<a class="headerlink" href="#gaussian-bomd-parsing-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--parse-dyn
+-i,<span class="w"> </span>--inizio<span class="w">     </span>Starting<span class="w"> </span>step
+-f,<span class="w"> </span>--fine<span class="w">       </span>Ending<span class="w"> </span>step<span class="w"> </span><span class="o">(</span>exclusive<span class="o">)</span>
+-N,<span class="w"> </span>--Natom<span class="w">      </span>Total<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>atoms
+-g,<span class="w"> </span>--gout<span class="w">       </span>Gaussian<span class="w"> </span>output<span class="w"> </span>override
+--xyz<span class="w">            </span>Reference<span class="w"> </span>equilibrium<span class="w"> </span>xyz
+--vel<span class="w">            </span>Fallback<span class="w"> </span>initial<span class="w"> </span>velocity<span class="w"> </span>file
+-o,<span class="w"> </span>--output<span class="w">     </span>Output<span class="w"> </span>basename<span class="w">        </span><span class="o">(</span>default:<span class="w"> </span>parsed_log<span class="o">)</span>
+--Emin<span class="w">           </span>Minimum<span class="w"> </span>potential<span class="w"> </span>energy<span class="w"> </span><span class="k">for</span><span class="w"> </span>scaling<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span>.0<span class="o">)</span>
+--scale<span class="w">          </span>Shift<span class="w"> </span>Epot<span class="w"> </span>and<span class="w"> </span>Etot<span class="w"> </span>by<span class="w"> </span>Emin
+--movie<span class="w">          </span>Write<span class="w"> </span>coordinates-only<span class="w"> </span>xyz
+--total<span class="w">          </span>Write<span class="w"> </span>energies<span class="w"> </span>file
+--nimbus-traj<span class="w">    </span>Write<span class="w"> </span>flying_nimbus-compatible<span class="w"> </span>trajectory
+--nimbus-out<span class="w">     </span>Output<span class="w"> </span>filename<span class="w"> </span><span class="k">for</span><span class="w"> </span>nimbus<span class="w"> </span>trajectory
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="orca-and-q-chem-trajectory-parsing-options">
+<h3>ORCA and Q-Chem trajectory parsing options<a class="headerlink" href="#orca-and-q-chem-trajectory-parsing-options" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--parse-orca-qmd
+--parse-qchem-qmd
+--orca-traj<span class="w">      </span>ORCA<span class="w"> </span>trajectory<span class="w"> </span>file<span class="w">   </span><span class="o">(</span>default:<span class="w"> </span>trajectory.xyz<span class="o">)</span>
+--orca-vel<span class="w">       </span>ORCA<span class="w"> </span>velocity<span class="w"> </span>file<span class="w">     </span><span class="o">(</span>default:<span class="w"> </span>velocity.xyz<span class="o">)</span>
+--epot-out<span class="w">       </span>Output<span class="w"> </span>potential<span class="w"> </span>energy<span class="w"> </span>file
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="units-and-conventions">
+<h2>Units and conventions<a class="headerlink" href="#units-and-conventions" title="Permalink to this heading"></a></h2>
+<p>BULMA works across multiple programs that use different conventions. Understanding the units is important.</p>
+<section id="constants-used-internally">
+<h3>Constants used internally<a class="headerlink" href="#constants-used-internally" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Bohr to Ångström conversion is built in</p></li>
+<li><p>Atomic time to femtoseconds conversion is built in</p></li>
+<li><p>Velocity conversions are handled when needed</p></li>
+</ul>
+</section>
+<section id="common-conventions-in-bulma-outputs">
+<h3>Common conventions in BULMA outputs<a class="headerlink" href="#common-conventions-in-bulma-outputs" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Hessian outputs are written with <strong>Fortran <code class="docutils literal notranslate"><span class="pre">D</span></code> exponents</strong></p></li>
+<li><p>ORCA trajectory parsing converts velocities from <strong>Å/fs</strong> to <strong>bohr/au_time</strong> for flying_nimbus output</p></li>
+<li><p>Q-Chem QMD trajectory parsing keeps velocities in <strong>a.u.</strong></p></li>
+<li><p>Gaussian BOMD parsing writes:</p>
+<ul>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">xv</span></code> file with coordinates and converted velocities</p></li>
+<li><p>an optional flying_nimbus trajectory in <strong>Å + bohr/au_time</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="geometry-units">
+<h3>Geometry units<a class="headerlink" href="#geometry-units" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Extracted XYZ files are written in <strong>Ångström</strong></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-file-naming-conventions">
+<h2>Common file naming conventions<a class="headerlink" href="#common-file-naming-conventions" title="Permalink to this heading"></a></h2>
+<section id="id29">
+<h3>Hessian extraction<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Hessian.out</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hessian_flat.out</span></code></p></li>
+</ul>
+</section>
+<section id="id30">
+<h3>Geometry extraction<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geo_opt.xyz</span></code></p></li>
+</ul>
+</section>
+<section id="gaussian-generation">
+<h3>Gaussian generation<a class="headerlink" href="#gaussian-generation" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geom_freq.com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dyn.com</span></code></p></li>
+</ul>
+</section>
+<section id="orca-generation">
+<h3>ORCA generation<a class="headerlink" href="#orca-generation" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geom_freq.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;_qmd.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;_qmd.mdrestart</span></code></p></li>
+</ul>
+</section>
+<section id="q-chem-generation">
+<h3>Q-Chem generation<a class="headerlink" href="#q-chem-generation" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">opt.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freq.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opt-freq.inp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dyn.inp</span></code></p></li>
+</ul>
+</section>
+<section id="parsing-outputs">
+<h3>Parsing outputs<a class="headerlink" href="#parsing-outputs" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;_xv.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;_energies.dat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;_traj.xyz</span></code></p></li>
+<li><p>custom <code class="docutils literal notranslate"><span class="pre">--epot-out</span></code> file</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="typical-end-to-end-examples">
+<h2>Typical end-to-end examples<a class="headerlink" href="#typical-end-to-end-examples" title="Permalink to this heading"></a></h2>
+<section id="example-1-gaussian-optimization-input-from-xyz">
+<h3>Example 1: Gaussian optimization input from XYZ<a class="headerlink" href="#example-1-gaussian-optimization-input-from-xyz" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>ethanol.xyz<span class="w"> </span>--opt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--Nproc<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mem<span class="w"> </span>16Gb
+</pre></div>
+</div>
+<p>Result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.com</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-2-extract-final-gaussian-geometry-and-reuse-it-for-orca">
+<h3>Example 2: Extract final Gaussian geometry and reuse it for ORCA<a class="headerlink" href="#example-2-extract-final-gaussian-geometry-and-reuse-it-for-orca" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>gaussian_opt.out<span class="w"> </span>--extract-geo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz-template<span class="w"> </span>geo.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--geo-out<span class="w"> </span>gaussian_final.xyz
+
+python<span class="w"> </span>bulma.py<span class="w"> </span>gaussian_final.xyz<span class="w"> </span>--orca-opt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP
+</pre></div>
+</div>
+<p>Result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gaussian_final.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geom.inp</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-3-generate-q-chem-opt-freq-workflow-from-optimized-xyz">
+<h3>Example 3: Generate Q-Chem opt+freq workflow from optimized XYZ<a class="headerlink" href="#example-3-generate-q-chem-opt-freq-workflow-from-optimized-xyz" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>final.xyz<span class="w"> </span>--qchem-opt-freq<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--THEORY<span class="w"> </span>B3LYP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--BS<span class="w"> </span>Def2TZVP<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--charge<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mult<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">opt-freq.inp</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-4-convert-orca-qmd-into-a-flying-nimbus-trajectory">
+<h3>Example 4: Convert ORCA QMD into a flying_nimbus trajectory<a class="headerlink" href="#example-4-convert-orca-qmd-into-a-flying-nimbus-trajectory" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>dummy.dat<span class="w"> </span>--parse-orca-qmd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-traj<span class="w"> </span>trajectory.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orca-vel<span class="w"> </span>velocity.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>nimbus_orca<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--epot-out<span class="w"> </span>epot_orca.dat
+</pre></div>
+</div>
+<p>Result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nimbus_orca_traj.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epot_orca.dat</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-5-parse-gaussian-bomd-and-write-nimbus-compatible-outputs">
+<h3>Example 5: Parse Gaussian BOMD and write Nimbus compatible outputs<a class="headerlink" href="#example-5-parse-gaussian-bomd-and-write-nimbus-compatible-outputs" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bulma.py<span class="w"> </span>bomd.out<span class="w"> </span>--parse-dyn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--inizio<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fine<span class="w"> </span><span class="m">2501</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--xyz<span class="w"> </span>eq.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--movie<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--total<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nimbus-traj<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>bomd_analysis
+</pre></div>
+</div>
+<p>Result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bomd_analysis_xv.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bomd_analysis.xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bomd_analysis_energies.dat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bomd_analysis_traj.xyz</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="limitations-and-important-notes">
+<h2>Limitations and important notes<a class="headerlink" href="#limitations-and-important-notes" title="Permalink to this heading"></a></h2>
+<section id="gaussian-geometry-extraction-needs-an-xyz-template">
+<h3>1. Gaussian geometry extraction needs an XYZ template<a class="headerlink" href="#gaussian-geometry-extraction-needs-an-xyz-template" title="Permalink to this heading"></a></h3>
+<p>For Gaussian <code class="docutils literal notranslate"><span class="pre">--extract-geo</span></code>, BULMA uses <code class="docutils literal notranslate"><span class="pre">--xyz-template</span></code> to restore element labels and ordering. If the template does not match the output, the extracted XYZ will be incorrect or fail.</p>
+</section>
+<section id="gaussian-bomd-mass-table-is-limited">
+<h3>2. Gaussian BOMD mass table is limited<a class="headerlink" href="#gaussian-bomd-mass-table-is-limited" title="Permalink to this heading"></a></h3>
+<p>The internal mass database currently includes only:</p>
+<ul class="simple">
+<li><p>H</p></li>
+<li><p>C</p></li>
+<li><p>O</p></li>
+<li><p>N</p></li>
+<li><p>S</p></li>
+</ul>
+<p>If your system contains other elements, you must extend the source code in <code class="docutils literal notranslate"><span class="pre">get_masses_cart()</span></code>. If you are using a precompiled version feel free to contact us on Github.</p>
+</section>
+<section id="velocity-file-sizes-must-match-the-atom-count">
+<h3>3. Velocity file sizes must match the atom count<a class="headerlink" href="#velocity-file-sizes-must-match-the-atom-count" title="Permalink to this heading"></a></h3>
+<p>For all generated dynamics inputs and restart files, the number of velocity lines must match the number of atoms in the XYZ geometry.</p>
+</section>
+<section id="some-cli-modes-still-require-a-positional-input-file-even-if-they-mainly-read-auxiliary-files">
+<h3>4. Some CLI modes still require a positional <code class="docutils literal notranslate"><span class="pre">input_file</span></code> even if they mainly read auxiliary files<a class="headerlink" href="#some-cli-modes-still-require-a-positional-input-file-even-if-they-mainly-read-auxiliary-files" title="Permalink to this heading"></a></h3>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">--parse-orca-qmd</span></code> uses <code class="docutils literal notranslate"><span class="pre">--orca-traj</span></code> and <code class="docutils literal notranslate"><span class="pre">--orca-vel</span></code>, but the CLI still expects a positional first argument.</p>
+</section>
+<section id="orca-and-q-chem-defaults-are-adapted-internally">
+<h3>5. ORCA and Q-Chem defaults are adapted internally<a class="headerlink" href="#orca-and-q-chem-defaults-are-adapted-internally" title="Permalink to this heading"></a></h3>
+<p>Some defaults are translated to engine-specific settings instead of being copied literally.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>ORCA default basis becomes <code class="docutils literal notranslate"><span class="pre">Def2-TZVPD</span></code></p></li>
+<li><p>ORCA default processor count becomes <code class="docutils literal notranslate"><span class="pre">20</span></code></p></li>
+<li><p>Q-Chem default basis string becomes <code class="docutils literal notranslate"><span class="pre">def2-TZVP</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="could-not-find-start-marker-during-gaussian-hessian-extraction">
+<h3>“Could not find start marker” during Gaussian Hessian extraction<a class="headerlink" href="#could-not-find-start-marker-during-gaussian-hessian-extraction" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>The file is not a Gaussian Hessian-containing output</p></li>
+<li><p>The calculation did not reach the expected section (Error messages?)</p></li>
+<li><p>The wrong file was passed as input</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Confirm the file is a Gaussian frequency output containing <code class="docutils literal notranslate"><span class="pre">Force</span> <span class="pre">constants</span> <span class="pre">in</span> <span class="pre">Cartesian</span> <span class="pre">coordinates</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="could-not-find-orca-start-marker-or-incomplete-orca-hessian-parsing">
+<h3>“Could not find ORCA start marker” or incomplete ORCA Hessian parsing<a class="headerlink" href="#could-not-find-orca-start-marker-or-incomplete-orca-hessian-parsing" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>The input is not a valid ORCA <code class="docutils literal notranslate"><span class="pre">.hess</span></code> file</p></li>
+<li><p>The file is truncated</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">.hess</span></code> file rather than the <code class="docutils literal notranslate"><span class="pre">.out</span></code></p></li>
+<li><p>Confirm the <code class="docutils literal notranslate"><span class="pre">$hessian</span></code> section is complete</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="q-chem-hessian-size-mismatch">
+<h3>“Q-Chem Hessian size mismatch”<a class="headerlink" href="#q-chem-hessian-size-mismatch" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">HESS</span></code> file is incomplete or malformed</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Regenerate the Q-Chem Hessian file</p></li>
+<li><p>Check for accidental editing or truncation</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="velocity-geometry-mismatch">
+<h3>“Velocity/geometry mismatch”<a class="headerlink" href="#velocity-geometry-mismatch" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>Number of atoms in the XYZ file and velocity file differ</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Ensure that the velocity file contains one line per atom</p></li>
+<li><p>Confirm both files refer to the same molecular system</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="no-md-step-markers-found-in-gaussian-trajectory-parsing">
+<h3>“No MD step markers found” in Gaussian trajectory parsing<a class="headerlink" href="#no-md-step-markers-found-in-gaussian-trajectory-parsing" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>The Gaussian output does not contain one of the supported step markers</p></li>
+<li><p>The output is not a compatible BOMD job</p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Confirm the file is a Gaussian BOMD output and that the relevant sections are present</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="atom-x-not-in-mass-database">
+<h3>“Atom X not in mass database”<a class="headerlink" href="#atom-x-not-in-mass-database" title="Permalink to this heading"></a></h3>
+<p>Cause:</p>
+<ul class="simple">
+<li><p>The molecule contains an element not hardcoded in <code class="docutils literal notranslate"><span class="pre">get_masses_cart()</span></code></p></li>
+</ul>
+<p>Fix:</p>
+<ul class="simple">
+<li><p>Add the missing atomic mass to the source code before running the parser again</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<p>This project is marked in the source with:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+</pre></div>
+</div>
+<p>Check the repository for the full license text and any additional usage notes.</p>
+</section>
+<hr class="docutils" />
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
+<p>Authors listed in the source:</p>
+<ul class="simple">
+<li><p>Giacomo Mandelli, Ph.D., Politecnico di Milano</p></li>
+<li><p>Giacomo Botti, Ph.D., University of South Carolina</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README_FlyingNimbus.html" class="btn btn-neutral float-left" title="Flying Nimbus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Readme_VEGETA.html" class="btn btn-neutral float-right" title="VEGETA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
