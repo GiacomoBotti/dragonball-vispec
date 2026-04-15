@@ -8,10 +8,18 @@ The suite contains three different scripts, both in CLI and GUI version:
 - **Bulma** to generate the input and parse the outputs of the supported *ab initio* codes (Gaussian, Orca and QChem)
 - **Vegeta** to generate the initial conditions for the quasi-classical trajectory
 
-You can find the individual tutorials here:
-- [Flying Nimbus](README_FlyingNimbus.md)
-- [Bulma](Readme_BULMA.md)
-- [Vegeta](Readme_VEGETA.md)
+You can find the individual documentation here:
+- [Flying Nimbus](docs/source/README_FlyingNimbus.md)
+- [Bulma](docs/source/Readme_BULMA.md)
+- [Vegeta](docs/source/Readme_VEGETA.md)
+
+You can find the guides on how to use Dragonball with the supported _ab initio_ codes here:
+- [Gaussian](docs/source/Gau_tutorial/GAU_tutorial.md)
+- [Orca](docs/source/ORCA_tutorial.md)
+- [QChem](docs/source/QChem_tutorial.md)
+
+You can find the full documentation [here](https://dragonball-vispec.readthedocs.io/en/latest/)
+
 
 ## Flowchart
 
