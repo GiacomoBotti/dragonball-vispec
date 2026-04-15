@@ -8,7 +8,7 @@
 ## Acknowledgements
 
 - Professors [C. A. Cavallotti](https://www.cmic.polimi.it/en/persone/docenti-e-ricercatori/cavallotti-carlo-alessandro/) and [A. Famulari](https://www.cmic.polimi.it/persone/docenti-e-ricercatori/famulari-antonino/), and their groups (Politecnico di Milano)
-- Professors [S. Garashchuk](https://sc.edu/study/colleges_schools/chemistry_and_biochemistry/our_people/directory/garashchuk_sophya.php), and the Quantum Theory Group (University of South Carolina)
+- Professor [S. Garashchuk](https://sc.edu/study/colleges_schools/chemistry_and_biochemistry/our_people/directory/garashchuk_sophya.php), and the Quantum Theory Group (University of South Carolina)
 
 ## Contacts
 
