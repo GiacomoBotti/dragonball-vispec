@@ -28,6 +28,6 @@ Dragonball Documentation
 Dragonball Files
 ==========================================
 
-You find the repository `here <https://github.com/GiacomoBotti/dragonball-vispec.git>`_
+You find the repository `here <https://github.com/giacomande95-oss/dragonball-vispec.git>`_
 
 Paper is WIP
