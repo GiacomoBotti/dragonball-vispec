@@ -23,7 +23,7 @@ You can find the full documentation [here](https://dragonball-vispec.readthedocs
 
 ## Flowchart
 
-![Dragonball Workflow](docs/source/flowchart.png)
+![Dragonball Workflow](docs/source/workflow.png)
 
 Have fun!
 
