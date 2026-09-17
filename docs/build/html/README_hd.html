@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hessian Database Geometry Scanner &mdash; Dragonball Suite 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hessian Workflow Utilities" href="README_preppy.html" />
+    <link rel="prev" title="QChem Tutorial" href="QChem_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dragonball Suite
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Welcome to DragonBall!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_FlyingNimbus.html">Flying Nimbus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_BULMA.html">BULMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readme_VEGETA.html">VEGETA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation_GUI_de.html">GUI Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html">Gaussian tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#bulma-gui-tutorial">Bulma GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#vegeta-gui-tutorial">Vegeta GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hessian Database Geometry Scanner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-options">Command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equilibrium-geometry">Equilibrium geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equilibrium-hessian">Equilibrium Hessian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory">Trajectory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#method">Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outputs">Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selected-geometries">Selected geometries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search-indices">Search indices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#threshold-scan">Threshold scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-workflow">Typical workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README_preppy.html">Hessian Workflow Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CandyBeam.html">HDF5 Molecular Data Packager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements and Contacts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dragonball Suite</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hessian Database Geometry Scanner</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README_hd.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="hessian-database-geometry-scanner">
+<h1>Hessian Database Geometry Scanner<a class="headerlink" href="#hessian-database-geometry-scanner" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">hessian_DB_scan.py</span></code> selects representative geometries from a molecular dynamics trajectory using a Hessian Database (HDB) configuration-space search. It reads an equilibrium geometry and Hessian, constructs a mass-weighted normal-mode representation, and adds a trajectory geometry to the database only when no stored geometry lies within the chosen threshold in vibrational normal-coordinate space.</p>
+<p>The selected geometries can then be passed to a batch Hessian calculator, avoiding an <em>ab initio</em> Hessian calculation at every trajectory step.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Python 3</p></li>
+<li><p>NumPy</p></li>
+</ul>
+<p>The scanner itself does not require a quantum-chemistry package. The equilibrium Hessian and trajectory must already be available.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>A standard run is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>hessian_DB_scan.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nmax<span class="w"> </span><span class="m">2500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--thr<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_geom<span class="w"> </span>geom_hessian.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_ind<span class="w"> </span>search_indexes.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--xyz<span class="w"> </span>geometry.xyz
+</pre></div>
+</div>
+<p>For a linear molecule, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--nrotransl<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>The default is 6 rotational/translational modes.</p>
+</section>
+<section id="command-line-options">
+<h2>Command-line options<a class="headerlink" href="#command-line-options" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--nat</span></code></p></td>
+<td><p>Number of atoms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--nmax</span></code></p></td>
+<td><p>Number of trajectory frames to analyze.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--thr</span></code></p></td>
+<td><p>HDB distance threshold; required for a normal run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--input_traj</span></code></p></td>
+<td><p>Input extended XYZ trajectory.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--input_hess</span></code></p></td>
+<td><p>Equilibrium Cartesian Hessian.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output_geom</span></code></p></td>
+<td><p>Output file containing selected geometries.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output_ind</span></code></p></td>
+<td><p>Output index map for the complete trajectory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--xyz</span></code></p></td>
+<td><p>Equilibrium XYZ file used to read geometry and masses.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--nrotransl</span></code></p></td>
+<td><p>Number of rotational/translational modes; default <code class="docutils literal notranslate"><span class="pre">6</span></code>, use <code class="docutils literal notranslate"><span class="pre">5</span></code> for linear molecules.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--scan-thr</span></code></p></td>
+<td><p>Run the built-in threshold scan.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--scan-summary</span></code></p></td>
+<td><p>Threshold-scan summary file; default <code class="docutils literal notranslate"><span class="pre">graph_eps</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="input-files">
+<h2>Input files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h2>
+<section id="equilibrium-geometry">
+<h3>Equilibrium geometry<a class="headerlink" href="#equilibrium-geometry" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--xyz</span></code> is a standard XYZ file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3
+Equilibrium geometry
+O    0.00000000    0.00000000    0.00000000
+H    0.00000000    0.75700000    0.58600000
+H    0.00000000   -0.75700000    0.58600000
+</pre></div>
+</div>
+<p>The script uses this file to obtain the atomic symbols and masses. Its internal mass database contains <code class="docutils literal notranslate"><span class="pre">H</span></code>, <code class="docutils literal notranslate"><span class="pre">D</span></code>, <code class="docutils literal notranslate"><span class="pre">O</span></code>, <code class="docutils literal notranslate"><span class="pre">Od</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">Ti</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">S</span></code>, and <code class="docutils literal notranslate"><span class="pre">I</span></code>, with masses in atomic units (electron masses).</p>
+<p>For an element not present in the internal database, the mass can be supplied in a fifth XYZ column:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X    x    y    z    mass
+</pre></div>
+</div>
+</section>
+<section id="equilibrium-hessian">
+<h3>Equilibrium Hessian<a class="headerlink" href="#equilibrium-hessian" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--input_hess</span></code> uses the DragonBall lower-triangular Hessian format. After two header lines, the lower triangle is listed sequentially:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>H(1,1)
+H(2,1)
+H(2,2)
+H(3,1)
+H(3,2)
+H(3,3)
+...
+</pre></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">E</span></code> and Fortran <code class="docutils literal notranslate"><span class="pre">D</span></code> exponential notation are accepted.</p>
+</section>
+<section id="trajectory">
+<h3>Trajectory<a class="headerlink" href="#trajectory" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--input_traj</span></code> must be an extended multi-frame XYZ trajectory:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nat
+comment line
+symbol    x    y    z    vx    vy    vz
+...
+</pre></div>
+</div>
+<p>The scanner uses the Cartesian coordinates in the HDB search. Velocities are read but are not used by the current selection procedure. The trajectory must contain at least <code class="docutils literal notranslate"><span class="pre">--nmax</span></code> frames.</p>
+</section>
+</section>
+<section id="method">
+<h2>Method<a class="headerlink" href="#method" title="Link to this heading"></a></h2>
+<p>For a molecule with <code class="docutils literal notranslate"><span class="pre">N</span></code> atoms,</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ncart = 3 N
+nvib  = ncart - nrotransl
+</pre></div>
+</div>
+<p>The equilibrium Cartesian Hessian is mass weighted,</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>D_ij = H_ij / sqrt(m_i m_j)
+</pre></div>
+</div>
+<p>and diagonalized with <code class="docutils literal notranslate"><span class="pre">numpy.linalg.eigh</span></code>. The modes are reordered so that the vibrational modes occur first and the rotational/translational modes are placed at the end. The resulting frequencies are printed in cm^-1.</p>
+<p>Each trajectory geometry is projected onto this normal-mode basis. Only the first <code class="docutils literal notranslate"><span class="pre">nvib</span></code> normal coordinates are used by the HDB search.</p>
+<p>The first trajectory frame is always inserted into the database. For each subsequent frame, candidate database configurations are filtered by requiring</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>|q_k(DB) - q_k| &lt; threshold
+</pre></div>
+</div>
+<p>for every vibrational coordinate. If at least one database geometry survives, the closest stored geometry is selected. If no geometry survives, the current trajectory configuration is added as a new database entry.</p>
+<p>The database archive is sorted by the first vibrational normal coordinate, allowing the first stage of the search to stop once configurations fall outside the threshold window.</p>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Link to this heading"></a></h2>
+<section id="selected-geometries">
+<h3>Selected geometries<a class="headerlink" href="#selected-geometries" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--output_geom</span></code> is a multi-frame XYZ file containing only geometries selected for addition to the database:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3
+HDB is the best
+O    ...
+H    ...
+H    ...
+3
+HDB is the best
+O    ...
+H    ...
+H    ...
+</pre></div>
+</div>
+<p>The first trajectory geometry is always written. Further geometries are written only when the search finds no existing database configuration within the threshold.</p>
+<p>This file can be passed directly to a batch Hessian calculator such as <code class="docutils literal notranslate"><span class="pre">hessianator.py</span></code>.</p>
+</section>
+<section id="search-indices">
+<h3>Search indices<a class="headerlink" href="#search-indices" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--output_ind</span></code> contains one integer for each analyzed trajectory frame. The value identifies the database geometry assigned to that frame, using one-based indexing.</p>
+<p>The index file therefore maps the complete trajectory onto the reduced set of representative HDB geometries.</p>
+</section>
+</section>
+<section id="threshold-scan">
+<h2>Threshold scan<a class="headerlink" href="#threshold-scan" title="Link to this heading"></a></h2>
+<p>Instead of selecting one threshold manually, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>hessian_DB_scan.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nmax<span class="w"> </span><span class="m">2500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--xyz<span class="w"> </span>geometry.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--scan-thr
+</pre></div>
+</div>
+<p>The built-in thresholds are:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4.0e-1
+3.5e-1
+3.0e-1
+2.5e-1
+2.0e-1
+1.5e-1
+1.0e-1
+0.5e-1
+0.4e-1
+0.3e-1
+0.2e-1
+0.1e-1
+</pre></div>
+</div>
+<p>For every threshold, the script creates:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geom_&lt;threshold&gt;.dat
+index_&lt;threshold&gt;.dat
+</pre></div>
+</div>
+<p>and writes the threshold and number of selected geometries to the summary file. By default:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>graph_eps
+</pre></div>
+</div>
+<p>This mode is useful for determining how the size of the Hessian database depends on the HDB threshold.</p>
+</section>
+<section id="typical-workflow">
+<h2>Typical workflow<a class="headerlink" href="#typical-workflow" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> equilibrium geometry
+         +
+ equilibrium Hessian
+         |
+         |             trajectory
+         |                 |
+         +--------+--------+
+                  |
+                  v
+       +----------------------+
+       | hessian_DB_scan.py   |
+       +----------------------+
+            |             |
+            v             v
+ selected geometries   index map
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select representative trajectory geometries</span>
+python<span class="w"> </span>hessian_DB_scan.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nmax<span class="w"> </span><span class="m">2500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--thr<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_traj<span class="w"> </span>traj.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input_hess<span class="w"> </span>Hessian_flat.out<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_geom<span class="w"> </span>geom_hessian.xyz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_ind<span class="w"> </span>search_indexes.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--xyz<span class="w"> </span>geometry.xyz
+</pre></div>
+</div>
+<p>The resulting Hessian database and index map can then be used by a dynamics workflow to retrieve representative stored Hessians instead of evaluating a new Hessian at every trajectory step.</p>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The equilibrium geometry and trajectory should contain the same atoms in the same order; the script warns if their symbols differ.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--nmax</span></code> is the number of trajectory frames analyzed, and the trajectory must contain at least this many frames.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">--nrotransl</span> <span class="pre">5</span></code> for a linear molecule and <code class="docutils literal notranslate"><span class="pre">--nrotransl</span> <span class="pre">6</span></code> for a nonlinear molecule.</p></li>
+<li><p>The first trajectory frame is always stored as database geometry 1.</p></li>
+<li><p>The scanner selects configurations; it does <strong>not</strong> calculate new <em>ab initio</em> Hessians.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QChem_tutorial.html" class="btn btn-neutral float-left" title="QChem Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="README_preppy.html" class="btn btn-neutral float-right" title="Hessian Workflow Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, G.Botti G.Mandelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
