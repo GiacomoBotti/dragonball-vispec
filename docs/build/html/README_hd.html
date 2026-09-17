@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hessian Database Geometry Scanner &mdash; Dragonball Suite 1.0 documentation</title>
+  <title>Hessian Database &mdash; Dragonball Suite 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Hessian Workflow Utilities" href="README_preppy.html" />
+    <link rel="next" title="PrepPy: Hessian Utilities" href="README_preppy.html" />
     <link rel="prev" title="QChem Tutorial" href="QChem_tutorial.html" /> 
 </head>
 
@@ -56,7 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Gau_tutorial/GAU_tutorial.html#flying-nimbus-gui-tutorial">Flying Nimbus GUI Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ORCA_tutorial.html">ORCA Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="QChem_tutorial.html">QChem Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hessian Database Geometry Scanner</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hessian Database</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#command-line-options">Command-line options</a></li>
@@ -77,8 +77,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="README_preppy.html">Hessian Workflow Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README_CandyBeam.html">HDF5 Molecular Data Packager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_preppy.html">PrepPy: Hessian Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CandyBeam.html">CandyBeam: HDF5 Data Packager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Download.html">Download and useful links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements and Contacts</a></li>
 </ul>
@@ -97,7 +97,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Hessian Database Geometry Scanner</li>
+      <li class="breadcrumb-item active">Hessian Database</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README_hd.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,8 +107,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="hessian-database-geometry-scanner">
-<h1>Hessian Database Geometry Scanner<a class="headerlink" href="#hessian-database-geometry-scanner" title="Link to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="hessian-database">
+<h1>Hessian Database<a class="headerlink" href="#hessian-database" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">hessian_DB_scan.py</span></code> selects representative geometries from a molecular dynamics trajectory using a Hessian Database (HDB) configuration-space search. It reads an equilibrium geometry and Hessian, constructs a mass-weighted normal-mode representation, and adds a trajectory geometry to the database only when no stored geometry lies within the chosen threshold in vibrational normal-coordinate space.</p>
 <p>The selected geometries can then be passed to a batch Hessian calculator, avoiding an <em>ab initio</em> Hessian calculation at every trajectory step.</p>
 <section id="requirements">
@@ -363,7 +363,7 @@ python<span class="w"> </span>hessian_DB_scan.py<span class="w"> </span><span cl
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="QChem_tutorial.html" class="btn btn-neutral float-left" title="QChem Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="README_preppy.html" class="btn btn-neutral float-right" title="Hessian Workflow Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="README_preppy.html" class="btn btn-neutral float-right" title="PrepPy: Hessian Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

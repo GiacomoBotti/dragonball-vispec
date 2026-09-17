@@ -1,4 +1,4 @@
-# HDF5 Molecular Data Packager
+# CandyBeam: HDF5 Data Packager
 
 A Python command-line utility for packaging molecular simulation files into a single compressed HDF5 archive and extracting them without loss of information.
 

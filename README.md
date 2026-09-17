@@ -20,10 +20,16 @@ You can find the guides on how to use Dragonball with the supported _ab initio_ 
 
 You can find the full documentation [here](https://dragonball-vispec.readthedocs.io/en/latest/)
 
-
-## Flowchart
+## Classical Spectra Flowchart
 
 ![Dragonball Workflow](docs/source/workflow.png)
+
+## Project ChiChi
+
+Project ChiChi (aka $\langle \chi \vert \chi \rangle$) aims at preparing Dragonball to semiclassical dynamics. It contains three additional scripts, and some external (but compatible!) codes:
+- [Hessian Database](docs/source/README_hd.md)
+- [PrepPY](docs/source/README_preppy.md)
+- [CandyBeam](docs/source/README_CandyBeam.md)
 
 Have fun!
 

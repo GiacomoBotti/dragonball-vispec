@@ -1,4 +1,4 @@
-# Hessian Workflow Utilities
+# PrepPy: Hessian Utilities
 
 A Python package for preparing, collecting, and reconstructing *ab initio* Hessians for a set of molecular geometries.
 

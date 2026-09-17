@@ -1,4 +1,4 @@
-# Hessian Database Geometry Scanner
+# Hessian Database 
 
 `hessian_DB_scan.py` selects representative geometries from a molecular dynamics trajectory using a Hessian Database (HDB) configuration-space search. It reads an equilibrium geometry and Hessian, constructs a mass-weighted normal-mode representation, and adds a trajectory geometry to the database only when no stored geometry lies within the chosen threshold in vibrational normal-coordinate space.
 
