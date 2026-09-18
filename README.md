@@ -26,10 +26,14 @@ You can find the full documentation [here](https://dragonball-vispec.readthedocs
 
 ## Project ChiChi
 
-Project ChiChi (aka $\langle \chi \vert \chi \rangle$) aims at preparing Dragonball to semiclassical dynamics. It contains three additional scripts, and some external (but compatible!) codes:
+Project ChiChi (aka $\langle \chi \vert \chi \rangle$) aims at preparing Dragonball to semiclassical dynamics. It contains three additional scripts:
 - [Hessian Database](docs/source/README_hd.md)
 - [PrepPY](docs/source/README_preppy.md)
 - [CandyBeam](docs/source/README_CandyBeam.md)
+and two compatible codes:
+- [Frieza](https://github.com/GiacomoBotti/Heller_dynamics)
+- [Runner](https://github.com/GiacomoBotti/BOMD_RUNNER)
+You can find more information on Project ChiChi in the [archive](link-to-archive).
 
 Have fun!
 
