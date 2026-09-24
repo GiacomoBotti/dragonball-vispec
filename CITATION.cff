@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: Dragonball
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: Mandelli 
+    given-names: Giacomo
+    email: giacomo.mandelli@polimi.it
+    affiliation: Politecnico di Milano
+    orcid: 0000-0003-2452-7379
+  - family-names: Famulari 
+    given-names: Antonino
+    affiliation: Politecnico di Milano
+    orcid: 0000-0001-5287-1092 
+  - family-names: Cavallotti 
+    given-names: Carlo
+    affiliation: Politecnico di Milano
+    orcid:  0000-0002-9229-1401
+  - family-names: "Garashchuk"
+    given-names: "Sophya"
+    affiliation: University of South Carolina
+    orcid: 0000-0003-2452-7379
+  - family-names: "Botti"
+    given-names: "Giacomo"
+    email: gbotti@mailbox.sc.edu
+    affiliation: University of South Carolina
+    orcid: 0000-0003-3759-9072
+
