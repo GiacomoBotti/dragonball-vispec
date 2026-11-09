@@ -619,7 +619,7 @@ def run_once(
     """
     nat: int = args.nat
     ncart: int = 3 * nat
-    nvib: int = ncart - args.nrototrasl 
+    nvib: int = ncart - args.nrotransl 
     nmax: int = args.nmax
 
     if debug_label is None:
