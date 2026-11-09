@@ -498,7 +498,7 @@ def collect_hessians(
             #        out.write(f"{value:>16s}\n")
             #for value in outH:
             #     out.write(f"{value:>16.10E}\n")
-            for row in lower_rows:
+            for row in lower_rows.values():
                   for value in row:
                      out.write(f"{float(value):16.10E}\n")
 

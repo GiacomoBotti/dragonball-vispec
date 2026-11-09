@@ -6,7 +6,7 @@
 Dragonball Documentation
 ========================================
 
-.. image:: ../../test.png
+.. image:: ../../toc.png
    :width: 60% 
    :align: center
 
